@@ -8,9 +8,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-@ComponentScan({"com.greenboost_team.service"})
-@EntityScan("com.greenboost_team.entity")
-@EnableMongoRepositories(basePackages = "com.greenboost_team.repository")
+@ComponentScan
+@EntityScan
+@EnableMongoRepositories
 public class BackendApplication {
 
 	public static void main(String[] args) {

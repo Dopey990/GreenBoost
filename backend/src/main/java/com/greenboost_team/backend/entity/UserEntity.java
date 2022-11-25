@@ -19,14 +19,20 @@ public class UserEntity {
     private String email;
     private String password;
     private String town;
-    private int ecoScore;
-    private int rank;
-    private int electricityScore;
-    private int gazScore;
-    private int pollutionScore;
-    private int waterScore;
-    private int electricityRank;
-    private int gazRank;
-    private int pollutionRank;
-    private int waterRank;
+    private Integer ecoScore;
+    private Integer rank;
+    private Integer electricityScore;
+    private Integer gazScore;
+    private Integer pollutionScore;
+    private Integer waterScore;
+    private Integer electricityRank;
+    private Integer gazRank;
+    private Integer pollutionRank;
+    private Integer waterRank;
+
+    public UserEntity(String email, String password) {
+        super();
+        this.email = email;
+        this.password = password;
+    }
 }
