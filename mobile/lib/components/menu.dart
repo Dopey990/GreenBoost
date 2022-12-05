@@ -12,7 +12,8 @@ class Menu extends StatelessWidget {
         
         DrawerHeader(
           decoration: BoxDecoration(
-            color: Colors.grey.shade500,
+            // color 3D69D9
+            color: Color(0xFF3D69D9),
           ),
         
         child: Row(
@@ -35,27 +36,40 @@ class Menu extends StatelessWidget {
                 Text('Score : 100',
                 style:TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 15,
                 )),
                 ],
             ),
           ],
         ),),
         ListTile(
-          title: Text('Home'),
+          leading: Icon(Icons.home),
+          title: Text('Accueil'),
           onTap: () {
             Navigator.pop(context);
             Navigator.pushNamed(context, '/home');
           },
         ),
         ListTile(
-          title: Text('About'),
+          leading: Icon(Icons.flash_on),
+          title: Text('Consommation'),
           onTap: () {
             Navigator.pop(context);
-            Navigator.pushNamed(context, '/about');
+            Navigator.pushNamed(context, '/consommation');
           },
         ),
         ListTile(
+          //icon winner /compost
+          leading: Icon(Icons.star),
+          title: Text('Challenges'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, '/challenge');
+          },
+        ),
+        ListTile(
+          //icon contact
+          leading: Icon(Icons.contact_mail),
           title: Text('Contact'),
           onTap: () {
             Navigator.pop(context);
