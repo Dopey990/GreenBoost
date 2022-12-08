@@ -1,6 +1,6 @@
-//create home page 
 import 'package:flutter/material.dart';
 import 'homePage.dart';
+import 'loginPage.dart';
 
 //create main function to run the app
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: LoginPage(),
       routes: {
         '/home': (context) => HomePage(),
         //'/about': (context) => AboutPage(),
