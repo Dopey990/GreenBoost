@@ -1,3 +1,4 @@
+import 'package:GreenBoost/advicesPage.dart';
 import 'package:flutter/material.dart';
 import 'homePage.dart';
 import 'loginPage.dart';
@@ -19,8 +20,7 @@ class MyApp extends StatelessWidget {
       home: LoginPage(),
       routes: {
         '/home': (context) => HomePage(),
-        //'/about': (context) => AboutPage(),
-        //'/contact': (context) => ContactPage(),
+        '/advices': (context) => AdvicesPage(),
       },
     );
   }
