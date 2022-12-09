@@ -49,15 +49,15 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 20.0),
           Padding(
               padding:
                   EdgeInsets.only(right: MediaQuery.of(context).size.width / 3),
               child: GestureDetector(
                 onTap: () {
-                  return;
+                  Navigator.of(context).pushNamed("/info/electricity");
                 },
-                child: Image.asset('home/eau-vert.png',
+                child: Image.asset('home/electricite/electricite-vert.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   return;
                 },
-                child: Image.asset('home/eau-vert.png',
+                child: Image.asset('home/eau/eau-rouge.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   return;
                 },
-                child: Image.asset('home/eau-vert.png',
+                child: Image.asset('home/gaz/gaz-orange.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   return;
                 },
-                child: Image.asset('home/eau-vert.png',
+                child: Image.asset('home/pollution/pollution-vert.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -110,14 +110,14 @@ class HomePage extends StatelessWidget {
                   color: Colors.blue,
                 ),
                 borderRadius: const BorderRadius.all(
-                  Radius.circular(10),
+                  Radius.circular(10.0),
                 ),
               ),
               child: const Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: EdgeInsets.only(top: 10.0),
                   child: Text(
                     "Débrancher trois appareils inutilisés chez vous",
-                    style: TextStyle(fontSize: 28),
+                    style: TextStyle(fontSize: 28.0),
                     textAlign: TextAlign.center,
                   )),
             ),

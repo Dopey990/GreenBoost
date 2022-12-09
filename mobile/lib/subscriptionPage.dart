@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'homePage.dart';
 
-class inscriptionPage extends StatelessWidget {
+class SubscriptionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,7 @@ class inscriptionPage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 1.0),
               child: Center(
                 child: Image.asset(
-                  'assets/img/GreenBoost-Full-Logo.png',
+                  'img/greenboost-full-logo.png',
                   height: 200,
                   width: 300,
                   fit: BoxFit.fitWidth,
@@ -26,7 +26,8 @@ class inscriptionPage extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
+              padding:
+                  EdgeInsets.only(left: 15.0, right: 15.0, top: 0, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
@@ -36,7 +37,8 @@ class inscriptionPage extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: const EdgeInsets.only(left:15.0,right: 15.0,top:10,bottom: 0),
+              padding:
+                  EdgeInsets.only(left: 15.0, right: 15.0, top: 10, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
@@ -46,7 +48,8 @@ class inscriptionPage extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: const EdgeInsets.only(left:15.0,right: 15.0,top:10,bottom: 0),
+              padding:
+                  EdgeInsets.only(left: 15.0, right: 15.0, top: 10, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
@@ -66,13 +69,12 @@ class inscriptionPage extends StatelessWidget {
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
               ),
-            ),            
+            ),
             Container(
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(20)),
+                  color: Colors.green, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
                   Navigator.push(

@@ -6,57 +6,56 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(child: ListView(
-      children: <Widget>
-      [
+    return Drawer(
+        child: ListView(
+      children: <Widget>[
         //sized box
         SizedBox(
           height: 115,
-          child:
-            DrawerHeader(
-              decoration: BoxDecoration(
+          child: DrawerHeader(
+            decoration: const BoxDecoration(
               color: Color(0xFF3D69D9),
-              ),
-        
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                CircleAvatar(
-                  child: Icon(Icons.person),
+                const CircleAvatar(
                   radius: 40,
+                  child: Icon(Icons.person),
                 ),
-                Column( 
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
+                  children: const [
                     Text('Alexandre',
-                    style:TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 25,
-                    )),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 25,
+                        )),
                     Text('Score : 100',
-                    style:TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    )),
-                ],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        )),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),),),
-
+          ),
+        ),
 
         ListTile(
-          leading: Icon(Icons.home),
-          title: Text('Accueil'),
+          leading: const Icon(Icons.home),
+          title: const Text('Accueil'),
           onTap: () {
             Navigator.pop(context);
             Navigator.pushNamed(context, '/home');
           },
         ),
         ListTile(
-          leading: Icon(Icons.flash_on),
-          title: Text('Consommation'),
+          leading: const Icon(Icons.flash_on),
+          title: const Text('Consommation'),
           onTap: () {
             Navigator.pop(context);
             Navigator.pushNamed(context, '/consommation');
@@ -64,8 +63,8 @@ class Menu extends StatelessWidget {
         ),
         ListTile(
           //icon winner /compost
-          leading: Icon(Icons.star),
-          title: Text('Challenges'),
+          leading: const Icon(Icons.star),
+          title: const Text('Challenges'),
           onTap: () {
             Navigator.pop(context);
             Navigator.pushNamed(context, '/challenge');
@@ -73,8 +72,8 @@ class Menu extends StatelessWidget {
         ),
         ListTile(
           //icon contact
-          leading: Icon(Icons.contact_mail),
-          title: Text('Contact'),
+          leading: const Icon(Icons.contact_mail),
+          title: const Text('Contact'),
           onTap: () {
             Navigator.pop(context);
             Navigator.pushNamed(context, '/contact');
