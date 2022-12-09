@@ -1,5 +1,5 @@
 import 'package:GreenBoost/forgotPasswordPage.dart';
-import 'package:GreenBoost/inscriptionPage.dart';
+import 'package:GreenBoost/subscriptionPage.dart';
 import 'package:flutter/material.dart';
 
 import 'homePage.dart';
@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
                 child: Image.asset(
-                  'assets/img/GreenBoost-Full-Logo.png',
+                  'img/greenBoost-full-logo.png',
                   height: 200,
                   width: 300,
                   fit: BoxFit.fitWidth,
@@ -51,9 +51,8 @@ class LoginPage extends StatelessWidget {
             //text button for inscription
             TextButton(
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => inscriptionPage())
-                );
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => SubscriptionPage()));
               },
               child: const Text(
                 'Pas encore de compte? inscrivez-vous ici',
@@ -63,8 +62,8 @@ class LoginPage extends StatelessWidget {
 
             TextButton(
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => forgotPasswordPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => forgotPasswordPage()));
               },
               child: const Text(
                 'Mot de passe oublié? cliquez ici',
