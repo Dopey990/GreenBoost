@@ -9,39 +9,43 @@ class Menu extends StatelessWidget {
     return Drawer(child: ListView(
       children: <Widget>
       [
+        //sized box
+        SizedBox(
+          height: 115,
+          child:
+            DrawerHeader(
+              decoration: BoxDecoration(
+              color: Color(0xFF3D69D9),
+              ),
         
-        DrawerHeader(
-          decoration: BoxDecoration(
-            // color 3D69D9
-            color: Color(0xFF3D69D9),
-          ),
-        
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            CircleAvatar(
-              child: Icon(Icons.person),
-              radius: 40,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Text('John Doe',
-                style:TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 25,
-                )),
-                Text('Score : 100',
-                style:TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                )),
+                CircleAvatar(
+                  child: Icon(Icons.person),
+                  radius: 40,
+                ),
+                Column( 
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text('Alexandre',
+                    style:TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 25,
+                    )),
+                    Text('Score : 100',
+                    style:TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    )),
                 ],
             ),
           ],
-        ),),
+        ),),),
+
+
         ListTile(
           leading: Icon(Icons.home),
           title: Text('Accueil'),
