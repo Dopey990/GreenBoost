@@ -1,4 +1,5 @@
 //create a component to display the menu
+import 'package:GreenBoost/profilPage.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
@@ -9,10 +10,14 @@ class Menu extends StatelessWidget {
     return Drawer(child: ListView(
       children: <Widget>
       [
-        //sized box
+        GestureDetector(
+          onTap: () {
+           Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilPage()));
+          },
+        child:
         SizedBox(
           height: 115,
-          child:
+          child : 
             DrawerHeader(
               decoration: BoxDecoration(
               color: Color(0xFF3D69D9),
@@ -43,7 +48,7 @@ class Menu extends StatelessWidget {
                 ],
             ),
           ],
-        ),),),
+        ),),),),
 
 
         ListTile(

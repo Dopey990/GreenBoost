@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
             titleColor: Colors.blue,
             title: "Eco-Score",
             textAlign: TextAlignTitledContainer.Left,
-            fontSize: 16,
+            fontSize: 16.0,
             backgroundColor: Colors.white,
             child: Container(
               width: 150,
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   return;
                 },
-                child: Image.asset('home/eau-vert.png',
+                child: Image.asset('assets/home/eau-vert.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   return;
                 },
-                child: Image.asset('home/eau-vert.png',
+                child: Image.asset('assets/home/eau-vert.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   return;
                 },
-                child: Image.asset('home/eau-vert.png',
+                child: Image.asset('assets/home/eau-vert.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   return;
                 },
-                child: Image.asset('home/eau-vert.png',
+                child: Image.asset('assets/home/eau-vert.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -100,11 +100,11 @@ class HomePage extends StatelessWidget {
             titleColor: Colors.blue,
             title: "Défis",
             textAlign: TextAlignTitledContainer.Center,
-            fontSize: 16,
+            fontSize: 16.0,
             backgroundColor: Colors.white,
             child: Container(
-              width: MediaQuery.of(context).size.width / 2,
-              height: 150,
+              width: MediaQuery.of(context).size.width / 1.25,
+              height: 100,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.blue,
@@ -117,7 +117,7 @@ class HomePage extends StatelessWidget {
                   padding: EdgeInsets.only(top: 10),
                   child: Text(
                     "Débrancher trois appareils inutilisés chez vous",
-                    style: TextStyle(fontSize: 28),
+                    style: TextStyle(fontSize: 20),
                     textAlign: TextAlign.center,
                   )),
             ),
