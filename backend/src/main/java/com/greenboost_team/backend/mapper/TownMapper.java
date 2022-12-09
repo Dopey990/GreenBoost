@@ -1,12 +1,15 @@
 package com.greenboost_team.backend.mapper;
 
-public class TownMapper {
 
+import com.greenboost_team.backend.dto.TownDto;
+import com.greenboost_team.backend.entity.TownEntity;
+import org.springframework.stereotype.Component;
+
+@Component
+public class TownMapper {
     public TownDto entityToDto(TownEntity entity) {
         TownDto result = new TownDto();
-
-        result.setName(entity.getName());
-
+        result.setNom(entity.getNom());
         return result;
     }
 }
