@@ -3,6 +3,7 @@ package com.greenboost_team.backend.controller;
 import com.greenboost_team.backend.dto.TownDto;
 import com.greenboost_team.backend.entity.TownEntity;
 import com.greenboost_team.backend.mapper.TownMapper;
+import com.greenboost_team.backend.repository.TownRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,26 +21,18 @@ import java.util.List;
 public class TownController {
 
     @Resource
-    private RestTemplate restTemplate;
-
-    @Resource
     private TownMapper townMapper;
 
-    public TownController() {
-    }
+    @Resource
+    private TownRepository townRepository;
 
     @GetMapping("/getTowns")
     public ResponseEntity<List<TownDto>> getTownsSearch(@RequestParam(required = false) String search) {
-        String url = "https://geo.api.gouv.fr/communes" + (search == null || search.isBlank() ? "" : "?nom=" + search);
-        try{
-            TownEntity[] towns = restTemplate.getForObject(url, TownEntity[].class);
-            if (towns == null || towns.length == 0){
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }else {
-                return  new ResponseEntity<>(Arrays.stream(towns).map(town -> townMapper.entityToDto(town)).toList(), HttpStatus.OK);
-            }
-        } catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        List<TownEntity> towns = search == null ? townRepository.getAllTowns() : townRepository.getAllTownsWithName(search);
+        if (towns == null || towns.size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(towns.stream().map(town -> townMapper.entityToDto(town)).toList(), HttpStatus.OK);
         }
     }
 }
