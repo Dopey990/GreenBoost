@@ -63,7 +63,7 @@ class LoginPage extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => forgotPasswordPage()));
+                    MaterialPageRoute(builder: (_) => ForgotPasswordPage()));
               },
               child: const Text(
                 'Mot de passe oublié? cliquez ici',
