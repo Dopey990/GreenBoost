@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 import 'homePage.dart';
 
-class forgotPasswordPage extends StatelessWidget {
+class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Mot de passe oublié'),
+        title: const Text('Mot de passe oublié'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -26,8 +26,8 @@ class forgotPasswordPage extends StatelessWidget {
               ),
             ),
             //padding for forgot password text
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
+            const Padding(
+              padding: EdgeInsets.only(top: 10.0),
               child: Text(
                 'Réinitialiser le mot de passe',
                 style: TextStyle(
@@ -37,8 +37,8 @@ class forgotPasswordPage extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: const EdgeInsets.only(
-                  left: 15.0, right: 15.0, top: 15, bottom: 15),
+              padding:
+                  EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 15),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
@@ -61,7 +61,7 @@ class forgotPasswordPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => LoginPage()),
                   );
                 },
-                child: Text(
+                child: const Text(
                   'Envoyer',
                   style: TextStyle(
                     color: Colors.white,
