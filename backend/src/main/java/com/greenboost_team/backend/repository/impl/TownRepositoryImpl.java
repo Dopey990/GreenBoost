@@ -1,13 +1,15 @@
-package com.greenboost_team.backend.repository.Impl;
+package com.greenboost_team.backend.repository.impl;
 
 import com.greenboost_team.backend.entity.TownEntity;
 import com.greenboost_team.backend.repository.TownRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
 
+@Repository
 public class TownRepositoryImpl implements TownRepository {
 
     @Resource
