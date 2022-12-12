@@ -18,7 +18,7 @@ class forgotPasswordPage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 1.0),
               child: Center(
                 child: Image.asset(
-                  'assets/img/GreenBoost-Full-Logo.png',
+                  'assets/img/greenboost-full-logo.png',
                   height: 200,
                   width: 300,
                   fit: BoxFit.fitWidth,
@@ -37,7 +37,8 @@ class forgotPasswordPage extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: const EdgeInsets.only(left:15.0,right: 15.0,top:15,bottom: 15),
+              padding: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 15, bottom: 15),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
@@ -75,8 +76,3 @@ class forgotPasswordPage extends StatelessWidget {
     );
   }
 }
-
-               
-               
-            
-            
