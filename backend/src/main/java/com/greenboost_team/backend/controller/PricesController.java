@@ -1,25 +1,18 @@
 package com.greenboost_team.backend.controller;
 
 import com.greenboost_team.backend.dto.PriceDto;
-import com.greenboost_team.backend.entity.PriceEntity;
 import com.greenboost_team.backend.mapper.PriceMapper;
-import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
-import javax.swing.text.DateFormatter;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -33,7 +26,7 @@ public class PricesController {
     @Resource
     private PriceMapper priceMapper;
 
-    @GetMapping("/getDayAheadPrices")
+    @GetMapping("/electricity/getDayAheadPrices")
     public ResponseEntity<List<PriceDto>> getDayAheadPrices() throws ParseException {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'23:00'Z'");
         LocalDateTime today = java.time.LocalDateTime.now();
