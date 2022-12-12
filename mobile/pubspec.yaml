@@ -78,6 +78,7 @@ flutter:
     - assets/home/pollution-orange.png
     - assets/home/pollution-rouge.png
     - assets/home/pollution-vert.png
+    - assets/img/trophee.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

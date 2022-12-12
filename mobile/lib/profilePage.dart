@@ -12,37 +12,112 @@ class ProfilePage extends StatelessWidget {
       ),
       drawer: Menu(),
       body: SingleChildScrollView(
-        child : Column (
-          //icon of parameters on right and icon of podium on left
-          children: [
+        child : Column (          
+          children: <Widget>[
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed("/advices");
-                  },
-                  icon: const Icon(Icons.stadium),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed("/advices");
-                  },
-                  icon: const Icon(Icons.settings),
+              //icon of settings on the right
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: const <Widget>[
+                Icon(
+                  Icons.settings,
+                  color: Colors.blue,
+                  size: 40,
                 ),
               ],
             ),
-            //container with 4 padding displaying the user's name and score
+
+            Padding(
+              padding: const EdgeInsets.only(top: 1.0),
+              child: Center(
+                child: Image.asset(
+                  'assets/img/trophy.png',
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+            ),
+
+
             Container(
-              padding: EdgeInsets.all(20),
+              height: MediaQuery.of(context).size.height * 0.6,
+              width: MediaQuery.of(context).size.width * 0.8,
+              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 25, bottom: 25),
+              decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(10),
+                ),
               child: Column(
-                children : <Widget>[
-                  const Padding(
-                    padding: const EdgeInsets.only(left:15.0,right: 15.0,top:10,bottom: 0),
-                    //padding: EdgeInsets.symmetric(horizontal: 15),
-                    child: //display informations about user in a box with round border
-                      Text('Position : 1245ème '),
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: const <Widget>[
+                      Icon(
+                        Icons.stacked_bar_chart,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    ],
                   ),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      "Position : 65467764ème",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: 
+                      Card(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: const EdgeInsets.all(20),
+                          child: const Text("Electricité : 123456ème"),
+                          ),),),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: 
+                      Card(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: const EdgeInsets.all(20),
+                          child: const Text("Eau : 123456ème"),
+                          ),),),
+                  SizedBox(
+                    width:  MediaQuery.of(context).size.width * 0.8,
+                    child: 
+                      Card(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: const EdgeInsets.all(20),
+                          child: const Text("Gaz : 123456ème"),
+                          ),),),
+                  SizedBox(
+                    width:  MediaQuery.of(context).size.width * 0.8,
+                    child: 
+                      Card(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: const EdgeInsets.all(20),
+                          child: const Text("Pollution : 123456ème"),
+                          ),),),
                 ]
             ),
             )
