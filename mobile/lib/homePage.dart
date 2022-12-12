@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Home'),
+        title: const Text('Home'),
       ),
       drawer: const Menu(),
       body: Column(
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).pushNamed("/info/electricity");
                 },
-                child: Image.asset('home/electricite/electricite-vert.png',
+                child: Image.asset('assets/home/eau-vert.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   return;
                 },
-                child: Image.asset('home/eau/eau-rouge.png',
+                child: Image.asset('assets/home/electricite-orange.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   return;
                 },
-                child: Image.asset('home/gaz/gaz-orange.png',
+                child: Image.asset('assets/home/gaz-vert.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   return;
                 },
-                child: Image.asset('home/pollution/pollution-vert.png',
+                child: Image.asset('assets/home/pollution-rouge.png',
                     height: MediaQuery.of(context).size.width / 8,
                     width: MediaQuery.of(context).size.width / 8),
               )),
@@ -117,7 +117,7 @@ class HomePage extends StatelessWidget {
                   padding: EdgeInsets.only(top: 10.0),
                   child: Text(
                     "Débrancher trois appareils inutilisés chez vous",
-                    style: TextStyle(fontSize: 28.0),
+                    style: TextStyle(fontSize: 20.0),
                     textAlign: TextAlign.center,
                   )),
             ),

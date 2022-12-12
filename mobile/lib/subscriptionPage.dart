@@ -18,7 +18,7 @@ class SubscriptionPage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 1.0),
               child: Center(
                 child: Image.asset(
-                  'img/greenboost-full-logo.png',
+                  'assets/img/greenboost-full-logo.png',
                   height: 200,
                   width: 300,
                   fit: BoxFit.fitWidth,

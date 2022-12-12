@@ -1,5 +1,5 @@
 //create a component to display the menu
-import 'package:GreenBoost/profilPage.dart';
+import 'package:GreenBoost/profilePage.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
@@ -12,44 +12,46 @@ class Menu extends StatelessWidget {
       [
         GestureDetector(
           onTap: () {
-           Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilPage()));
+           Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
           },
-        child:
-        SizedBox(
-          height: 115,
-          child : 
-            DrawerHeader(
-              decoration: BoxDecoration(
-              color: Color(0xFF3D69D9),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                const CircleAvatar(
-                  radius: 40,
-                  child: Icon(Icons.person),
+          child:
+            SizedBox(
+              height: 115,
+              child : 
+                DrawerHeader(
+                  decoration: BoxDecoration(
+                  color: Color(0xFF3D69D9),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      const CircleAvatar(
+                        radius: 40,
+                        child: Icon(Icons.person),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text('Alexandre',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 25,
+                          )),
+                          Text('Score : 100',
+                            style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          )),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Alexandre',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 25,
-                        )),
-                    Text('Score : 100',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        )),
-                  ],
-                ),
-              ],
             ),
-          ],
-        ),),),),
+        ),
+
 
 
         ListTile(

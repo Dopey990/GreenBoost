@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import '/components/menu.dart';
 
-class ProfilPage extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

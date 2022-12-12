@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
                 child: Image.asset(
-                  'img/greenBoost-full-logo.png',
+                  'assets/img/greenBoost-full-logo.png',
                   height: 200,
                   width: 300,
                   fit: BoxFit.fitWidth,
