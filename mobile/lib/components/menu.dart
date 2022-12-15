@@ -71,7 +71,6 @@ class Menu extends StatelessWidget {
           },
         ),
         ListTile(
-          //icon winner /compost
           leading: const Icon(Icons.star),
           title: const Text('Challenges'),
           onTap: () {
@@ -80,7 +79,6 @@ class Menu extends StatelessWidget {
           },
         ),
         ListTile(
-          //icon contact
           leading: const Icon(Icons.contact_mail),
           title: const Text('Contact'),
           onTap: () {
