@@ -2,15 +2,18 @@ import 'package:GreenBoost/profilePage.dart';
 import 'package:flutter/material.dart';
 import '/components/menu.dart';
 
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+
+
 class SettingsProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Settings Profile'),
+        title: const Text('Settings Profile'),
       ),
-      drawer: Menu(),
+      drawer: const Menu(),
       body: SingleChildScrollView(
         child : Column (          
           children: <Widget>[
@@ -25,9 +28,14 @@ class SettingsProfilePage extends StatelessWidget {
                   }),
                   icon: const Icon(Icons.arrow_back, color: Colors.blue, size: 40),
                   ),
-                const IconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.help, color: Colors.blue, size: 40),
+                IconButton(
+                  onPressed: () {
+                     showDialog(
+                        context: context,
+                        builder: (BuildContext context) => _buildPopupDialog(context),
+                      );
+                  },
+                  icon: const Icon(Icons.help, color: Colors.blue, size: 40),
                 ),
               ],
             ),
@@ -232,3 +240,44 @@ class SettingsProfilePage extends StatelessWidget {
   }
 }
 
+
+Widget _buildPopupDialog(BuildContext context) {
+  return AlertDialog(
+    title: const Text('Tutoriel'),
+    alignment: Alignment.center,
+    content:
+        Container(
+          height: MediaQuery.of(context).size.height * 0.2,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text("Réinitialiser les tutoriels pour l'ensemble de l'application"),
+              Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: LiteRollingSwitch(
+                      value: true,
+                      textOn: 'Yes',
+                      textOff: 'No',
+                      colorOn: Colors.cyan,
+                      colorOff: Colors.red,
+                      iconOn: Icons.check,
+                      iconOff: Icons.power_settings_new,
+                      animationDuration: const Duration(milliseconds: 800),
+                      onChanged: (bool state) {
+                        print('turned ${(state) ? 'yes' : 'no'}');
+                      }, 
+                      
+                      //TODO : CHANGE IT
+                      onDoubleTap: (){},
+                      onTap: (){},
+                      onSwipe: (){},
+                      
+                    ),
+                  ),
+            ],
+          )
+        )
+    );
+}

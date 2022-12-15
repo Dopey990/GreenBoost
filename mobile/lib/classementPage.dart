@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '/components/menu.dart';
 
 class ClassementPage extends StatelessWidget {
+  
+  
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -96,7 +98,7 @@ class ClassementPage extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 40),
+                  padding: const EdgeInsets.only(top: 40,bottom: 20),
                   child:
                     Column(
                       children: const <Widget>[
@@ -117,6 +119,75 @@ class ClassementPage extends StatelessWidget {
               ],
             ),
 
+            Container(
+              width: MediaQuery.of(context).size.width * 0.8,
+              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 15),
+              decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              child: Column(
+                //include list of the 10 first
+
+                children: <Widget>[
+                  Padding(
+                    padding : const EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const <Widget>[
+                        Image(
+                          image: AssetImage('assets/img/trophy.png'),
+                          width: 20,
+                        ),
+                        Text(
+                          'A. Dupont',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          '567543 arbres',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                    ],
+                  ),),
+
+                  Padding(
+                    padding : const EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const <Widget>[
+                        Image(
+                          image: AssetImage('assets/img/trophy.png'),
+                          width: 20,
+                        ),
+                        Text(
+                          'B. Dupont',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          '567543 arbres',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                    ],
+                  ),),
+                  
+                  ]
+                  ),),
           ],
         )
       )
