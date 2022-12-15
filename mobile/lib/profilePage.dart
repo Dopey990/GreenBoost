@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/components/menu.dart';
+import 'package:GreenBoost/settingsProfilePage.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -16,11 +17,13 @@ class ProfilePage extends StatelessWidget {
             Row(
               //icon of settings on the right
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const <Widget>[
-                Icon(
-                  Icons.settings,
+              children: <Widget>[
+                IconButton(
+                  onPressed: () => {
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => SettingsProfilePage()),)
+                  },
                   color: Colors.blue,
-                  size: 40,
+                  icon: const Icon(Icons.settings, size: 40),
                 ),
               ],
             ),
