@@ -1,4 +1,3 @@
-//create profil page
 import 'package:flutter/material.dart';
 import '/components/menu.dart';
 
@@ -42,7 +41,7 @@ class ProfilePage extends StatelessWidget {
             Container(
               height: MediaQuery.of(context).size.height * 0.6,
               width: MediaQuery.of(context).size.width * 0.8,
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 25, bottom: 25),
+              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 10, bottom: 10),
               decoration: BoxDecoration(
                   color: Colors.blue,
                   borderRadius: BorderRadius.circular(10),
@@ -53,10 +52,10 @@ class ProfilePage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const <Widget>[
-                      Icon(
-                        Icons.stacked_bar_chart,
-                        color: Colors.white,
-                        size: 40,
+                      Image(
+                        image: AssetImage('assets/img/podium.png'),
+                        height: 50,
+                        width: 50,
                       ),
                     ],
                   ),

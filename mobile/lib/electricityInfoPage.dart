@@ -24,7 +24,7 @@ class ElectricityInfoState extends State<ElectricityInfoPage> {
             child: Column(
           children: [
             const SizedBox(height: 10),
-            Image.asset('home/electricite/electricite-vert.png',
+            Image.asset('assets/home/electricite-vert.png',
                 height: MediaQuery.of(context).size.width / 6,
                 width: MediaQuery.of(context).size.width / 6),
             PricesForecastWidget(
