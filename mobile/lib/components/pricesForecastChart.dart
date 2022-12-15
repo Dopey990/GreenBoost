@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
 
 class PricesForecastChart extends StatelessWidget {
   List<double> values;
@@ -31,16 +34,6 @@ class PricesForecastChart extends StatelessWidget {
         handleBuiltInTouches: true,
         touchTooltipData: LineTouchTooltipData(
           tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
-          getTooltipItems: (touchedSpots) => touchedSpots
-              .map((spot) => LineTooltipItem(
-                    "${values[spot.barIndex]}€",
-                    const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ))
-              .toList(),
         ),
       );
 
@@ -134,101 +127,124 @@ class PricesForecastChart extends StatelessWidget {
 }
 
 class PricesForecastWidget extends StatefulWidget {
-  String chartTitle;
-  List<double> values;
-  Function() refreshCallback;
+  final String chartTitle;
+  final String apiUrl;
 
-  PricesForecastWidget(
-      {super.key,
-      required this.values,
-      required this.chartTitle,
-      required this.refreshCallback});
+  const PricesForecastWidget(
+      {super.key, required this.apiUrl, required this.chartTitle});
 
   @override
   State<StatefulWidget> createState() => PricesForecastState();
 }
 
 class PricesForecastState extends State<PricesForecastWidget> {
+  late Future<List<double>> values;
+
   @override
   void initState() {
+    values = getPrices();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(10),
-        child: AspectRatio(
-          aspectRatio: 1.5,
-          child: DecoratedBox(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(18)),
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromARGB(255, 7, 73, 21),
-                  Color.fromARGB(255, 3, 51, 43)
-                ],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-              ),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 37,
-                    ),
-                    const Text(
-                      "Durant ces 24h",
-                      style: TextStyle(
-                        color: Color(0xff827daa),
-                        fontSize: 16,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      widget.chartTitle,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      height: 37,
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 16, left: 6),
-                        child: PricesForecastChart(values: widget.values),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.refresh,
-                    color: Colors.white.withOpacity(1.0),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      widget.refreshCallback();
-                    });
-                  },
-                )
-              ],
-            ),
-          ),
-        ));
+    return FutureBuilder<List<double>>(
+        future: values,
+        builder: (BuildContext context, AsyncSnapshot<List<double>> snapshot) {
+          if (snapshot.hasData) {
+            var data = snapshot.data!;
+            return Padding(
+                padding: const EdgeInsets.all(10),
+                child: AspectRatio(
+                    aspectRatio: 1.5,
+                    child: DecoratedBox(
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(18)),
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromARGB(255, 7, 73, 21),
+                              Color.fromARGB(255, 3, 51, 43)
+                            ],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                          ),
+                        ),
+                        child: Stack(
+                          children: <Widget>[
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: <Widget>[
+                                const SizedBox(
+                                  height: 37,
+                                ),
+                                const Text(
+                                  "Durant ces 24h",
+                                  style: TextStyle(
+                                    color: Color(0xff827daa),
+                                    fontSize: 16,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  widget.chartTitle,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 2,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(
+                                  height: 37,
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 16, left: 6),
+                                    child: PricesForecastChart(values: data),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.refresh,
+                                color: Colors.white.withOpacity(1.0),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  getPrices();
+                                });
+                              },
+                            )
+                          ],
+                        ))));
+          } else {
+            return const CircularProgressIndicator();
+          }
+        });
+  }
+
+  Future<List<double>> getPrices() async {
+    final response = await http.get(Uri.parse(widget.apiUrl));
+
+    List<double> result = [];
+
+    if (response.statusCode == 200) {
+      jsonDecode(response.body).forEach((line) {
+        result.add(double.parse(line["price"]));
+      });
+
+      return result;
+    } else {
+      throw Exception('Failed to load prices');
+    }
   }
 }

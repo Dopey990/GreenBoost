@@ -27,35 +27,10 @@ class ElectricityInfoState extends State<ElectricityInfoPage> {
             Image.asset('assets/home/electricite-vert.png',
                 height: MediaQuery.of(context).size.width / 6,
                 width: MediaQuery.of(context).size.width / 6),
-            PricesForecastWidget(
+            const PricesForecastWidget(
               chartTitle: "Prix électricité",
-              values: const [
-                100.25,
-                125.22,
-                200.22,
-                222.11,
-                150.00,
-                250.11,
-                100.25,
-                125.22,
-                200.22,
-                222.11,
-                150.00,
-                250.11,
-                100.25,
-                125.22,
-                200.22,
-                222.11,
-                150.00,
-                250.11,
-                100.25,
-                125.22,
-                200.22,
-                222.11,
-                150.00,
-                250.11
-              ],
-              refreshCallback: () => {print("Refresh tkt")},
+              apiUrl:
+                  "http://10.8.253.233:8080/prices/electricity/getDayAheadPrices",
             )
           ],
         )));
