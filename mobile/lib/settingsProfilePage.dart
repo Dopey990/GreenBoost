@@ -243,7 +243,8 @@ class SettingsProfilePage extends StatelessWidget {
 
 Widget _buildPopupDialog(BuildContext context) {
   return AlertDialog(
-    title: const Text('Tutoriel'),
+    //give tutoriels to title and center it 
+    title: const Text('Tutoriel', textAlign: TextAlign.center),
     alignment: Alignment.center,
     content:
         Container(
@@ -253,7 +254,7 @@ Widget _buildPopupDialog(BuildContext context) {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text("Réinitialiser les tutoriels pour l'ensemble de l'application"),
+              const Text("Réinitialiser les tutoriels pour l'ensemble de l'application",  textAlign: TextAlign.center),
               Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: LiteRollingSwitch(
