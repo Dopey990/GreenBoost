@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
             title: "Eco-Score",
             textAlign: TextAlignTitledContainer.Left,
             fontSize: 16.0,
-            backgroundColor: Colors.white,
+            backgroundColor: Color.fromRGBO(168, 203, 208, 1),
             child: Container(
               width: 150,
               height: 100,
