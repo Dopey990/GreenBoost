@@ -19,7 +19,7 @@ class Menu extends StatelessWidget {
               height: 115,
               child : 
                 DrawerHeader(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                   color: Color(0xFF3D69D9),
                   ),
                   child: Row(

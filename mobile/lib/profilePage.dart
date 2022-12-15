@@ -1,3 +1,4 @@
+import 'package:GreenBoost/classementPage.dart';
 import 'package:flutter/material.dart';
 import '/components/menu.dart';
 import 'package:GreenBoost/settingsProfilePage.dart';
@@ -54,12 +55,19 @@ class ProfilePage extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const <Widget>[
-                      Image(
-                        image: AssetImage('assets/img/podium.png'),
-                        height: 50,
-                        width: 50,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () => {
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => ClassementPage()),)
+                        },
+                        child: 
+                        const Image(
+                          image: AssetImage('assets/img/podium.png'),
+                          height: 50,
+                          width: 50,
+                        ),
                       ),
+                      
                     ],
                   ),
                   const Padding(
