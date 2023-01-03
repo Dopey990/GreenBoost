@@ -101,7 +101,7 @@ class HomePage extends StatelessWidget {
             title: "Défis",
             textAlign: TextAlignTitledContainer.Center,
             fontSize: 16.0,
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.white,
             child: Container(
               width: MediaQuery.of(context).size.width / 1.25,
               height: 100,
