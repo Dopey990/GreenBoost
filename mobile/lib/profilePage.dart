@@ -7,6 +7,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
       appBar: AppBar(
         centerTitle: true,
         title: Text('Profil'),
@@ -47,7 +48,7 @@ class ProfilePage extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.8,
               padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 10, bottom: 10),
               decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color.fromRGBO(217, 217, 217, 1),
                   borderRadius: BorderRadius.circular(10),
                 ),
               child: Column(
@@ -75,7 +76,7 @@ class ProfilePage extends StatelessWidget {
                     child: Text(
                       "Position : 65467764ème",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color.fromRGBO(31, 120, 180, 1),
                         fontSize: 25,
                       ),
                     ),
@@ -86,7 +87,7 @@ class ProfilePage extends StatelessWidget {
                       Card(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.green,
+                            color: Color.fromRGBO(125, 192, 120, 1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           padding: const EdgeInsets.all(20),
@@ -98,7 +99,7 @@ class ProfilePage extends StatelessWidget {
                       Card(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.orange,
+                            color: Color.fromRGBO(236, 188, 118, 1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           padding: const EdgeInsets.all(20),
@@ -110,7 +111,7 @@ class ProfilePage extends StatelessWidget {
                       Card(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.green,
+                            color: Color.fromRGBO(125, 192, 120, 1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           padding: const EdgeInsets.all(20),
@@ -122,7 +123,7 @@ class ProfilePage extends StatelessWidget {
                       Card(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.red,
+                            color: Color.fromRGBO(212, 115, 127, 1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           padding: const EdgeInsets.all(20),
