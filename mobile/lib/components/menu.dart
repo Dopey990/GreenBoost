@@ -75,7 +75,7 @@ class Menu extends StatelessWidget {
           title: const Text('Challenges'),
           onTap: () {
             Navigator.pop(context);
-            Navigator.pushNamed(context, '/challenge');
+            Navigator.pushNamed(context, '/advices');
           },
         ),
         ListTile(
