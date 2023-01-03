@@ -80,6 +80,7 @@ class ProfilePage extends StatelessWidget {
                       style: TextStyle(
                         color: Color.fromRGBO(31, 120, 180, 1),
                         fontSize: 25,
+                        fontWeight: FontWeight.bold
                       ),
                     ),
                   ),
@@ -91,10 +92,13 @@ class ProfilePage extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Color.fromRGBO(125, 192, 120, 1),
                             borderRadius: BorderRadius.circular(10),
+                          
                           ),
                           padding: const EdgeInsets.all(20),
                           child: const Text("Electricité : 123456ème"),
-                          ),),),
+                          ),),
+                          
+                          ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: 
@@ -105,7 +109,10 @@ class ProfilePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           padding: const EdgeInsets.all(20),
-                          child: const Text("Eau : 123456ème"),
+                          child: const Text("Eau : 123456ème",
+                          
+                          ),
+                          
                           ),),),
                   SizedBox(
                     width:  MediaQuery.of(context).size.width * 0.8,
