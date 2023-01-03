@@ -1,5 +1,7 @@
+import 'package:GreenBoost/classementPage.dart';
 import 'package:flutter/material.dart';
 import '/components/menu.dart';
+import 'package:GreenBoost/settingsProfilePage.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -16,11 +18,13 @@ class ProfilePage extends StatelessWidget {
             Row(
               //icon of settings on the right
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const <Widget>[
-                Icon(
-                  Icons.settings,
+              children: <Widget>[
+                IconButton(
+                  onPressed: () => {
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => SettingsProfilePage()),)
+                  },
                   color: Colors.blue,
-                  size: 40,
+                  icon: const Icon(Icons.settings, size: 40),
                 ),
               ],
             ),
@@ -51,12 +55,19 @@ class ProfilePage extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const <Widget>[
-                      Image(
-                        image: AssetImage('assets/img/podium.png'),
-                        height: 50,
-                        width: 50,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () => {
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => ClassementPage()),)
+                        },
+                        child: 
+                        const Image(
+                          image: AssetImage('assets/img/podium.png'),
+                          height: 50,
+                          width: 50,
+                        ),
                       ),
+                      
                     ],
                   ),
                   const Padding(

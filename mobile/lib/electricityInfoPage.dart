@@ -1,6 +1,8 @@
+import 'package:GreenBoost/components/productsActivitiesToolbox.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
+import 'components/advicesViewer.dart';
 import 'components/menu.dart';
 import 'components/pricesForecastChart.dart';
 
@@ -17,13 +19,14 @@ class ElectricityInfoState extends State<ElectricityInfoPage> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Électricité"),
+          title: const Text("Électricité"),
         ),
-        drawer: Menu(),
-        body: Center(
-            child: Column(
+        drawer: const Menu(),
+        body: SingleChildScrollView(
+            child: Center(
+                child: Column(
           children: [
-            const SizedBox(height: 10),
+            const Padding(padding: EdgeInsets.only(top: 20)),
             Image.asset('assets/home/electricite-vert.png',
                 height: MediaQuery.of(context).size.width / 6,
                 width: MediaQuery.of(context).size.width / 6),
@@ -31,8 +34,13 @@ class ElectricityInfoState extends State<ElectricityInfoPage> {
               chartTitle: "Prix électricité",
               apiUrl:
                   "http://10.8.253.233:8080/prices/electricity/getDayAheadPrices",
+            ),
+            ProductsActivitiesToolboxWidget(),
+            const Padding(padding: EdgeInsets.only(top: 20)),
+            AdvicesViewerWidget(
+              apiUrl: "http://10.8.253.233:8080/advices/electricity/",
             )
           ],
-        )));
+        ))));
   }
 }

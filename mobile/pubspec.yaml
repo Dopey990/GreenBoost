@@ -39,6 +39,7 @@ dependencies:
   fl_chart: ^0.55.2
   flutter_titled_container: ^1.0.7
   http: ^0.13.5
+  lite_rolling_switch: ^1.0.0
   ## flutter_titled_container: ^1.0.7
 
 dev_dependencies:

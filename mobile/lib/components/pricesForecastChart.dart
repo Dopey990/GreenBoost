@@ -39,7 +39,12 @@ class PricesForecastChart extends StatelessWidget {
 
   FlTitlesData get titlesData => FlTitlesData(
         bottomTitles: AxisTitles(
-          sideTitles: bottomTitles,
+          sideTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 32,
+            interval: 2,
+            getTitlesWidget: bottomTitleWidgets,
+          ),
         ),
         rightTitles: AxisTitles(
           sideTitles: SideTitles(showTitles: false),
@@ -48,7 +53,12 @@ class PricesForecastChart extends StatelessWidget {
           sideTitles: SideTitles(showTitles: false),
         ),
         leftTitles: AxisTitles(
-          sideTitles: leftTitles(),
+          sideTitles: SideTitles(
+            getTitlesWidget: leftTitleWidgets,
+            showTitles: true,
+            interval: 100,
+            reservedSize: 40,
+          ),
         ),
       );
 
@@ -62,13 +72,6 @@ class PricesForecastChart extends StatelessWidget {
         textAlign: TextAlign.center);
   }
 
-  SideTitles leftTitles() => SideTitles(
-        getTitlesWidget: leftTitleWidgets,
-        showTitles: true,
-        interval: 50,
-        reservedSize: 40,
-      );
-
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     return SideTitleWidget(
       axisSide: meta.axisSide,
@@ -77,17 +80,10 @@ class PricesForecastChart extends StatelessWidget {
           style: TextStyle(
             color: titlesColor,
             fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: 12,
           )),
     );
   }
-
-  SideTitles get bottomTitles => SideTitles(
-        showTitles: true,
-        reservedSize: 32,
-        interval: 1,
-        getTitlesWidget: bottomTitleWidgets,
-      );
 
   FlGridData get gridData => FlGridData(show: true);
 
@@ -155,8 +151,9 @@ class PricesForecastState extends State<PricesForecastWidget> {
             var data = snapshot.data!;
             return Padding(
                 padding: const EdgeInsets.all(10),
-                child: AspectRatio(
-                    aspectRatio: 1.5,
+                child: Container(
+                    width: MediaQuery.of(context).size.width * 0.95,
+                    height: MediaQuery.of(context).size.width * 0.95,
                     child: DecoratedBox(
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(18)),
@@ -218,16 +215,21 @@ class PricesForecastState extends State<PricesForecastWidget> {
                                 Icons.refresh,
                                 color: Colors.white.withOpacity(1.0),
                               ),
-                              onPressed: () {
+                              onPressed: () async {
                                 setState(() {
-                                  getPrices();
+                                  values = getPrices();
                                 });
+
+                                await values;
+                                print("Appel fini");
                               },
                             )
                           ],
                         ))));
           } else {
-            return const CircularProgressIndicator();
+            return const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: CircularProgressIndicator());
           }
         });
   }
@@ -244,7 +246,7 @@ class PricesForecastState extends State<PricesForecastWidget> {
 
       return result;
     } else {
-      throw Exception('Failed to load prices');
+      throw Exception("Failed to load prices");
     }
   }
 }

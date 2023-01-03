@@ -19,7 +19,7 @@ class Menu extends StatelessWidget {
               height: 115,
               child : 
                 DrawerHeader(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                   color: Color(0xFF3D69D9),
                   ),
                   child: Row(
@@ -71,7 +71,6 @@ class Menu extends StatelessWidget {
           },
         ),
         ListTile(
-          //icon winner /compost
           leading: const Icon(Icons.star),
           title: const Text('Challenges'),
           onTap: () {
@@ -80,7 +79,6 @@ class Menu extends StatelessWidget {
           },
         ),
         ListTile(
-          //icon contact
           leading: const Icon(Icons.contact_mail),
           title: const Text('Contact'),
           onTap: () {
