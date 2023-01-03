@@ -51,6 +51,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                       );
                   },
                   icon: const Icon(Icons.help, color: Colors.blue, size: 40),
+                  padding: EdgeInsets.all(30)
                 ),
               ],
             ),
