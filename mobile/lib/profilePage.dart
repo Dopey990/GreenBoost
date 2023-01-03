@@ -19,12 +19,14 @@ class ProfilePage extends StatelessWidget {
             Row(
               //icon of settings on the right
               mainAxisAlignment: MainAxisAlignment.end,
+              
               children: <Widget>[
                 IconButton(
                   onPressed: () => {
                     Navigator.push(context,MaterialPageRoute(builder: (context) => SettingsProfilePage()),)
                   },
                   color: Colors.blue,
+                  padding: EdgeInsets.all(30),
                   icon: const Icon(Icons.settings, size: 40),
                 ),
               ],
