@@ -35,4 +35,11 @@ public class UserEntity {
         this.email = email;
         this.password = password;
     }
+    public UserEntity(String email, String password, String firstName, String lastName) {
+        super();
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

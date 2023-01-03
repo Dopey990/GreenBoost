@@ -1,0 +1,57 @@
+{
+    "core": {
+        "ContentRouter": {
+            "Records": "IPS\\cms\\extensions\\core\\ContentRouter\\Records",
+            "Pages": "IPS\\cms\\extensions\\core\\ContentRouter\\Pages"
+        },
+        "ModeratorPermissions": {
+            "Databases": "IPS\\cms\\extensions\\core\\ModeratorPermissions\\Databases"
+        },
+        "FileStorage": {
+            "Records": "IPS\\cms\\extensions\\core\\FileStorage\\Records",
+            "Media": "IPS\\cms\\extensions\\core\\FileStorage\\Media",
+            "Pages": "IPS\\cms\\extensions\\core\\FileStorage\\Pages"
+        },
+        "Sitemap": {
+            "Databases": "IPS\\cms\\extensions\\core\\Sitemap\\Databases",
+            "Pages": "IPS\\cms\\extensions\\core\\Sitemap\\Pages"
+        },
+        "EditorLocations": {
+            "Widgets": "IPS\\cms\\extensions\\core\\EditorLocations\\Widgets",
+            "Records": "IPS\\cms\\extensions\\core\\EditorLocations\\Records",
+            "BlockContent": "IPS\\cms\\extensions\\core\\EditorLocations\\BlockContent"
+        },
+        "CreateMenu": {
+            "Records": "IPS\\cms\\extensions\\core\\CreateMenu\\Records"
+        },
+        "Uninstall": {
+            "Widgets": "IPS\\cms\\extensions\\core\\Uninstall\\Widgets",
+            "Databases": "IPS\\cms\\extensions\\core\\Uninstall\\Databases"
+        },
+        "Queue": {
+            "RebuildCommentLikes": "IPS\\cms\\extensions\\core\\Queue\\RebuildCommentLikes",
+            "RebuildCategories": "IPS\\cms\\extensions\\core\\Queue\\RebuildCategories",
+            "RebuildEditorFields": "IPS\\cms\\extensions\\core\\Queue\\RebuildEditorFields",
+            "RebuildReciprocalMaps": "IPS\\cms\\extensions\\core\\Queue\\RebuildReciprocalMaps",
+            "RebuildRecords": "IPS\\cms\\extensions\\core\\Queue\\RebuildRecords",
+            "ResyncTopicContent": "IPS\\cms\\extensions\\core\\Queue\\ResyncTopicContent",
+            "ConvertPages": "IPS\\cms\\extensions\\core\\Queue\\ConvertPages"
+        },
+        "DesignersMode": {
+            "Cms": "IPS\\cms\\extensions\\core\\DesignersMode\\Cms"
+        },
+        "FrontNavigation": {
+            "Pages": "IPS\\cms\\extensions\\core\\FrontNavigation\\Pages"
+        },
+        "OutputPlugins": {
+            "Database": "IPS\\cms\\extensions\\core\\OutputPlugins\\Database",
+            "Block": "IPS\\cms\\extensions\\core\\OutputPlugins\\Block",
+            "Pageurl": "IPS\\cms\\extensions\\core\\OutputPlugins\\Pageurl",
+            "Media": "IPS\\cms\\extensions\\core\\OutputPlugins\\Media",
+            "Widget": "IPS\\cms\\extensions\\core\\OutputPlugins\\Widget"
+        },
+        "MemberSync": {
+            "Databases": "IPS\\cms\\extensions\\core\\MemberSync\\Databases"
+        }
+    }
+}

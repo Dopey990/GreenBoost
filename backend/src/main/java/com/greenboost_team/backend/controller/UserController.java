@@ -38,7 +38,7 @@ public class UserController {
         if(userRepository.existsByEmail(user.getEmail())){
             return new ResponseEntity<>(HttpStatus.ALREADY_REPORTED);
         } else {
-            return new ResponseEntity <>(userRepository.save(new UserEntity(user.getEmail(), passwordEncoder.encode(user.getPassword()))), HttpStatus.CREATED);
+            return new ResponseEntity <>(userRepository.save(new UserEntity(user.getEmail(), passwordEncoder.encode(user.getPassword()), user.getFirstName(), user.getLastName())), HttpStatus.CREATED);
         }
     }
 }

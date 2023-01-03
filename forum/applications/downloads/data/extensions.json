@@ -1,0 +1,70 @@
+{
+    "core": {
+        "MemberACPProfileContentTab": {
+            "Downloads": "IPS\\downloads\\extensions\\core\\MemberACPProfileContentTab\\Downloads"
+        },
+        "ContentRouter": {
+            "Files": "IPS\\downloads\\extensions\\core\\ContentRouter\\Files"
+        },
+        "LiveSearch": {
+            "Downloads": "IPS\\downloads\\extensions\\core\\LiveSearch\\Downloads"
+        },
+        "ModeratorPermissions": {
+            "Files": "IPS\\downloads\\extensions\\core\\ModeratorPermissions\\Files"
+        },
+        "FileStorage": {
+            "FileField": "IPS\\downloads\\extensions\\core\\FileStorage\\FileField",
+            "Files": "IPS\\downloads\\extensions\\core\\FileStorage\\Files",
+            "Screenshots": "IPS\\downloads\\extensions\\core\\FileStorage\\Screenshots"
+        },
+        "Announcements": {
+            "Categories": "IPS\\downloads\\extensions\\core\\Announcements\\Categories"
+        },
+        "GroupForm": {
+            "Downloads": "IPS\\downloads\\extensions\\core\\GroupForm\\Downloads"
+        },
+        "EditorLocations": {
+            "Downloads": "IPS\\downloads\\extensions\\core\\EditorLocations\\Downloads",
+            "Categories": "IPS\\downloads\\extensions\\core\\EditorLocations\\Categories"
+        },
+        "Permissions": {
+            "Permissions": "IPS\\downloads\\extensions\\core\\Permissions\\Permissions"
+        },
+        "CreateMenu": {
+            "File": "IPS\\downloads\\extensions\\core\\CreateMenu\\File"
+        },
+        "Dashboard": {
+            "Overview": "IPS\\downloads\\extensions\\core\\Dashboard\\Overview"
+        },
+        "MemberRestrictions": {
+            "Downloads": "IPS\\downloads\\extensions\\core\\MemberRestrictions\\Downloads"
+        },
+        "EditorMedia": {
+            "Files": "IPS\\downloads\\extensions\\core\\EditorMedia\\Files"
+        },
+        "GroupLimits": {
+            "Downloads": "IPS\\downloads\\extensions\\core\\GroupLimits\\Downloads"
+        },
+        "Queue": {
+            "RebuildScreenshotWatermarks": "IPS\\downloads\\extensions\\core\\Queue\\RebuildScreenshotWatermarks",
+            "Follow": "IPS\\downloads\\extensions\\core\\Queue\\Follow"
+        },
+        "IpAddresses": {
+            "DownloadLog": "IPS\\downloads\\extensions\\core\\IpAddresses\\DownloadLog"
+        },
+        "FrontNavigation": {
+            "Downloads": "IPS\\downloads\\extensions\\core\\FrontNavigation\\Downloads"
+        },
+        "MemberSync": {
+            "Downloads": "IPS\\downloads\\extensions\\core\\MemberSync\\Downloads"
+        },
+        "Notifications": {
+            "Files": "IPS\\downloads\\extensions\\core\\Notifications\\Files"
+        }
+    },
+    "nexus": {
+        "Item": {
+            "File": "IPS\\downloads\\extensions\\nexus\\Item\\File"
+        }
+    }
+}
