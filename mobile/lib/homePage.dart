@@ -7,13 +7,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Home'),
+        title: const Text('GreenBoost App'),
+        
       ),
       drawer: const Menu(),
       body: Column(
         children: [
+          
           const SizedBox(height: 10),
           Align(
               alignment: Alignment.centerRight,
@@ -23,9 +26,10 @@ class HomePage extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pushNamed("/advices");
                       },
-                      icon: const Icon(Icons.lightbulb)))),
+                      icon: const Icon(Icons.lightbulb)),
+                      )),
           TitledContainer(
-            titleColor: Colors.blue,
+            titleColor: const Color.fromRGBO(31, 120, 180, 1),
             title: "Eco-Score",
             textAlign: TextAlignTitledContainer.Left,
             fontSize: 16.0,
@@ -35,7 +39,7 @@ class HomePage extends StatelessWidget {
               height: 100,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.blue,
+                  color: const Color.fromRGBO(48, 69, 178, 1),
                 ),
                 borderRadius: const BorderRadius.all(
                   Radius.circular(10.0),
@@ -58,8 +62,9 @@ class HomePage extends StatelessWidget {
                   Navigator.of(context).pushNamed("/info/electricity");
                 },
                 child: Image.asset('assets/home/eau-vert.png',
-                    height: MediaQuery.of(context).size.width / 8,
-                    width: MediaQuery.of(context).size.width / 8),
+                    height: MediaQuery.of(context).size.width / 4.5,
+                    width: MediaQuery.of(context).size.width / 4.5,
+                    fit: BoxFit.fitWidth),
               )),
           Padding(
               padding:
@@ -69,8 +74,8 @@ class HomePage extends StatelessWidget {
                   return;
                 },
                 child: Image.asset('assets/home/electricite-orange.png',
-                    height: MediaQuery.of(context).size.width / 8,
-                    width: MediaQuery.of(context).size.width / 8),
+                    height: MediaQuery.of(context).size.width / 4.5,
+                    width: MediaQuery.of(context).size.width / 4.5),
               )),
           Padding(
               padding:
@@ -80,8 +85,8 @@ class HomePage extends StatelessWidget {
                   return;
                 },
                 child: Image.asset('assets/home/gaz-vert.png',
-                    height: MediaQuery.of(context).size.width / 8,
-                    width: MediaQuery.of(context).size.width / 8),
+                    height: MediaQuery.of(context).size.width / 4.5,
+                    width: MediaQuery.of(context).size.width / 4.5),
               )),
           Padding(
               padding:
@@ -91,23 +96,23 @@ class HomePage extends StatelessWidget {
                   return;
                 },
                 child: Image.asset('assets/home/pollution-rouge.png',
-                    height: MediaQuery.of(context).size.width / 8,
-                    width: MediaQuery.of(context).size.width / 8),
+                    height: MediaQuery.of(context).size.width / 4.5,
+                    width: MediaQuery.of(context).size.width / 4.5),
               )),
           const Spacer(),
           Center(
               child: TitledContainer(
-            titleColor: Colors.blue,
+            titleColor: const Color.fromRGBO(48, 69, 178, 1),
             title: "Défis",
             textAlign: TextAlignTitledContainer.Center,
             fontSize: 16.0,
-            backgroundColor: Colors.white,
+            backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
             child: Container(
               width: MediaQuery.of(context).size.width / 1.25,
               height: 100,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.blue,
+                  color: const Color.fromRGBO(48, 69, 178, 1),
                 ),
                 borderRadius: const BorderRadius.all(
                   Radius.circular(10.0),
