@@ -23,6 +23,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Settings Profile'),
@@ -70,7 +71,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
               width: MediaQuery.of(context).size.width * 0.8,
               padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 15),
               decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color.fromRGBO(217, 217, 217, 1),
                   borderRadius: BorderRadius.circular(10),
                 ),
               child: Column(
@@ -86,7 +87,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                             _enabledContact = false;
                           }
                         }),
-                        icon: const Icon(Icons.edit, color: Colors.white, size: 20),
+                        icon: const Icon(Icons.edit, color: Colors.black, size: 20),
                         )
                     ],
                   ),
@@ -96,7 +97,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                       const Text(
                         'Nom : ',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 15,
                         ),
                       ),
@@ -110,7 +111,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                               border: InputBorder.none,
                               hintText: 'Dupont',
                               hintStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 15,
                               ),
                             ),
@@ -124,7 +125,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                       const Text(
                         'Prénom : ',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 15,
                         ),
                       ),
@@ -138,7 +139,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                               border: InputBorder.none,
                               hintText: 'Alexandre',
                               hintStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 15,
                               ),
                             ),
@@ -152,7 +153,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                       const Text(
                         'Email : ',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 15,
                         ),
                       ),
@@ -166,7 +167,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                               border: InputBorder.none,
                               hintText: 'alexandre.dupont@gmail.com',
                               hintStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 15,
                               ),
                             ),
@@ -193,7 +194,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
               width: MediaQuery.of(context).size.width * 0.8,
               padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10, bottom: 10),
               decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color.fromRGBO(217, 217, 217, 1),
                   borderRadius: BorderRadius.circular(10),
                 ),
               child: Column(
@@ -210,7 +211,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                               _enabledHouse = false;
                             }
                           }),
-                        icon: const Icon(Icons.edit, color: Colors.white, size: 20),
+                        icon: const Icon(Icons.edit, color: Colors.black, size: 20),
                         )
                     ],
                   ),
@@ -225,11 +226,12 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                           child: Container(
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Color.fromRGBO(193, 190, 190, 1),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: 
                                 TextField(
+                                  textAlign: TextAlign.center,
                                   enabled: _enabledHouse,
                                   cursorHeight: 15,
                                   decoration: const InputDecoration(
@@ -238,6 +240,8 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                                     hintStyle: TextStyle(
                                       color: Colors.black,
                                       fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                  
                                     ),
                                   ),
                                 ),
@@ -251,11 +255,12 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                           child: Container(
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Color.fromRGBO(193, 190, 190, 1),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child:
                              TextField(
+                              textAlign: TextAlign.center,
                                 enabled: _enabledHouse,
                                 cursorHeight: 15,
                                 decoration: const InputDecoration(
@@ -264,6 +269,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                                   hintStyle: TextStyle(
                                     color: Colors.black,
                                     fontSize: 15,
+                                    fontWeight: FontWeight.bold
                                   ),
                                 ),
                               ), 
@@ -282,11 +288,12 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                           child: Container(
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Color.fromRGBO(193, 190, 190, 1),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: 
                               TextField(
+                                textAlign: TextAlign.center,
                                 enabled: _enabledHouse,
                                 cursorHeight: 15,
                                 decoration: const InputDecoration(
@@ -295,6 +302,7 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
                                   hintStyle: TextStyle(
                                     color: Colors.black,
                                     fontSize: 15,
+                                    fontWeight: FontWeight.bold
                                   ),
                                 ),
                               ),
