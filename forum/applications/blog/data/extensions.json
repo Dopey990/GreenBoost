@@ -1,0 +1,46 @@
+{
+    "core": {
+        "ContentRouter": {
+            "Blog": "IPS\\blog\\extensions\\core\\ContentRouter\\Blog"
+        },
+        "LiveSearch": {
+            "Blogs": "IPS\\blog\\extensions\\core\\LiveSearch\\Blogs"
+        },
+        "FileStorage": {
+            "Entries": "IPS\\blog\\extensions\\core\\FileStorage\\Entries",
+            "Blogs": "IPS\\blog\\extensions\\core\\FileStorage\\Blogs"
+        },
+        "GroupForm": {
+            "Blog": "IPS\\blog\\extensions\\core\\GroupForm\\Blog"
+        },
+        "EditorLocations": {
+            "Entries": "IPS\\blog\\extensions\\core\\EditorLocations\\Entries",
+            "Blogs": "IPS\\blog\\extensions\\core\\EditorLocations\\Blogs"
+        },
+        "CreateMenu": {
+            "Entry": "IPS\\blog\\extensions\\core\\CreateMenu\\Entry"
+        },
+        "Dashboard": {
+            "Overview": "IPS\\blog\\extensions\\core\\Dashboard\\Overview"
+        },
+        "Profile": {
+            "blog": "IPS\\blog\\extensions\\core\\Profile\\blog"
+        },
+        "Queue": {
+            "RebuildEntryImages": "IPS\\blog\\extensions\\core\\Queue\\RebuildEntryImages"
+        },
+        "MemberFilter": {
+            "Blog": "IPS\\blog\\extensions\\core\\MemberFilter\\Blog"
+        },
+        "FrontNavigation": {
+            "Blogs": "IPS\\blog\\extensions\\core\\FrontNavigation\\Blogs"
+        },
+        "MemberSync": {
+            "Blog": "IPS\\blog\\extensions\\core\\MemberSync\\Blog"
+        },
+        "BBCode": {
+            "entry": "IPS\\blog\\extensions\\core\\BBCode\\entry",
+            "blog": "IPS\\blog\\extensions\\core\\BBCode\\blog"
+        }
+    }
+}

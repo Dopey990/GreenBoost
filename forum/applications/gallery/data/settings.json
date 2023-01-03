@@ -1,0 +1,52 @@
+[
+    {
+        "key": "gallery_bandwidth_period",
+        "default": "-1",
+        "report": "full"
+    },
+    {
+        "key": "gallery_detailed_bandwidth",
+        "default": "1",
+        "report": "full"
+    },
+    {
+        "key": "gallery_large_dims",
+        "default": "1600x1200",
+        "report": "full"
+    },
+    {
+        "key": "gallery_maps_default",
+        "default": "0",
+        "report": "full"
+    },
+    {
+        "key": "gallery_rss_enabled",
+        "default": "1",
+        "report": "full"
+    },
+    {
+        "key": "gallery_small_dims",
+        "default": "600x600",
+        "report": "full"
+    },
+    {
+        "key": "gallery_use_square_thumbnails",
+        "default": "0",
+        "report": "full"
+    },
+    {
+        "key": "gallery_use_watermarks",
+        "default": "0",
+        "report": "full"
+    },
+    {
+        "key": "gallery_watermark_images",
+        "default": "large",
+        "report": "full"
+    },
+    {
+        "key": "gallery_watermark_path",
+        "default": "",
+        "report": "none"
+    }
+]

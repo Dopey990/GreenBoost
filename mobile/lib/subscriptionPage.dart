@@ -7,11 +7,13 @@ class SubscriptionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
       appBar: AppBar(
         centerTitle: true,
         title: Text('Inscription'),
       ),
       body: SingleChildScrollView(
+       
         child: Column(
           children: <Widget>[
             Padding(
@@ -31,7 +33,14 @@ class SubscriptionPage extends StatelessWidget {
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                      Radius.circular(50.0), 
+             ),
+             borderSide: BorderSide(
+              width: 5, 
+              style: BorderStyle.solid,
+              ),),
                     labelText: 'Nom',
                     hintText: 'Enter your name'),
               ),
@@ -42,7 +51,14 @@ class SubscriptionPage extends StatelessWidget {
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                      Radius.circular(50.0), 
+             ),
+             borderSide: BorderSide(
+              width: 5, 
+              style: BorderStyle.solid,
+              ),),
                     labelText: 'Prénom',
                     hintText: 'Enter your surname'),
               ),
@@ -53,7 +69,14 @@ class SubscriptionPage extends StatelessWidget {
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                      Radius.circular(50.0), 
+             ),
+             borderSide: BorderSide(
+              width: 5, 
+              style: BorderStyle.solid,
+              ),),
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
               ),
@@ -65,7 +88,14 @@ class SubscriptionPage extends StatelessWidget {
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                      Radius.circular(50.0), 
+             ),
+             borderSide: BorderSide(
+              width: 5, 
+              style: BorderStyle.solid,
+              ),),
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
               ),
@@ -74,7 +104,7 @@ class SubscriptionPage extends StatelessWidget {
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: Colors.green, borderRadius: BorderRadius.circular(20)),
+                  color: const Color.fromRGBO(48, 69, 178, 1), borderRadius: BorderRadius.circular(30)),
               child: TextButton(
                 onPressed: () {
                   Navigator.push(
@@ -97,7 +127,7 @@ class SubscriptionPage extends StatelessWidget {
               },
               child: const Text(
                 'Déjà un compte? Connectez vous ici',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
+                style: TextStyle(color: Colors.black, fontSize: 15),
               ),
             ),
           ],
