@@ -15,4 +15,11 @@ public class DishwasherEntity extends AbstractProductEntity{
     private Double cleaningPerformanceIndexV2;
     private Double dryingPerformanceIndexV2;
     private Integer programmeDuration;
+    private Integer powerNetworkStandby;
+    private Double energyEfficiencyIndex;
+    private String noiseClass;
+    private Double powerStandbyMode;
+    private Integer noise;
+    private Double waterCons;
+    private Double powerDelayStart;
 }

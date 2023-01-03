@@ -19,4 +19,11 @@ public class WashingmachineEntity extends AbstractProductEntity{
     private Double energyConsPerCycle;
     private Integer energyConsPer100Cycle;
     private Integer rinsingEffectiveness;
+    private Integer powerNetworkStandby;
+    private Double energyEfficiencyIndex;
+    private String noiseClass;
+    private Double powerStandbyMode;
+    private Integer noise;
+    private Double waterCons;
+    private Double powerDelayStart;
 }

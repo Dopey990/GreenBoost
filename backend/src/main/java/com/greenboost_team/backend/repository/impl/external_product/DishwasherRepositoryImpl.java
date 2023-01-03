@@ -1,11 +1,14 @@
 package com.greenboost_team.backend.repository.impl.external_product;
 
+import com.greenboost_team.backend.entity.UserEntity;
 import com.greenboost_team.backend.entity.product.AbstractProductEntity;
 import com.greenboost_team.backend.entity.product.DishwasherEntity;
 import com.greenboost_team.backend.entity.product.DishwasherEntityResponse;
 import com.greenboost_team.backend.entity.product.WashingmachineEntityResponse;
+import com.greenboost_team.backend.repository.ProductRepository;
 import com.greenboost_team.backend.repository.external_product.DishwasherRepository;
 import com.greenboost_team.backend.utility.ProductEnum;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -36,10 +39,5 @@ public class DishwasherRepositoryImpl implements DishwasherRepository {
                 DishwasherEntityResponse.class
         );
         return dishwashers.getBody() == null ? null : new ArrayList<>(dishwashers.getBody().getDishwashers());
-    }
-
-    @Override
-    public void saveExternalProduct(List<AbstractProductEntity> abstractProducts) {
-
     }
 }
