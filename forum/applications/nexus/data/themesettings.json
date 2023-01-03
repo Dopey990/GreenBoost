@@ -1,0 +1,28 @@
+[
+    {
+        "sc_key": "subscription_active_color",
+        "sc_type": "Color",
+        "sc_multiple": 0,
+        "sc_content": "[]",
+        "sc_app": "nexus",
+        "sc_default": "#3d6594",
+        "sc_tab_key": "frontendcolors",
+        "sc_show_in_vse": 0,
+        "sc_title": "themesetting_subscription_active",
+        "sc_order": 42,
+        "sc_condition": null
+    },
+    {
+        "sc_key": "cm_store_view",
+        "sc_type": "Select",
+        "sc_multiple": 0,
+        "sc_content": "[{\"key\":\"grid\",\"value\":\"cm_store_view_grid\"},{\"key\":\"list\",\"value\":\"cm_store_view_list\"}]",
+        "sc_app": "nexus",
+        "sc_default": "grid",
+        "sc_tab_key": "custom",
+        "sc_show_in_vse": 0,
+        "sc_title": "themesetting_cm_store_view",
+        "sc_order": 11,
+        "sc_condition": null
+    }
+]
