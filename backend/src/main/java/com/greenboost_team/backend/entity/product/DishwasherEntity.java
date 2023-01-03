@@ -1,4 +1,4 @@
-package com.greenboost_team.backend.entity.products;
+package com.greenboost_team.backend.entity.product;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

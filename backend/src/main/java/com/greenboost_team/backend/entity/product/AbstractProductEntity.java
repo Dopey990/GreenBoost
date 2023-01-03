@@ -1,18 +1,18 @@
-package com.greenboost_team.backend.entity.products;
+package com.greenboost_team.backend.entity.product;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 @Getter
 @Setter
+@Data
 @NoArgsConstructor
-@Document
+@AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class AbstractProductEntity {
     private String implementingAct;
     private String modelIdentifier;
-    private String organisationName;
     private Integer firstPublicationDateTS;
     private String orgVerificationStatus;
     private String calculatedEnergyClass;

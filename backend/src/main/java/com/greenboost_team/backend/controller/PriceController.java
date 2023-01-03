@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/prices")
-public class PricesController {
+public class PriceController {
 
     @Resource
     private RestTemplate restTemplate;

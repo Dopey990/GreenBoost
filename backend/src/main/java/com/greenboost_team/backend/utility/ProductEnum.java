@@ -2,8 +2,8 @@ package com.greenboost_team.backend.utility;
 
 public enum ProductEnum {
 
-        LAVE_VAISSELLE("washingmachines2019"),
-        LAVE_LINGE("dishwashers2019");
+        LAVE_VAISSELLE("dishwashers2019"),
+        LAVE_LINGE("washingmachines2019");
 
         public final String label;
 

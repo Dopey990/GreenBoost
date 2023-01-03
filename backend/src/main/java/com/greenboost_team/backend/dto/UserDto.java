@@ -14,4 +14,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UserDto {
     private String email;
     private String password;
+    private String firstName;
+    private String lastName;
 }

@@ -1,14 +1,16 @@
-package com.greenboost_team.backend.entity.products;
+package com.greenboost_team.backend.entity.product;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
-@Document
+@AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WashingmachineEntity extends AbstractProductEntity{
     private String spinClass;
     private Double washingEfficiencyIndexV2;
