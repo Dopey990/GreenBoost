@@ -4,8 +4,22 @@ import '/components/menu.dart';
 
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
+class SettingsProfilePage extends StatefulWidget {
+  @override
+  _SettingsProfilePageState createState() => _SettingsProfilePageState();
+}
 
-class SettingsProfilePage extends StatelessWidget {
+class _SettingsProfilePageState extends State<SettingsProfilePage> {
+  late bool _enabledContact;
+  late bool _enabledHouse;
+
+  @override
+  void initState() {
+    super.initState();
+    _enabledContact = false;
+    _enabledHouse = false;
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -52,7 +66,7 @@ class SettingsProfilePage extends StatelessWidget {
             ),
 
             Container(
-              height: MediaQuery.of(context).size.height * 0.2,
+              height: MediaQuery.of(context).size.height * 0.35,
               width: MediaQuery.of(context).size.width * 0.8,
               padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 15),
               decoration: BoxDecoration(
@@ -63,46 +77,100 @@ class SettingsProfilePage extends StatelessWidget {
                 children: <Widget> [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: const <Widget>[
+                    children: <Widget>[
                       IconButton(
-                        onPressed: null, 
-                        icon: Icon(Icons.edit, color: Colors.white, size: 20),
+                        onPressed: () => setState(() {
+                          if(_enabledContact == false){
+                            _enabledContact = true;
+                          } else {
+                            _enabledContact = false;
+                          }
+                        }),
+                        icon: const Icon(Icons.edit, color: Colors.white, size: 20),
                         )
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const <Widget>[
-                      Text(
-                        'Nom : Dupont',
+                    children: <Widget>[
+                      const Text(
+                        'Nom : ',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 15,
                         ),
                       ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: const <Widget>[
-                      Text(
-                        'Prénom : Alexandre',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
+                      
+                      Flexible(
+                        child: 
+                          TextField(
+                            enabled: _enabledContact,
+                            cursorHeight: 15,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Dupont',
+                              hintStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
                       ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const <Widget>[
-                      Text(
-                        'Email : alexandre.dupont@gmail.com',
+                    children:  <Widget>[
+                      const Text(
+                        'Prénom : ',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 15,
                         ),
+                      ),
+                      
+                      Flexible(
+                        child: 
+                          TextField(
+                            enabled: _enabledContact,
+                            cursorHeight: 15,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Alexandre',
+                              hintStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      const Text(
+                        'Email : ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                      ),
+                      
+                      Flexible(
+                        child: 
+                          TextField(
+                            enabled: _enabledContact,
+                            cursorHeight: 15,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'alexandre.dupont@gmail.com',
+                              hintStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
                       ),
                     ],
                   ),
@@ -132,10 +200,17 @@ class SettingsProfilePage extends StatelessWidget {
                 children: <Widget> [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: const <Widget>[
+                    children: <Widget>[
                       IconButton(
-                        onPressed: null, 
-                        icon: Icon(Icons.edit, color: Colors.white, size: 20),
+                        onPressed: 
+                          () => setState(() {
+                            if(_enabledHouse == false){
+                              _enabledHouse = true;
+                            } else {
+                              _enabledHouse = false;
+                            }
+                          }),
+                        icon: const Icon(Icons.edit, color: Colors.white, size: 20),
                         )
                     ],
                   ),
@@ -153,7 +228,20 @@ class SettingsProfilePage extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: const Text("6 personnes"),
+                            child: 
+                                TextField(
+                                  enabled: _enabledHouse,
+                                  cursorHeight: 15,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: '6 personnes',
+                                    hintStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ),
+                              
                             ),),),
                       
                       SizedBox(
@@ -166,7 +254,20 @@ class SettingsProfilePage extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: const Text("245 m²"),
+                            child:
+                             TextField(
+                                enabled: _enabledHouse,
+                                cursorHeight: 15,
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: '245 m²',
+                                  hintStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ), 
+                            //const Text("245 m²"),
                             ),),),
                     ],
                   ),    
@@ -184,49 +285,22 @@ class SettingsProfilePage extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: const Text("Isolation de classe G"),
+                            child: 
+                              TextField(
+                                enabled: _enabledHouse,
+                                cursorHeight: 15,
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Isolation de classe G',
+                                  hintStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ),
                             ),),),                      
                     ],
-                  ),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width:  MediaQuery.of(context).size.width * 0.35,
-                        height: MediaQuery.of(context).size.height * 0.08,
-                        child: Card(
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: const Text("12 fenêtres"),
-                            ),),),
-                      SizedBox(
-                        width:  MediaQuery.of(context).size.width * 0.35,
-                        height: MediaQuery.of(context).size.height * 0.08,
-                        child: Card(
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: 
-                              const IconButton(
-                                onPressed: null, 
-                                icon: Icon(
-                                  Icons.add, 
-                                  color: Colors.blue,
-                                  size: 20),
-                                )
-                              )
-                            ),),                   
-                    ],
-                  ),
-                               
+                  ),                
 
                 ]),
 
