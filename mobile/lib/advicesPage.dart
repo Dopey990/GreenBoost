@@ -80,7 +80,8 @@ class AdvicesPage extends StatelessWidget {
                   onPressed: () => {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AdvicesPage()),
+                      MaterialPageRoute(
+                          builder: (context) => advicesPageElectricity()),
                     )
                   },
                   style: TextButton.styleFrom(
