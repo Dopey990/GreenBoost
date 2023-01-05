@@ -23,9 +23,6 @@ import java.util.regex.Pattern;
 public class HouseController {
 
     @Resource
-    private RestTemplate restTemplate;
-
-    @Resource
     private HouseMapper houseMapper;
 
     @Resource

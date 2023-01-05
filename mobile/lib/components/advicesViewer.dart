@@ -36,7 +36,7 @@ class AdvicesViewerState extends State<AdvicesViewerWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  iconSize: 50,
+                  iconSize: 30,
                   icon: const Icon(Icons.keyboard_arrow_left),
                   onPressed: () {
                     setState(() {
@@ -53,7 +53,7 @@ class AdvicesViewerState extends State<AdvicesViewerWidget> {
                   fontSize: 16,
                   backgroundColor: Colors.white,
                   child: Container(
-                    width: MediaQuery.of(context).size.width / 2,
+                    width: MediaQuery.of(context).size.width / 1.5,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.blue,
@@ -63,10 +63,9 @@ class AdvicesViewerState extends State<AdvicesViewerWidget> {
                       ),
                     ),
                     child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(5.0),
                         child: Text(
                           data[currentAdviceIndex],
-                          style: const TextStyle(fontSize: 28.0),
                           textAlign: TextAlign.center,
                         )),
                   ),
@@ -80,7 +79,7 @@ class AdvicesViewerState extends State<AdvicesViewerWidget> {
                                 : currentAdviceIndex + 1;
                       });
                     },
-                    iconSize: 50,
+                    iconSize: 30,
                     icon: const Icon(Icons.keyboard_arrow_right))
               ],
             );
