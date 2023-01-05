@@ -19,7 +19,7 @@ class ChallengePage extends StatelessWidget {
       Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 1.0),
+            padding: const EdgeInsets.only(top: 1.0, bottom:8),
             child: Center(
               child: Image.asset(
                 'assets/img/challenge.png',
@@ -31,6 +31,7 @@ class ChallengePage extends StatelessWidget {
           ),
           Container(
             width: MediaQuery.of(context).size.width * 0.9,
+            height: MediaQuery.of(context).size.height * 0.7,
             decoration: BoxDecoration(
               color: Color.fromARGB(255, 20, 151, 171),
               borderRadius: BorderRadius.circular(10),
