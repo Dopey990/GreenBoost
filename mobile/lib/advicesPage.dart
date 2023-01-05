@@ -8,9 +8,64 @@ class AdvicesPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Home'),
+          title: const Text('Home'),
         ),
-        drawer: Menu(),
-        body: Center(child: Text("Advices")));
-  }
+        drawer: const Menu(),
+        body: 
+          Container(
+            child: Column(children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //icon of home
+                  IconButton(
+                    onPressed: () => {
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => AdvicesPage()),)
+                    },
+                    color: Colors.blue,
+                    icon: const Icon(Icons.home, size: 40),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  //icon of home
+                  IconButton(
+                    onPressed: () => {
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => AdvicesPage()),)
+                    },
+                    color: Colors.blue,
+                    icon: const Icon(Icons.home, size: 40),
+                  ),
+                  IconButton(
+                    onPressed: () => {
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => AdvicesPage()),)
+                    },
+                    color: Colors.blue,
+                    icon: const Icon(Icons.home, size: 40),
+                  ),
+                  IconButton(
+                    onPressed: () => {
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => AdvicesPage()),)
+                    },
+                    color: Colors.blue,
+                    icon: const Icon(Icons.home, size: 40),
+                  ),
+              ],),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                IconButton(
+                  onPressed: () => {
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => AdvicesPage()),)
+                  },
+                  color: Colors.blue,
+                  icon: const Icon(Icons.home, size: 40),
+                ),
+              ],),
+            ]
+          ),),
+        );
+}
 }
