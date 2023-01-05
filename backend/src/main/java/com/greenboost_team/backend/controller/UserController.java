@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 import javax.annotation.Resource;
 
 @RestController
@@ -50,4 +52,19 @@ public class UserController {
             return new ResponseEntity <>(userRepository.save(new UserEntity(user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName())), HttpStatus.CREATED);
         }
     }
+
+    @GetMapping("/getUserToken")
+public ResponseEntity<String> getUserToken(@RequestParam String email, @RequestParam String password) {
+    UserEntity user = userRepository.findByEmail(email);
+    if (user == null) {
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    if (passwordEncoder.matches(password, user.getPassword())) {
+        String token = UUID.randomUUID().toString();
+        // On pourrait enregistrer le token dans une base de données ou dans un cache
+        return ResponseEntity.ok(token);
+    } else {
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+}
 }

@@ -12,8 +12,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document
 public class UserDto {
+
     private String email;
     private String password;
     private String firstName;
     private String lastName;
+    
+    public UserDto(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+   
 }

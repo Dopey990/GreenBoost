@@ -2,7 +2,6 @@ import 'package:GreenBoost/classementPage.dart';
 import 'package:flutter/material.dart';
 import '/components/menu.dart';
 import 'package:GreenBoost/settingsProfilePage.dart';
-import 'package:GreenBoost/auth.dart';
 
 class UserRankingsPage extends StatefulWidget {
   @override
