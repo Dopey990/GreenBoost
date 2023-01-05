@@ -13,120 +13,135 @@ class ChallengePage extends StatelessWidget {
         title: Text('Challenges'),
       ),
       drawer: Menu(),
-      body: SingleChildScrollView(
-        child : Column (          
-          children: <Widget>[
-            
-            Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Center(
-                child: Image.asset(
-                  'assets/img/challenge.png',
-                  height: 100,
-                  width: 100,
-                  fit: BoxFit.fitWidth,
-                ),
+      body:
+      SingleChildScrollView(
+        child: 
+      Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 1.0),
+            child: Center(
+              child: Image.asset(
+                'assets/img/challenge.png',
+                height: 100,
+                width: 100,
+                fit: BoxFit.fitWidth,
               ),
             ),
-
-            Container(
-              height: MediaQuery.of(context).size.height * 0.6,
-              width: MediaQuery.of(context).size.width * 0.8,
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 10, bottom: 10),
-              decoration: BoxDecoration(
-                  color: Color.fromRGBO(217, 217, 217, 1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: 
-                      Card(
-                        child: Container(                          
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(125, 192, 120, 1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: const EdgeInsets.all(20),
-                          child: const Text("Débrancher les appareils en veille"),
-                          ),
-                          
-                          ),
-                          
-                          ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: 
-                      Card(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(236, 188, 118, 1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: const EdgeInsets.all(20),
-                          child: const Text("Couvrez les casserolles ",
-                          
-                          ),
-                          
-                          ),),),
-                  SizedBox(
-                    width:  MediaQuery.of(context).size.width * 0.8,
-                    child: 
-                      Card(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(125, 192, 120, 1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: const EdgeInsets.all(20),
-                          child: const Text("Faites vos courses en vrac"),
-                          ),),),
-                  SizedBox(
-                    width:  MediaQuery.of(context).size.width * 0.8,
-                    child: 
-                      Card(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(212, 115, 127, 1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: const EdgeInsets.all(20),
-                          child: const Text("Faites vos courses en vrac"),
-                          
-                          ),),),
-                  SizedBox(
-                    width:  MediaQuery.of(context).size.width * 0.8,
-                    child: 
-                      Card(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(212, 115, 127, 1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: const EdgeInsets.all(20),
-                          child: const Text("Faites vos courses en vrac"),
-                          
-                          ),),),
-                  SizedBox(
-                    width:  MediaQuery.of(context).size.width * 0.8,
-                    child: 
-                      Card(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(212, 115, 127, 1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: const EdgeInsets.all(20),
-                          child: const Text("Faites vos courses en vrac"),
-                          
-                          ),),),
-                ]
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 20, 151, 171),
+              borderRadius: BorderRadius.circular(10),
             ),
-            ),
-          ]
-        )
+            child :                    
+              ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.only(top:8, bottom:8, left: 5, right: 5),
+                children: const <Widget>[
+                  Card(
+                    color: Color.fromARGB(255, 93, 147, 155),
+                    child: ListTile(
+                      title: Text('Challenge 1'),
+                      subtitle: Text('Description of the challenge'),
+                      trailing: IconButton(
+                        icon : Icon(Icons.check),
+                        color : Color.fromARGB(255, 12, 227, 19),
+                        onPressed: null,
+                      ),
+                      ),
+                  ),
+                  Card(
+                    color: Color.fromARGB(255, 93, 147, 155),
+                    child: ListTile(
+                      title: Text('Challenge 2'),
+                      subtitle: Text('Description of the challenge'),
+                      trailing: IconButton(
+                        icon : Icon(Icons.check),
+                        color : Color.fromARGB(255, 12, 227, 19),
+                        onPressed: null,
+                        ),
+                    ),
+                  ),
+                  Card(
+                    color: Color.fromARGB(255, 93, 147, 155),
+                    child: ListTile(
+                      title: Text('Challenge 3'),
+                      subtitle: Text('Description of the challenge'),
+                      trailing: IconButton(
+                        icon : Icon(Icons.check),
+                        color : Color.fromARGB(255, 12, 227, 19),
+                        onPressed: null,
+                        ),
+                    ),
+                  ),
+                  Card(
+                    color: Color.fromARGB(255, 93, 147, 155),
+                    child: ListTile(
+                      title: Text('Challenge 4'),
+                      subtitle: Text('Description of the challenge'),
+                      trailing: IconButton(
+                        icon : Icon(Icons.check),
+                        color : Color.fromARGB(255, 12, 227, 19),
+                        onPressed: null,
+                        ),
+                    ),
+                  ),
+                  Card(
+                    color: Color.fromARGB(255, 93, 147, 155),
+                    child: ListTile(
+                      title: Text('Challenge 5'),
+                      subtitle: Text('Description of the challenge'),
+                      trailing: IconButton(
+                        icon : Icon(Icons.check),
+                        color : Color.fromARGB(255, 12, 227, 19),
+                        onPressed: null,
+                        ),
+                    ),
+                  ),
+                  Card(
+                    color: Color.fromARGB(255, 93, 147, 155),
+                    child: ListTile(
+                      title: Text('Challenge 6'),
+                      subtitle: Text('Description of the challenge'),
+                      trailing: IconButton(
+                        icon : Icon(Icons.check),
+                        color : Color.fromARGB(255, 12, 227, 19),
+                        onPressed: null,
+                        ),
+                    ),
+                  ),
+                  Card(
+                    color: Color.fromARGB(255, 93, 147, 155),
+                    child: ListTile(
+                      title: Text('Challenge 7'),
+                      subtitle: Text('Description of the challenge'),
+                      trailing: IconButton(
+                        icon : Icon(Icons.check),
+                        color : Color.fromARGB(255, 12, 227, 19),
+                        onPressed: null,
+                        ),
+                    ),
+                  ),
+                  Card(
+                    color: Color.fromARGB(255, 93, 147, 155),
+                    child: ListTile(
+                      title: Text('Challenge 8'),
+                      subtitle: Text('Description of the challenge'),
+                      trailing: IconButton(
+                        icon : Icon(Icons.check),
+                        color : Color.fromARGB(255, 12, 227, 19),
+                        onPressed: null,
+                        ),
+                    ),
+                  ),
+                ],
+              ),
+          ),
+          
+          ],
+        ),  
       ),
     );
   }
