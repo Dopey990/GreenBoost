@@ -1,8 +1,23 @@
 import 'package:GreenBoost/forgotPasswordPage.dart';
 import 'package:GreenBoost/subscriptionPage.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'homePage.dart';
+
+// remplacer API_URL par l'URL de votre API
+/** 
+final email = 'EMAIL';
+final password = 'PASSWORD';
+
+void login() async {
+  final body = jsonEncode({'email': email, 'password': password});
+  const API_URL = 'https://my-api.com/login';
+  final response = await http.post(API_URL, body: body);
+  final responseBody = jsonDecode(response.body);
+  // traitez la réponse ici
+}**/
 
 class LoginPage extends StatelessWidget {
   @override
