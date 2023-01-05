@@ -3,6 +3,7 @@ package com.greenboost_team.backend.entity.product;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.data.annotation.Id;
 
 @Getter
 @Setter
@@ -11,8 +12,11 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class AbstractProductEntity {
+    @Id
+    @JsonProperty("modelIdentifier")
+    private String id;
+    private String supplierOrTrademark;
     private String implementingAct;
-    private String modelIdentifier;
     private Integer firstPublicationDateTS;
     private String orgVerificationStatus;
     private String calculatedEnergyClass;
