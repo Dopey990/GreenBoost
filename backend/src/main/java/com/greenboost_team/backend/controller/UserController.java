@@ -41,4 +41,13 @@ public class UserController {
             return new ResponseEntity <>(userRepository.save(new UserEntity(user.getEmail(), passwordEncoder.encode(user.getPassword()), user.getFirstName(), user.getLastName())), HttpStatus.CREATED);
         }
     }
+
+    @PostMapping("/createUserClearPassword")
+    public ResponseEntity<UserEntity> createUserByEmailAndClearPassword(@RequestBody UserDto user) {
+        if(userRepository.existsByEmail(user.getEmail())){
+            return new ResponseEntity<>(HttpStatus.ALREADY_REPORTED);
+        } else {
+            return new ResponseEntity <>(userRepository.save(new UserEntity(user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName())), HttpStatus.CREATED);
+        }
+    }
 }
