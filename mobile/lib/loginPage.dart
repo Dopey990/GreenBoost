@@ -1,3 +1,4 @@
+import 'package:GreenBoost/authmanager.dart';
 import 'package:GreenBoost/forgotPasswordPage.dart';
 import 'package:GreenBoost/subscriptionPage.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,21 @@ void login() async {
   // traitez la réponse ici
 }**/
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String email = "";
+  String password = "";
+
   @override
   Widget build(BuildContext context) {
+    AuthManager? auth = AuthManager.of(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -41,26 +54,32 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
+            Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
+                onChanged: (value) => setState(() {
+                  email = value;
+                }),
               ),
             ),
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
+                onChanged: (value) => setState(() {
+                  password = password;
+                }),
               ),
             ),
             //text button for inscription
@@ -91,9 +110,19 @@ class LoginPage extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => HomePage()));
+                onPressed: () async {
+                  await auth!.login(email, password).then((value) => {
+                        if (value)
+                          {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => HomePage()))
+                          }
+                        else
+                          {
+                            //TODO : Faire quelquechose si login foiré
+                            print("Login failed")
+                          }
+                      });
                 },
                 child: const Text(
                   'Login',

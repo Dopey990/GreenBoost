@@ -1,6 +1,7 @@
 import 'package:GreenBoost/subscriptionPage.dart';
 import 'package:GreenBoost/advicesPage.dart';
 import 'package:flutter/material.dart';
+import 'authmanager.dart';
 import 'challengePage.dart';
 import 'electricityInfoPage.dart';
 import 'homePage.dart';
@@ -29,7 +30,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return AuthManager(
+        child: MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: MaterialColor(0xFF3D69D9, color),
@@ -43,6 +45,6 @@ class MyApp extends StatelessWidget {
         "/challenges": (context) => ChallengePage(),
         "/info/electricity": (context) => ElectricityInfoPage(),
       },
-    );
+    ));
   }
 }
