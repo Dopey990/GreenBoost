@@ -1,6 +1,8 @@
-import 'package:GreenBoost/profilePage.dart';
+import 'package:GreenBoost/classementPage.dart';
 import 'package:flutter/material.dart';
 import '/components/menu.dart';
+import 'package:GreenBoost/settingsProfilePage.dart';
+import 'package:GreenBoost/auth.dart';
 
 class ForumPage extends StatelessWidget {
   @override

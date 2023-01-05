@@ -5,6 +5,7 @@ import 'challengePage.dart';
 import 'electricityInfoPage.dart';
 import 'homePage.dart';
 import 'loginPage.dart';
+import 'forumPage.dart';
 
 Map<int, Color> color = const {
   50: Color.fromRGBO(61, 105, 217, .1),
