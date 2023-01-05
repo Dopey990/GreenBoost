@@ -33,12 +33,13 @@ class ElectricityInfoState extends State<ElectricityInfoPage> {
             const PricesForecastWidget(
               chartTitle: "Prix électricité",
               apiUrl:
-                  "http://10.8.253.233:8080/prices/electricity/getDayAheadPrices",
+                  "http://localhost:8080/prices/electricity/getDayAheadPrices",
             ),
             ProductsActivitiesToolboxWidget(),
             const Padding(padding: EdgeInsets.only(top: 20)),
             AdvicesViewerWidget(
-              apiUrl: "http://10.8.253.233:8080/advices/electricity/",
+              apiUrl:
+                  "http://localhost:8080/advices/getByCategory?category=electricity&language=FR",
             )
           ],
         ))));

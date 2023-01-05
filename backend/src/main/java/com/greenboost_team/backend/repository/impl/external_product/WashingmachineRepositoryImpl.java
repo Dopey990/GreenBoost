@@ -31,9 +31,4 @@ public class WashingmachineRepositoryImpl implements WashingmachineRepository {
         );
         return washingMachines.getBody() == null ? null : new ArrayList<>(washingMachines.getBody().getWashingMachines());
     }
-
-    @Override
-    public void saveExternalProduct(List<AbstractProductEntity> abstractProducts) {
-
-    }
 }
