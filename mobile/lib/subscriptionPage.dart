@@ -13,7 +13,6 @@ class SubscriptionPage extends StatelessWidget {
         title: Text('Inscription'),
       ),
       body: SingleChildScrollView(
-       
         child: Column(
           children: <Widget>[
             Padding(
@@ -35,12 +34,13 @@ class SubscriptionPage extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
-                      Radius.circular(50.0), 
-             ),
-             borderSide: BorderSide(
-              width: 5, 
-              style: BorderStyle.solid,
-              ),),
+                        Radius.circular(50.0),
+                      ),
+                      borderSide: BorderSide(
+                        width: 5,
+                        style: BorderStyle.solid,
+                      ),
+                    ),
                     labelText: 'Nom',
                     hintText: 'Enter your name'),
               ),
@@ -53,12 +53,13 @@ class SubscriptionPage extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
-                      Radius.circular(50.0), 
-             ),
-             borderSide: BorderSide(
-              width: 5, 
-              style: BorderStyle.solid,
-              ),),
+                        Radius.circular(50.0),
+                      ),
+                      borderSide: BorderSide(
+                        width: 5,
+                        style: BorderStyle.solid,
+                      ),
+                    ),
                     labelText: 'Prénom',
                     hintText: 'Enter your surname'),
               ),
@@ -71,12 +72,13 @@ class SubscriptionPage extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
-                      Radius.circular(50.0), 
-             ),
-             borderSide: BorderSide(
-              width: 5, 
-              style: BorderStyle.solid,
-              ),),
+                        Radius.circular(50.0),
+                      ),
+                      borderSide: BorderSide(
+                        width: 5,
+                        style: BorderStyle.solid,
+                      ),
+                    ),
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
               ),
@@ -90,12 +92,13 @@ class SubscriptionPage extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
-                      Radius.circular(50.0), 
-             ),
-             borderSide: BorderSide(
-              width: 5, 
-              style: BorderStyle.solid,
-              ),),
+                        Radius.circular(50.0),
+                      ),
+                      borderSide: BorderSide(
+                        width: 5,
+                        style: BorderStyle.solid,
+                      ),
+                    ),
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
               ),
@@ -104,7 +107,8 @@ class SubscriptionPage extends StatelessWidget {
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: const Color.fromRGBO(48, 69, 178, 1), borderRadius: BorderRadius.circular(30)),
+                  color: const Color.fromRGBO(48, 69, 178, 1),
+                  borderRadius: BorderRadius.circular(30)),
               child: TextButton(
                 onPressed: () {
                   Navigator.push(
