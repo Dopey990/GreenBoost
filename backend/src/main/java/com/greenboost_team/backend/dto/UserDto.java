@@ -13,14 +13,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class UserDto {
 
-    private String email;
-    private String password;
     private String firstName;
     private String lastName;
-    
-    public UserDto(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+    private String email;
+    private String town;
+    private Integer ecoScore;
+    private Integer rank;
+    private Integer electricityScore;
+    private Integer gazScore;
+    private Integer pollutionScore;
+    private Integer waterScore;
+    private Integer electricityRank;
+    private Integer gazRank;
+    private Integer pollutionRank;
+    private Integer waterRank;
    
 }

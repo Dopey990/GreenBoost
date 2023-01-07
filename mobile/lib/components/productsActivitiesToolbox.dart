@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_titled_container/flutter_titled_container.dart';
 
 import 'package:http/http.dart' as http;
@@ -16,6 +17,11 @@ class ProductsActivitiesToolboxState
     extends State<ProductsActivitiesToolboxWidget> {
   late Future<Set<String>> categories;
   String? categoriesDropdownValue;
+  String? selectedProductId;
+
+  final productNameController = TextEditingController();
+  final productBrandController = TextEditingController();
+  final productQuantityController = TextEditingController();
 
   @override
   void initState() {
@@ -62,7 +68,6 @@ class ProductsActivitiesToolboxState
                                   ),
                                 ),
                                 Form(
-                                  key: UniqueKey(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
@@ -77,33 +82,41 @@ class ProductsActivitiesToolboxState
                                                   var data = snapshot.data!;
 
                                                   return Container(
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      color: Colors.white,
-                                                    ),
-                                                    child: DropdownButton(
-                                                      value:
-                                                          categoriesDropdownValue,
-                                                      hint: const Text(
-                                                          "Catégorie"),
-                                                      icon: const Icon(Icons
-                                                          .keyboard_arrow_down),
-                                                      items: data.map(
-                                                          (String jsonTown) {
-                                                        return DropdownMenuItem(
-                                                          value: jsonTown,
-                                                          child: Text(jsonTown),
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        color: Colors.white,
+                                                      ),
+                                                      child: StatefulBuilder(
+                                                          builder: (BuildContext
+                                                                  context,
+                                                              StateSetter
+                                                                  dropDownState) {
+                                                        return DropdownButton(
+                                                          value:
+                                                              categoriesDropdownValue,
+                                                          hint: const Text(
+                                                              "Catégorie"),
+                                                          icon: const Icon(Icons
+                                                              .keyboard_arrow_down),
+                                                          items: data.map(
+                                                              (String product) {
+                                                            return DropdownMenuItem(
+                                                              value: product,
+                                                              child:
+                                                                  Text(product),
+                                                            );
+                                                          }).toList(),
+                                                          onChanged: (String?
+                                                              newValue) {
+                                                            print(newValue);
+                                                            dropDownState(() {
+                                                              categoriesDropdownValue =
+                                                                  newValue!;
+                                                              getProducts();
+                                                            });
+                                                          },
                                                         );
-                                                      }).toList(),
-                                                      onChanged:
-                                                          (String? newValue) {
-                                                        setState(() {
-                                                          categoriesDropdownValue =
-                                                              newValue!;
-                                                        });
-                                                      },
-                                                    ),
-                                                  );
+                                                      }));
                                                 } else {
                                                   return const CircularProgressIndicator();
                                                 }
@@ -111,28 +124,54 @@ class ProductsActivitiesToolboxState
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: TextFormField(
-                                          decoration: const InputDecoration(
-                                            labelText: 'Nom du produit',
-                                            labelStyle: TextStyle(
+                                            controller: productNameController,
+                                            decoration: const InputDecoration(
+                                              labelText: 'Nom du produit',
+                                              labelStyle: TextStyle(
+                                                  color: Colors.black87,
+                                                  fontSize: 17,
+                                                  fontFamily: 'AvenirLight'),
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.purple),
+                                              ),
+                                              enabledBorder:
+                                                  UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.grey,
+                                                          width: 1.0)),
+                                            ),
+                                            style: const TextStyle(
                                                 color: Colors.black87,
                                                 fontSize: 17,
-                                                fontFamily: 'AvenirLight'),
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.purple),
-                                            ),
-                                            enabledBorder: UnderlineInputBorder(
+                                                fontFamily: 'AvenirLight')),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: TextFormField(
+                                            controller: productBrandController,
+                                            decoration: const InputDecoration(
+                                              labelText: 'Marque',
+                                              labelStyle: TextStyle(
+                                                  color: Colors.black87,
+                                                  fontSize: 17,
+                                                  fontFamily: 'AvenirLight'),
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
                                                 borderSide: BorderSide(
-                                                    color: Colors.grey,
-                                                    width: 1.0)),
-                                          ),
-                                          style: const TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 17,
-                                              fontFamily: 'AvenirLight'),
-                                          //  controller: _passwordController,
-                                          obscureText: true,
-                                        ),
+                                                    color: Colors.purple),
+                                              ),
+                                              enabledBorder:
+                                                  UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.grey,
+                                                          width: 1.0)),
+                                            ),
+                                            style: const TextStyle(
+                                                color: Colors.black87,
+                                                fontSize: 17,
+                                                fontFamily: 'AvenirLight')),
                                       ),
                                       Center(
                                         child: FutureBuilder<
@@ -143,51 +182,100 @@ class ProductsActivitiesToolboxState
                                                     null &&
                                                 snapshot.hasData) {
                                               return ListView.builder(
-                                                shrinkWrap: true,
-                                                itemCount:
-                                                    snapshot.data!.length,
-                                                itemBuilder: (context, index) {
-                                                  return ListTile(
-                                                    leading: CircleAvatar(
-                                                      child: Image.network(snapshot
-                                                          .data![index][
-                                                              "calculatedEnergyClass"]
-                                                          .toString()),
-                                                    ),
-                                                    title: Text(snapshot
-                                                        .data![index]["name"]
-                                                        .toString()),
-                                                    trailing: Text(DateTime
-                                                            .fromMillisecondsSinceEpoch(
+                                                  shrinkWrap: true,
+                                                  itemCount:
+                                                      snapshot.data!.length,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return StatefulBuilder(
+                                                      builder: (BuildContext
+                                                              context,
+                                                          StateSetter
+                                                              listTileState) {
+                                                        return ListTile(
+                                                          leading: CircleAvatar(
+                                                            child: Image.network(
                                                                 snapshot.data![
-                                                                            index]
-                                                                        [
-                                                                        "onMarketStartDateTS"] *
-                                                                    1000)
-                                                        .toString()),
-                                                    subtitle: Text(snapshot
-                                                        .data![index]["noise"]
-                                                        .toString()),
-                                                  );
-                                                },
-                                              );
+                                                                        index][
+                                                                        "energyClass"]
+                                                                    .toString()),
+                                                          ),
+                                                          title: Text(snapshot
+                                                              .data![index]
+                                                                  ["name"]
+                                                              .toString()),
+                                                          trailing: Text(DateTime
+                                                                  .fromMillisecondsSinceEpoch(
+                                                                      snapshot.data![index]
+                                                                              [
+                                                                              "onMarketStartDateTS"] *
+                                                                          1000)
+                                                              .toString()),
+                                                          subtitle: Text(snapshot
+                                                              .data![index][
+                                                                  "supplierOrTrademark"]
+                                                              .toString()),
+                                                          onTap: () {
+                                                            listTileState(() {
+                                                              selectedProductId =
+                                                                  snapshot.data![
+                                                                          index]
+                                                                      ["id"];
+                                                            });
+                                                          },
+                                                        );
+                                                      },
+                                                    );
+                                                  });
                                             }
-                                            return const Text(
-                                                "Veuillez sélectionner une catégorie");
+                                            return const Padding(
+                                                padding: EdgeInsets.all(8.0),
+                                                child: Text(
+                                                    "Veuillez sélectionner une catégorie"));
                                           },
                                         ),
                                       ),
+                                      TextFormField(
+                                          controller: productQuantityController,
+                                          keyboardType: TextInputType.number,
+                                          inputFormatters: [
+                                            FilteringTextInputFormatter
+                                                .digitsOnly
+                                          ],
+                                          decoration: const InputDecoration(
+                                              labelText: "Quantité",
+                                              icon: Icon(Icons.numbers))),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Row(children: [
                                           TextButton(
                                             child: const Text("Annuler"),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Navigator.of(context,
+                                                      rootNavigator: true)
+                                                  .pop();
+                                            },
                                           ),
                                           const Spacer(),
                                           TextButton(
+                                            onPressed: selectedProductId == null
+                                                ? null
+                                                : () async => {
+                                                      if (await addProduct(
+                                                        selectedProductId!,
+                                                        productQuantityController
+                                                            .text,
+                                                      ))
+                                                        {
+                                                          Navigator.of(context,
+                                                                  rootNavigator:
+                                                                      true)
+                                                              .pop()
+                                                        }
+                                                      else
+                                                        {}
+                                                    },
                                             child: const Text("Ajouter"),
-                                            onPressed: () {},
                                           )
                                         ]),
                                       )
@@ -199,6 +287,7 @@ class ProductsActivitiesToolboxState
                           );
                         })
                   }),
+          const Spacer(),
           TextButton.icon(
               icon: const Icon(Icons.add_home_rounded),
               label: const Text("Ajouter un appareil"),
@@ -236,6 +325,18 @@ class ProductsActivitiesToolboxState
     } else {
       throw Exception(
           'Failed to load products with category: ${categoriesDropdownValue!}');
+    }
+  }
+
+  Future<bool> addProduct(String productId, String quantity) async {
+    var userId = "63b6a360802851515c484179";
+    final response = await http.post(Uri.parse(
+        'http://localhost:8080/houses/addProduct?userId=$userId&productId=$productId&quantity=$quantity'));
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
