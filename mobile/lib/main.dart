@@ -2,6 +2,7 @@ import 'package:GreenBoost/subscriptionPage.dart';
 import 'package:GreenBoost/advicesPage.dart';
 import 'package:flutter/material.dart';
 import 'authmanager.dart';
+import 'inscription.dart';
 import 'challengePage.dart';
 import 'electricityInfoPage.dart';
 import 'homePage.dart';

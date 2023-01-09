@@ -1,10 +1,11 @@
-import 'package:GreenBoost/authmanager.dart';
+import 'package:GreenBoost/inscription.dart';
 import 'package:GreenBoost/forgotPasswordPage.dart';
 import 'package:GreenBoost/subscriptionPage.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'authmanager.dart';
 import 'homePage.dart';
 
 // remplacer API_URL par l'URL de votre API
@@ -111,18 +112,21 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () async {
-                  await auth!.login(email, password).then((value) => {
-                        if (value)
-                          {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => HomePage()))
-                          }
-                        else
-                          {
-                            //TODO : Faire quelquechose si login foiré
-                            print("Login failed")
-                          }
-                      });
+                  await AuthManager.of(context)
+                      ?.login(email, password)
+                      .then((value) => {
+                            if (value)
+                              {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => HomePage()))
+                              }
+                            else
+                              {
+                                //TODO : Faire quelquechose s
+                              }
+                          });
                 },
                 child: const Text(
                   'Login',

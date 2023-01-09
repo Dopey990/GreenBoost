@@ -1,3 +1,4 @@
+import 'package:GreenBoost/inscription.dart';
 import 'package:GreenBoost/loginPage.dart';
 import 'package:flutter/material.dart';
 
@@ -110,13 +111,21 @@ class SubscriptionPage extends StatelessWidget {
                   color: const Color.fromRGBO(48, 69, 178, 1),
                   borderRadius: BorderRadius.circular(30)),
               child: TextButton(
-                onPressed: () {
+                onPressed: () async {
+                  // @Frontender mettre les données que tapes les users dans les vars pour l'appeller ici
+                  String email = "";
+                  String password = "";
+                  String firstname = "";
+                  String lastname = "";
+                  await inscription.createUser(
+                      email, password, firstname, lastname);
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 },
-                child: const Text(
+                child: Text(
                   'Inscription',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
