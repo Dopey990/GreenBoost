@@ -1,17 +1,29 @@
-import 'package:GreenBoost/inscription.dart';
+import 'package:GreenBoost/authmanager.dart';
 import 'package:GreenBoost/loginPage.dart';
 import 'package:flutter/material.dart';
 
 import 'homePage.dart';
 
-class SubscriptionPage extends StatelessWidget {
+class SubscriptionPage extends StatefulWidget {
+  const SubscriptionPage({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _SubscriptionPageState();
+}
+
+class _SubscriptionPageState extends State<SubscriptionPage> {
+  String email = "";
+  String password = "";
+  String firstname = "";
+  String lastname = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Inscription'),
+        title: const Text('Inscription'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -27,12 +39,12 @@ class SubscriptionPage extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 15.0, right: 15.0, top: 0, bottom: 0),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 0, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(50.0),
@@ -44,14 +56,17 @@ class SubscriptionPage extends StatelessWidget {
                     ),
                     labelText: 'Nom',
                     hintText: 'Enter your name'),
+                onChanged: (value) => setState(() {
+                  lastname = value;
+                }),
               ),
             ),
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 15.0, right: 15.0, top: 10, bottom: 0),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 10, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(50.0),
@@ -63,14 +78,17 @@ class SubscriptionPage extends StatelessWidget {
                     ),
                     labelText: 'Prénom',
                     hintText: 'Enter your surname'),
+                onChanged: (value) => setState(() {
+                  firstname = value;
+                }),
               ),
             ),
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 15.0, right: 15.0, top: 10, bottom: 0),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 10, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(50.0),
@@ -82,15 +100,18 @@ class SubscriptionPage extends StatelessWidget {
                     ),
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
+                onChanged: (value) => setState(() {
+                  email = value;
+                }),
               ),
             ),
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 15.0, right: 15.0, top: 10, bottom: 15),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 10, bottom: 15),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(50.0),
@@ -102,6 +123,9 @@ class SubscriptionPage extends StatelessWidget {
                     ),
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
+                onChanged: (value) => setState(() {
+                  password = value;
+                }),
               ),
             ),
             Container(
@@ -113,19 +137,23 @@ class SubscriptionPage extends StatelessWidget {
               child: TextButton(
                 onPressed: () async {
                   // @Frontender mettre les données que tapes les users dans les vars pour l'appeller ici
-                  String email = "";
-                  String password = "";
-                  String firstname = "";
-                  String lastname = "";
-                  await inscription.createUser(
-                      email, password, firstname, lastname);
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
+                  await AuthManager.of(context)
+                      ?.createUser(email, password, firstname, lastname)
+                      .then((value) => {
+                            if (value)
+                              {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => const LoginPage()))
+                              }
+                            else
+                              {
+                                //TODO : Faire quelquechose s
+                              }
+                          });
                 },
-                child: Text(
+                child: const Text(
                   'Inscription',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),

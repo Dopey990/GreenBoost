@@ -29,17 +29,44 @@ class AuthManager extends InheritedWidget {
 
   Future<bool> login(String email, String password) async {
     final response = await _loginHttp(email, password);
-    if (response.statusCode != HttpStatus.ok) {
+    int status = response.statusCode - HttpStatus.ok;
+    if (0 > status && status >= 100) {
+      //If not a 2xx status, login failed (dsl c guetto mais ca tourne issou)
+      print("Login failed with status : ${response.statusCode}");
       token = null;
       return false;
     }
-
-    final user = json.decode(response.body) as Map<String, dynamic>;
-    token = user['token'];
+    print("Login OK");
+    //final user = json.decode(response.body) as Map<String, dynamic>;
+    //token = user['token'];
+    token = response.body;
     return true;
   }
 
   static AuthManager? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<AuthManager>();
+  }
+
+  Future<bool> createUser(
+      String email, String password, String firstname, String lastname) async {
+    final Map<String, dynamic> data = {
+      'email': email,
+      'password': password,
+      'firstname': firstname,
+      'lastname': lastname,
+    };
+    final String body = json.encode(data);
+
+    final http.Response response = await http.post(
+      Uri.parse('http://localhost:8080/user/createUser/'),
+      headers: {'Content-Type': 'application/json'},
+      body: body,
+    );
+
+    if (response.statusCode != HttpStatus.created) {
+      print('Failed to create user');
+      return false;
+    }
+    return true;
   }
 }

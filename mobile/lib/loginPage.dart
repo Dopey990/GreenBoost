@@ -1,4 +1,3 @@
-import 'package:GreenBoost/inscription.dart';
 import 'package:GreenBoost/forgotPasswordPage.dart';
 import 'package:GreenBoost/subscriptionPage.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
                 onChanged: (value) => setState(() {
-                  password = password;
+                  password = value;
                 }),
               ),
             ),
