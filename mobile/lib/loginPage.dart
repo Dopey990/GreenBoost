@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'authmanager.dart';
 import 'homePage.dart';
 
@@ -111,11 +112,31 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () async {
-                  await AuthManager.of(context)
-                      ?.login(email, password)
-                      .then((value) => {
-                            if (value)
-                              {
+                  bool? canConnect =
+                      await AuthManager.of(context)?.login(email, password);
+
+                  if (canConnect == true) {
+                    final prefs = await SharedPreferences.getInstance();
+
+                    final response = await http.post(Uri.parse(
+                        'http://localhost:8080/user/getUserByToken?token=${AuthManager.of(context)!.token}'));
+
+                    if (response.statusCode == 200) {
+                      print("ok");
+                      print(response.body);
+                      await prefs.setString('user', response.body);
+                    }
+
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => HomePage()));
+                  } else {
+                    //TODO : Faire quelquechose s
+                  }
+                  /*.then((value) async => {
+                            if (value) {
+                                final prefs = await SharedPreferences.getInstance();
+                                await prefs.setString('user', jsonEncode(user));
+
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -125,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                               {
                                 //TODO : Faire quelquechose s
                               }
-                          });
+                          });*/
                 },
                 child: const Text(
                   'Login',

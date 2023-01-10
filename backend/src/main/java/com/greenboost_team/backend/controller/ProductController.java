@@ -34,7 +34,7 @@ public class ProductController {
 
     @GetMapping("/getProducts")
     public ResponseEntity<List<ProductDto>> getProducts(@RequestParam(required = false) String category) {
-        List<AbstractProductEntity> products = category == null ? productRepository.findAll() : productRepository.findAllByProductGroup(category);
+        List<AbstractProductEntity> products = category == null ? productRepository.findAll() : productRepository.findAllByProductGroup(ProductEnum.valueOf(category.toUpperCase()).label);
         if (products.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_titled_container/flutter_titled_container.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductsActivitiesToolboxWidget extends StatefulWidget {
   ProductsActivitiesToolboxWidget({super.key});
@@ -16,6 +17,7 @@ class ProductsActivitiesToolboxWidget extends StatefulWidget {
 class ProductsActivitiesToolboxState
     extends State<ProductsActivitiesToolboxWidget> {
   late Future<Set<String>> categories;
+  List<Map<String, dynamic>>? shownProducts;
   String? categoriesDropdownValue;
   String? selectedProductId;
 
@@ -34,7 +36,7 @@ class ProductsActivitiesToolboxState
     return Padding(
       padding: const EdgeInsets.all(32.0),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.95,
+        width: MediaQuery.of(context).size.width * 0.85,
         height: 60.0,
         decoration: const BoxDecoration(
           color: Colors.blue,
@@ -46,7 +48,10 @@ class ProductsActivitiesToolboxState
         child: Row(children: [
           TextButton.icon(
               icon: const Icon(Icons.add_task_rounded),
-              label: const Text("Ajouter une activité"),
+              label: const Text(
+                "Ajouter une activité",
+                style: TextStyle(fontSize: 12),
+              ),
               onPressed: () => {
                     showDialog(
                         context: context,
@@ -71,56 +76,6 @@ class ProductsActivitiesToolboxState
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
-                                      Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: FutureBuilder<Set<String>>(
-                                              future: categories,
-                                              builder: (BuildContext context,
-                                                  AsyncSnapshot<Set<String>>
-                                                      snapshot) {
-                                                if (snapshot.hasData) {
-                                                  var data = snapshot.data!;
-
-                                                  return Container(
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                        color: Colors.white,
-                                                      ),
-                                                      child: StatefulBuilder(
-                                                          builder: (BuildContext
-                                                                  context,
-                                                              StateSetter
-                                                                  dropDownState) {
-                                                        return DropdownButton(
-                                                          value:
-                                                              categoriesDropdownValue,
-                                                          hint: const Text(
-                                                              "Catégorie"),
-                                                          icon: const Icon(Icons
-                                                              .keyboard_arrow_down),
-                                                          items: data.map(
-                                                              (String product) {
-                                                            return DropdownMenuItem(
-                                                              value: product,
-                                                              child:
-                                                                  Text(product),
-                                                            );
-                                                          }).toList(),
-                                                          onChanged: (String?
-                                                              newValue) {
-                                                            print(newValue);
-                                                            dropDownState(() {
-                                                              categoriesDropdownValue =
-                                                                  newValue!;
-                                                              getProducts();
-                                                            });
-                                                          },
-                                                        );
-                                                      }));
-                                                } else {
-                                                  return const CircularProgressIndicator();
-                                                }
-                                              })),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: TextFormField(
@@ -173,68 +128,6 @@ class ProductsActivitiesToolboxState
                                                 fontSize: 17,
                                                 fontFamily: 'AvenirLight')),
                                       ),
-                                      Center(
-                                        child: FutureBuilder<
-                                            List<Map<String, dynamic>>>(
-                                          future: getProducts(),
-                                          builder: (context, snapshot) {
-                                            if (categoriesDropdownValue !=
-                                                    null &&
-                                                snapshot.hasData) {
-                                              return ListView.builder(
-                                                  shrinkWrap: true,
-                                                  itemCount:
-                                                      snapshot.data!.length,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    return StatefulBuilder(
-                                                      builder: (BuildContext
-                                                              context,
-                                                          StateSetter
-                                                              listTileState) {
-                                                        return ListTile(
-                                                          leading: CircleAvatar(
-                                                            child: Image.network(
-                                                                snapshot.data![
-                                                                        index][
-                                                                        "energyClass"]
-                                                                    .toString()),
-                                                          ),
-                                                          title: Text(snapshot
-                                                              .data![index]
-                                                                  ["name"]
-                                                              .toString()),
-                                                          trailing: Text(DateTime
-                                                                  .fromMillisecondsSinceEpoch(
-                                                                      snapshot.data![index]
-                                                                              [
-                                                                              "onMarketStartDateTS"] *
-                                                                          1000)
-                                                              .toString()),
-                                                          subtitle: Text(snapshot
-                                                              .data![index][
-                                                                  "supplierOrTrademark"]
-                                                              .toString()),
-                                                          onTap: () {
-                                                            listTileState(() {
-                                                              selectedProductId =
-                                                                  snapshot.data![
-                                                                          index]
-                                                                      ["id"];
-                                                            });
-                                                          },
-                                                        );
-                                                      },
-                                                    );
-                                                  });
-                                            }
-                                            return const Padding(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: Text(
-                                                    "Veuillez sélectionner une catégorie"));
-                                          },
-                                        ),
-                                      ),
                                       TextFormField(
                                           controller: productQuantityController,
                                           keyboardType: TextInputType.number,
@@ -246,39 +139,144 @@ class ProductsActivitiesToolboxState
                                               labelText: "Quantité",
                                               icon: Icon(Icons.numbers))),
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(children: [
-                                          TextButton(
-                                            child: const Text("Annuler"),
-                                            onPressed: () {
-                                              Navigator.of(context,
-                                                      rootNavigator: true)
-                                                  .pop();
-                                            },
-                                          ),
-                                          const Spacer(),
-                                          TextButton(
-                                            onPressed: selectedProductId == null
-                                                ? null
-                                                : () async => {
-                                                      if (await addProduct(
-                                                        selectedProductId!,
-                                                        productQuantityController
-                                                            .text,
-                                                      ))
-                                                        {
-                                                          Navigator.of(context,
-                                                                  rootNavigator:
-                                                                      true)
-                                                              .pop()
-                                                        }
-                                                      else
-                                                        {}
-                                                    },
-                                            child: const Text("Ajouter"),
-                                          )
-                                        ]),
-                                      )
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: FutureBuilder<Set<String>>(
+                                              future: categories,
+                                              builder: (BuildContext context,
+                                                  AsyncSnapshot<Set<String>>
+                                                      snapshot) {
+                                                if (snapshot.hasData) {
+                                                  var data = snapshot.data!;
+
+                                                  return Container(
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        color: Colors.white,
+                                                      ),
+                                                      child: StatefulBuilder(
+                                                          builder: (BuildContext
+                                                                  context,
+                                                              StateSetter
+                                                                  dropDownState) {
+                                                        return Column(
+                                                            children: [
+                                                              DropdownButton(
+                                                                value:
+                                                                    categoriesDropdownValue,
+                                                                hint: const Text(
+                                                                    "Catégorie"),
+                                                                icon: const Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_down),
+                                                                items: data.map(
+                                                                    (String
+                                                                        product) {
+                                                                  return DropdownMenuItem(
+                                                                    value:
+                                                                        product,
+                                                                    child: Text(
+                                                                        product),
+                                                                  );
+                                                                }).toList(),
+                                                                onChanged: (String?
+                                                                    newValue) async {
+                                                                  shownProducts =
+                                                                      await getProducts(
+                                                                          newValue!);
+                                                                  dropDownState(
+                                                                      () {
+                                                                    categoriesDropdownValue =
+                                                                        newValue;
+                                                                  });
+                                                                },
+                                                              ),
+                                                              SizedBox(
+                                                                width: 300,
+                                                                height: 200,
+                                                                child: shownProducts ==
+                                                                        null
+                                                                    ? const Text(
+                                                                        "Veuillez sélectionner une catégorie")
+                                                                    : ListView
+                                                                        .builder(
+                                                                        key: ValueKey(
+                                                                            shownProducts),
+                                                                        shrinkWrap:
+                                                                            true,
+                                                                        itemCount:
+                                                                            shownProducts!.length,
+                                                                        itemBuilder:
+                                                                            (context,
+                                                                                index) {
+                                                                          return StatefulBuilder(
+                                                                            builder:
+                                                                                (BuildContext context, StateSetter listTileState) {
+                                                                              return ListTile(
+                                                                                visualDensity: const VisualDensity(vertical: -2),
+                                                                                tileColor: shownProducts![index]["id"] == selectedProductId ? Colors.blue : null,
+                                                                                leading: CircleAvatar(
+                                                                                  child: Text(shownProducts![index]["energyClass"].toString()),
+                                                                                ),
+                                                                                title: Text(shownProducts![index]["id"].toString()),
+                                                                                //trailing: Text(DateTime.fromMillisecondsSinceEpoch(shownProducts![index]["onMarketStartDateTS"] * 1000).toString()),
+                                                                                subtitle: Text(shownProducts![index]["supplierOrTrademark"].toString()),
+                                                                                onTap: () {
+                                                                                  listTileState(() {
+                                                                                    setState(() {
+                                                                                      selectedProductId = shownProducts![index]["id"];
+                                                                                    });
+                                                                                  });
+                                                                                },
+                                                                              );
+                                                                            },
+                                                                          );
+                                                                        },
+                                                                      ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        8.0),
+                                                                child: Row(
+                                                                    children: [
+                                                                      TextButton(
+                                                                        child: const Text(
+                                                                            "Annuler"),
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.of(context, rootNavigator: true)
+                                                                              .pop();
+                                                                        },
+                                                                      ),
+                                                                      const Spacer(),
+                                                                      TextButton(
+                                                                        onPressed: /*selectedProductId == null ||
+                                                                                productQuantityController.text.isEmpty
+                                                                            ? null*/
+                                                                            /*:*/ () async =>
+                                                                                {
+                                                                          if (await addProduct(
+                                                                            selectedProductId!,
+                                                                            productQuantityController.text,
+                                                                          ))
+                                                                            {
+                                                                              Navigator.of(context, rootNavigator: true).pop()
+                                                                            }
+                                                                          else
+                                                                            {}
+                                                                        },
+                                                                        child: const Text(
+                                                                            "Ajouter"),
+                                                                      )
+                                                                    ]),
+                                                              )
+                                                            ]);
+                                                      }));
+                                                } else {
+                                                  return const CircularProgressIndicator();
+                                                }
+                                              })),
                                     ],
                                   ),
                                 ),
@@ -290,7 +288,8 @@ class ProductsActivitiesToolboxState
           const Spacer(),
           TextButton.icon(
               icon: const Icon(Icons.add_home_rounded),
-              label: const Text("Ajouter un appareil"),
+              label: const Text("Ajouter un appareil",
+                  style: TextStyle(fontSize: 12)),
               onPressed: () => {}),
         ]),
       ),
@@ -312,9 +311,9 @@ class ProductsActivitiesToolboxState
     }
   }
 
-  Future<List<Map<String, dynamic>>> getProducts() async {
+  Future<List<Map<String, dynamic>>> getProducts(String category) async {
     final response = await http.get(Uri.parse(
-        'http://localhost:8080/products/getProducts?category=${categoriesDropdownValue!}'));
+        'http://localhost:8080/products/getProducts?category=$category'));
     List<Map<String, dynamic>> result = [];
 
     if (response.statusCode == 200) {
@@ -329,14 +328,36 @@ class ProductsActivitiesToolboxState
   }
 
   Future<bool> addProduct(String productId, String quantity) async {
-    var userId = "63b6a360802851515c484179";
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic> userMap =
+        jsonDecode(prefs.getString('user')!) as Map<String, dynamic>;
+
     final response = await http.post(Uri.parse(
-        'http://localhost:8080/houses/addProduct?userId=$userId&productId=$productId&quantity=$quantity'));
+        'http://localhost:8080/houses/addProduct?userId=${userMap["id"]}&productId=$productId&quantity=$quantity'));
 
     if (response.statusCode == 200) {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Function? checkButtonState() {
+    if (selectedProductId == null || productQuantityController.text.isEmpty) {
+      return null;
+    } else {
+      return () {
+        // do anything else you may want to here
+        () async => {
+              if (await addProduct(
+                selectedProductId!,
+                productQuantityController.text,
+              ))
+                {Navigator.of(context, rootNavigator: true).pop()}
+              else
+                {}
+            };
+      };
     }
   }
 }

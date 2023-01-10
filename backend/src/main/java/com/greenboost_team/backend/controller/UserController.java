@@ -1,7 +1,9 @@
 package com.greenboost_team.backend.controller;
 
 import com.greenboost_team.backend.dto.UserDto;
+import com.greenboost_team.backend.entity.HouseEntity;
 import com.greenboost_team.backend.entity.UserEntity;
+import com.greenboost_team.backend.repository.HouseRepository;
 import com.greenboost_team.backend.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ public class UserController {
 
     @Resource
     private UserRepository userRepository;
+
+    @Resource
+    private HouseRepository houseRepository;
 
     @Resource
     private PasswordEncoder passwordEncoder;
@@ -40,8 +45,17 @@ public class UserController {
         if(userRepository.existsByEmail(user.getEmail())){
             return new ResponseEntity<>(HttpStatus.ALREADY_REPORTED);
         } else {
-            return new ResponseEntity <>(userRepository.save(new UserEntity(user.getEmail(), passwordEncoder.encode(user.getPassword()), user.getFirstName(), user.getLastName())), HttpStatus.CREATED);
+            UserEntity userEntity = userRepository.save(new UserEntity(user.getEmail(), passwordEncoder.encode(user.getPassword()), user.getFirstName(), user.getLastName()));
+            HouseEntity houseEntity = new HouseEntity();
+            houseEntity.setId(userEntity.getId());
+            houseRepository.save(houseEntity);
+            return new ResponseEntity <>(userEntity, HttpStatus.CREATED);
         }
+    }
+
+    @GetMapping("/getUserByToken")
+    public ResponseEntity<UserEntity> getUserByToken(@RequestParam String token) {
+        return ResponseEntity.ok(userRepository.findByToken(token));
     }
 
     @PostMapping("/createUserClearPassword")

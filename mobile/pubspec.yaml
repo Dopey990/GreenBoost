@@ -41,6 +41,7 @@ dependencies:
   flutter_titled_container: ^1.0.7
   http: ^0.13.5
   lite_rolling_switch: ^1.0.0
+  shared_preferences: ^2.0.15
   ## flutter_titled_container: ^1.0.7
 
 dev_dependencies:
