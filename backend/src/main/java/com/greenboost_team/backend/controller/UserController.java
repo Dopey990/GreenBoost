@@ -75,6 +75,8 @@ public ResponseEntity<String> getUserToken(@RequestParam String email, @RequestP
     }
     if (passwordEncoder.matches(password, user.getPassword())) {
         String token = UUID.randomUUID().toString();
+        user.setToken(token);
+        userRepository.save(user);
         // On pourrait enregistrer le token dans une base de données ou dans un cache
         return ResponseEntity.ok(token);
     } else {
