@@ -10,20 +10,22 @@ class AuthManager extends InheritedWidget {
 
   AuthManager({super.key, child}) : super(child: child);
 
+  Map<String, String> get headers => {
+        'Content-Type': 'application/json; charset=UTF-8',
+        "Accept": "application/json",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
+        "Access-Control-Allow-Origin": "*"
+      };
+
   @override
   bool updateShouldNotify(AuthManager oldWidget) {
     return token != oldWidget.token;
   }
 
-  Map<String, String> get headers => {
-        'Content-Type': 'application/json; charset=UTF-8',
-        "Accept": "application/json"
-            "Access-Control-Allow-Origin: *"
-      };
-
   Future<http.Response> _loginHttp(String email, String password) async {
+
     http.Response response = await http.get(Uri.parse(
-        'http://localhost:8080/user/getUserToken?email=$email&password=$password'));
+        'http://localhost:8080/user/getUserToken?email=$email&password=$password'), headers: headers);
     return response;
   }
 
