@@ -53,7 +53,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/getUserByToken")
+    @PostMapping("/getUserByToken")
     public ResponseEntity<UserEntity> getUserByToken(@RequestParam String token) {
         return ResponseEntity.ok(userRepository.findByToken(token));
     }
