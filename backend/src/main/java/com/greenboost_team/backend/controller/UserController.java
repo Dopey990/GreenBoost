@@ -3,14 +3,19 @@ package com.greenboost_team.backend.controller;
 import com.greenboost_team.backend.dto.UserDto;
 import com.greenboost_team.backend.entity.HouseEntity;
 import com.greenboost_team.backend.entity.UserEntity;
+import com.greenboost_team.backend.entity.product.AbstractProductEntity;
+import com.greenboost_team.backend.mapper.UserMapper;
 import com.greenboost_team.backend.repository.HouseRepository;
+import com.greenboost_team.backend.repository.ProductRepository;
 import com.greenboost_team.backend.repository.UserRepository;
+import com.greenboost_team.backend.utility.EcoScoreUtility;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
@@ -26,6 +31,12 @@ public class UserController {
 
     @Resource
     private PasswordEncoder passwordEncoder;
+
+    @Resource
+    private ProductRepository productRepository;
+
+    @Resource
+    private UserMapper userMapper;
 
 
     @GetMapping("/getUser")
@@ -65,6 +76,33 @@ public class UserController {
         } else {
             return new ResponseEntity <>(userRepository.save(new UserEntity(user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName())), HttpStatus.CREATED);
         }
+    }
+
+    @GetMapping("/refreshEcoScore")
+    public ResponseEntity<Integer> refreshEcoScore(@RequestParam String userId) {
+        Optional<UserEntity> userEntity = userRepository.findById(userId);
+
+        if (userEntity.isPresent()) {
+            Optional<HouseEntity> houseEntity = houseRepository.findById(userEntity.get().getId());
+
+            if (houseEntity.isPresent()) {
+                Map<AbstractProductEntity, Integer> products = new HashMap<>();
+                for (Map.Entry<String, Integer> keyValue : houseEntity.get().getProducts().entrySet()) {
+                    products.put(productRepository.findById(keyValue.getKey()).get(), keyValue.getValue());
+                }
+
+                userEntity.get().setEcoScore(EcoScoreUtility.calculateEcoScore(products, houseEntity.get().getArea(), houseEntity.get().getNbLivingPerson()) + userEntity.get().getPointsFromQuestions());
+            }
+
+            return ResponseEntity.ok(userRepository.save(userEntity.get()).getEcoScore());
+        }
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/getTop10")
+    public ResponseEntity<List<UserDto>> getTop10() {
+        return ResponseEntity.ok(userRepository.findTop10ByOrderByRankDesc().stream().map(userEntity -> userMapper.entityToDto(userEntity)).collect(Collectors.toList()));
     }
 
     @GetMapping("/getUserToken")

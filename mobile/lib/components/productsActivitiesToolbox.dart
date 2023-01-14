@@ -27,6 +27,7 @@ class ProductsActivitiesToolboxState
 
   @override
   void initState() {
+    productQuantityController.text = '1';
     categories = getCategories();
     super.initState();
   }
@@ -333,7 +334,7 @@ class ProductsActivitiesToolboxState
         jsonDecode(prefs.getString('user')!) as Map<String, dynamic>;
 
     final response = await http.post(Uri.parse(
-        'http://localhost:8080/houses/addProduct?userId=${userMap["id"]}&productId=$productId&quantity=$quantity'));
+        'http://localhost:8080/houses/addProduct?userId=${userMap["id"]}&productId=$productId&quantity=${quantity == '' ? 0 : quantity}'));
 
     if (response.statusCode == 200) {
       return true;
@@ -347,13 +348,15 @@ class ProductsActivitiesToolboxState
       return null;
     } else {
       return () {
-        // do anything else you may want to here
         () async => {
               if (await addProduct(
                 selectedProductId!,
                 productQuantityController.text,
               ))
-                {Navigator.of(context, rootNavigator: true).pop()}
+                {
+                  selectedProductId = null,
+                  Navigator.of(context, rootNavigator: true).pop()
+                }
               else
                 {}
             };

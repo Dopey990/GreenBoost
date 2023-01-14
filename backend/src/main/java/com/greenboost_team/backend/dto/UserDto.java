@@ -19,6 +19,7 @@ public class UserDto {
     private String email;
     private String town;
     private Integer ecoScore;
+    private Integer pointsFromQuestions;
     private Integer rank;
     private Integer electricityScore;
     private Integer gazScore;

@@ -21,6 +21,7 @@ public class UserEntity {
     private String password;
     private String town;
     private Integer ecoScore;
+    private Integer pointsFromQuestions;
     private Integer rank;
     private Integer electricityScore;
     private Integer gazScore;

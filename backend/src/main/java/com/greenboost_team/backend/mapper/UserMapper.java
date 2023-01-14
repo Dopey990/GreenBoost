@@ -14,6 +14,7 @@ public class UserMapper {
         result.setEmail(entity.getEmail());
         result.setTown(entity.getTown());
         result.setEcoScore(entity.getEcoScore());
+        result.setPointsFromQuestions(entity.getPointsFromQuestions());
         result.setRank(entity.getRank());
         result.setElectricityScore(entity.getElectricityScore());
         result.setGazScore(entity.getGazScore());
@@ -35,6 +36,7 @@ public class UserMapper {
         result.setEmail(dto.getEmail());
         result.setTown(dto.getTown());
         result.setEcoScore(dto.getEcoScore());
+        result.setPointsFromQuestions(dto.getPointsFromQuestions());
         result.setRank(dto.getRank());
         result.setElectricityScore(dto.getElectricityScore());
         result.setGazScore(dto.getGazScore());

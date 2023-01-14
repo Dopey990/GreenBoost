@@ -3,10 +3,13 @@ package com.greenboost_team.backend.controller;
 import com.greenboost_team.backend.dto.HouseDto;
 import com.greenboost_team.backend.dto.PriceDto;
 import com.greenboost_team.backend.entity.HouseEntity;
+import com.greenboost_team.backend.entity.UserEntity;
 import com.greenboost_team.backend.entity.product.AbstractProductEntity;
 import com.greenboost_team.backend.mapper.HouseMapper;
 import com.greenboost_team.backend.repository.HouseRepository;
 import com.greenboost_team.backend.repository.ProductRepository;
+import com.greenboost_team.backend.repository.UserRepository;
+import com.greenboost_team.backend.utility.EcoScoreUtility;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +19,9 @@ import javax.annotation.Resource;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -32,6 +37,9 @@ public class HouseController {
 
     @Resource
     private ProductRepository productRepository;
+
+    @Resource
+    private UserRepository userRepository;
 
     @GetMapping("/getById")
     public ResponseEntity<HouseDto> getById(@RequestParam String id) {
@@ -62,9 +70,20 @@ public class HouseController {
         Optional<HouseEntity> house = houseRepository.findById(userId);
 
         if (product.isPresent() && house.isPresent()) {
-            house.get().getProducts().put(product.get(), house.get().getProducts().get(product.get()) == null ? quantity : house.get().getProducts().get(product.get()) + quantity);
+            house.get().getProducts().put(product.get().getId(), house.get().getProducts().get(product.get().getId()) == null ? quantity : house.get().getProducts().get(product.get().getId()) + quantity);
+            HouseEntity result = houseRepository.save(house.get());
 
-            return ResponseEntity.ok(houseRepository.save(house.get()));
+
+            Map<AbstractProductEntity, Integer> products = new HashMap<>();
+            for (Map.Entry<String, Integer> keyValue : house.get().getProducts().entrySet()) {
+                products.put(productRepository.findById(keyValue.getKey()).get(), keyValue.getValue());
+            }
+
+            UserEntity userEntity = userRepository.findById(userId).get();
+            userEntity.setEcoScore(EcoScoreUtility.calculateEcoScore(products, house.get().getArea(), house.get().getNbLivingPerson()) + userEntity.getPointsFromQuestions());
+            userRepository.save(userEntity);
+
+            return ResponseEntity.ok(result);
         }
         else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -9,6 +9,4 @@ import java.util.Optional;
 @Repository
 public interface HouseRepository extends MongoRepository<HouseEntity, String> {
     Optional<HouseEntity> findById(String id);
-
-    HouseEntity save(HouseEntity entity);
 }

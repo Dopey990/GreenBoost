@@ -1,6 +1,5 @@
 package com.greenboost_team.backend.entity;
 
-import com.greenboost_team.backend.entity.product.AbstractProductEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,5 +18,5 @@ public class HouseEntity {
     private String id;
     private Integer nbLivingPerson;
     private Integer area;
-    private Map<AbstractProductEntity, Integer> products = new HashMap<>();
+    private Map<String, Integer> products = new HashMap<>();
 }

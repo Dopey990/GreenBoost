@@ -1,59 +1,83 @@
 //create a component to display the menu
+import 'dart:convert';
+
 import 'package:GreenBoost/profilePage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Menu extends StatelessWidget {
+class Menu extends StatefulWidget {
   const Menu({super.key});
 
   @override
+  State<StatefulWidget> createState() => MenuState();
+}
+
+class MenuState extends State<Menu> {
+  late Future<Map<String, dynamic>> user;
+
+  @override
+  void initState() {
+    user = getUser();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Drawer(child: ListView(
-      children: <Widget>
-      [
+    return Drawer(
+        child: ListView(
+      children: <Widget>[
         GestureDetector(
           onTap: () {
-           Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ProfilePage()));
           },
-          child:
-            SizedBox(
-              height: 115,
-              child : 
-                DrawerHeader(
-                  decoration: const BoxDecoration(
+          child: SizedBox(
+            height: 115,
+            child: DrawerHeader(
+                decoration: const BoxDecoration(
                   color: Color(0xFF3D69D9),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      const CircleAvatar(
-                        radius: 40,
-                        child: Icon(Icons.person),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text('Alexandre',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 25,
-                          )),
-                          Text('Score : 100',
-                            style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          )),
-                        ],
-                      ),
-                    ],
-                  ),
                 ),
-            ),
+                child: FutureBuilder<Map<String, dynamic>>(
+                    future: user,
+                    builder: (BuildContext context,
+                        AsyncSnapshot<Map<String, dynamic>> snapshot) {
+                      if (snapshot.hasData) {
+                        var data = snapshot.data!;
+
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            const CircleAvatar(
+                              radius: 40,
+                              child: Icon(Icons.person),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("${data["firstName"]} ${data["lastName"]}",
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                    )),
+                                Text("Score : ${data["ecoScore"] ?? 0}",
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                    )),
+                              ],
+                            ),
+                          ],
+                        );
+                      } else {
+                        return const Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: CircularProgressIndicator());
+                      }
+                    })),
+          ),
         ),
-
-
-
         ListTile(
           leading: const Icon(Icons.home),
           title: const Text('Accueil'),
@@ -88,5 +112,13 @@ class Menu extends StatelessWidget {
         ),
       ],
     ));
+  }
+
+  Future<Map<String, dynamic>> getUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic> userMap =
+        jsonDecode(prefs.getString('user')!) as Map<String, dynamic>;
+
+    return userMap;
   }
 }
