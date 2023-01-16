@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
         "/login": (context) => LoginPage(),
         "/subscription": (context) => SubscriptionPage(),
         "/challenges": (context) => ChallengePage(),
+        "/forum": (context) => ForumPage(),
         "/info/electricity": (context) => ElectricityInfoPage(),
       },
     ));
