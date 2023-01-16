@@ -27,7 +27,7 @@ class EauInfoState extends State<EauInfoPage> {
                 child: Column(
           children: [
             const Padding(padding: EdgeInsets.only(top: 20)),
-            Image.asset('assets/home/eau.png',
+            Image.asset('assets/home/eau-vert.png',
                 height: MediaQuery.of(context).size.width / 6,
                 width: MediaQuery.of(context).size.width / 6),
             const PricesForecastWidget(
