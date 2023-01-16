@@ -6,20 +6,20 @@ import 'components/advicesViewer.dart';
 import 'components/menu.dart';
 import 'components/pricesForecastChart.dart';
 
-class eauInfoPage extends StatefulWidget {
-  const eauInfoPage({super.key});
+class EauInfoPage extends StatefulWidget {
+  const EauInfoPage({super.key});
 
   @override
   State<StatefulWidget> createState() => EauInfoState();
 }
 
-class EauInfoState extends State<eauInfoPage> {
+class EauInfoState extends State<EauInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("Eeau"),
+          title: const Text("Eau"),
         ),
         drawer: const Menu(),
         body: SingleChildScrollView(
@@ -27,7 +27,7 @@ class EauInfoState extends State<eauInfoPage> {
                 child: Column(
           children: [
             const Padding(padding: EdgeInsets.only(top: 20)),
-            Image.asset('assets/home/eau.png',
+            Image.asset('assets/home/eau-vert.png',
                 height: MediaQuery.of(context).size.width / 6,
                 width: MediaQuery.of(context).size.width / 6),
             const PricesForecastWidget(
