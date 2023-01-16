@@ -1,34 +1,31 @@
 import 'package:flutter/material.dart';
 
-class popUp extends StatefulWidget {
+class PopUp extends StatefulWidget {
   final String text;
 
-  const popUp({super.key, required this.text});
+  const PopUp({super.key, required this.text});
 
   @override
-  State<StatefulWidget> createState() => popUpState();
+  State<StatefulWidget> createState() => PopUpState();
 }
 
-class popUpState extends State<popUp> {
+class PopUpState extends State<PopUp> {
   @override
   Widget build(BuildContext context) {
-    return Container( child :
-    AlertDialog(
-          title: Text(widget.text),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Ok'),
-            ),
-          ],
-        ));
+    return AlertDialog(
+      title: Text(widget.text),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+      ),
+      actions: <Widget>[
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Ok'),
+        ),
+      ],
+    );
   }
 }
-
-

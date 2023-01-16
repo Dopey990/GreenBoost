@@ -21,7 +21,7 @@ public class ChallengeMapper {
                 result.setValue("");
         }
         result.setCategory(entity.getCategory());
-        result.setHasAnswers(entity.getAnswers().size() > 0);
+        result.setHasAnswers(entity.getAnswers() != null && entity.getAnswers().size() > 0);
 
         return result;
     }

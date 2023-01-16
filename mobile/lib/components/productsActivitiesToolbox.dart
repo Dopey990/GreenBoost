@@ -508,41 +508,55 @@ class ProductsActivitiesToolboxState
                                       ),
                                     ],
                                   ),
-                                      Row(children: [
-                                        Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(children : [TextButton(
-                                                child: const Text("Annuler"),
-                                                onPressed: () {
-                                                  Navigator.of(context,
-                                                      rootNavigator: true)
-                                                      .pop();
-                                                },
-                                              )]),
-                                              ),
-                                        const Spacer(),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(children : [TextButton(
-                                            child: const Text("Valider"),
-                                            onPressed: () async {
-                                              int duree = (_timeEnd.hour * 60 + _timeEnd.minute) - (_timeStart.hour * 60 + _timeStart.minute);
-                                              if( duree <= 0 || selectedProductIdHouse == null){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (BuildContext context) => const popUp(text: "test"));
-                                              } else{
-                                                //TODO function to set the time
-                                                print(selectedProductIdHouse);
-                                                print(duree);
-                                                  int test =
-                                                      await setPointsFromQuestions(selectedProductIdHouse!, duree);
-                                                  print(test);
-                                                }
-                                              },
-                                          )]),
-                                        ),
+                                  Row(children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(children: [
+                                        TextButton(
+                                          child: const Text("Annuler"),
+                                          onPressed: () {
+                                            Navigator.of(context,
+                                                    rootNavigator: true)
+                                                .pop();
+                                          },
+                                        )
                                       ]),
+                                    ),
+                                    const Spacer(),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(children: [
+                                        TextButton(
+                                          child: const Text("Valider"),
+                                          onPressed: () async {
+                                            int duree = (_timeEnd.hour * 60 +
+                                                    _timeEnd.minute) -
+                                                (_timeStart.hour * 60 +
+                                                    _timeStart.minute);
+                                            if (duree <= 0 ||
+                                                selectedProductIdHouse ==
+                                                    null) {
+                                              showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          const PopUp(
+                                                              text: "test"));
+                                            } else {
+                                              //TODO function to set the time
+                                              print(selectedProductIdHouse);
+                                              print(duree);
+                                              int test =
+                                                  await setPointsFromQuestions(
+                                                      selectedProductIdHouse!,
+                                                      duree);
+                                              print(test);
+                                            }
+                                          },
+                                        )
+                                      ]),
+                                    ),
+                                  ]),
                                 ]))
                           ]));
                         })
@@ -623,17 +637,14 @@ class ProductsActivitiesToolboxState
   Future<int> setPointsFromQuestions(String productId, int duree) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map<String, dynamic> userMap =
-    jsonDecode(prefs.getString('user')!) as Map<String, dynamic>;
+        jsonDecode(prefs.getString('user')!) as Map<String, dynamic>;
     final response = await http.get(Uri.parse(
         'http://localhost:8080/houses/setPointsFromQuestions?userId=${userMap["id"]}&productId=$productId&duree=$duree'));
     if (response.statusCode == 200) {
       print(response.body);
       return int.parse(response.body);
     } else {
-      return throw Exception(
-          'Failed to set point to the user');
+      return throw Exception('Failed to set point to the user');
     }
   }
-
-
 }

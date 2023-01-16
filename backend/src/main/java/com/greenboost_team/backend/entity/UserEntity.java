@@ -6,6 +6,9 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,6 +34,8 @@ public class UserEntity {
     private Integer gazRank = -1;
     private Integer pollutionRank = -1;
     private Integer waterRank = -1;
+    private Set<String> doneChallenges = new HashSet<>();
+    private String language = "fr";
 
     public UserEntity(String email, String password) {
         super();

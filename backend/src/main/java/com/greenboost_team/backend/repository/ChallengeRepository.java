@@ -12,4 +12,5 @@ public interface ChallengeRepository extends MongoRepository<ChallengeEntity, St
 
     Optional<ChallengeEntity> findById(String id);
     List<ChallengeEntity> findByCategory(String category);
+    List<ChallengeEntity> findAll();
 }

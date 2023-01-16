@@ -303,38 +303,6 @@ class ClassementState extends State<ClassementPage> {
                           child: CircularProgressIndicator());
                     }
                   })),
-          /*Column(
-                  //include list of the 10 first
-
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const <Widget>[
-                          Image(
-                            image: AssetImage('assets/img/trophy.png'),
-                            width: 20,
-                          ),
-                          Text(
-                            'A. Dupont',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            '567543 arbres',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),*/
           const SizedBox(
             height: 10,
           ),
@@ -351,26 +319,6 @@ class ClassementState extends State<ClassementPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    /*const Image(
-                            image: AssetImage('assets/img/trophy.png'),
-                            width: 20,
-                          ),
-                          Text(
-                            'B. Dupont',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            '567543 arbres',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),*/
                     FutureBuilder<Map<String, dynamic>>(
                         future: user,
                         builder: (BuildContext context,
