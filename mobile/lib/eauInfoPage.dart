@@ -19,7 +19,7 @@ class EauInfoState extends State<eauInfoPage> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("Eeau"),
+          title: const Text("Eau"),
         ),
         drawer: const Menu(),
         body: SingleChildScrollView(
