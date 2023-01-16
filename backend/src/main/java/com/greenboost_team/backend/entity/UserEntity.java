@@ -19,18 +19,18 @@ public class UserEntity {
     private String lastName;
     private String email;
     private String password;
-    private String town;
-    private Integer ecoScore;
-    private Integer pointsFromQuestions;
-    private Integer rank;
-    private Integer electricityScore;
-    private Integer gazScore;
-    private Integer pollutionScore;
-    private Integer waterScore;
-    private Integer electricityRank;
-    private Integer gazRank;
-    private Integer pollutionRank;
-    private Integer waterRank;
+    private String town = "none";
+    private Integer ecoScore = 0;
+    private Integer pointsFromQuestions = 0;
+    private Integer rank = -1;
+    private Integer electricityScore = 0;
+    private Integer gazScore = 0;
+    private Integer pollutionScore = 0;
+    private Integer waterScore = 0;
+    private Integer electricityRank = -1;
+    private Integer gazRank = -1;
+    private Integer pollutionRank = -1;
+    private Integer waterRank = -1;
 
     public UserEntity(String email, String password) {
         super();
