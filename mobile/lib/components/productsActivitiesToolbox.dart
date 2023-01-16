@@ -52,6 +52,12 @@ class ProductsActivitiesToolboxState
     super.initState();
   }
 
+  void initStateActivity() {
+    selectedProductIdHouse = null;
+    _timeStart = TimeOfDay.now();
+    _timeEnd = TimeOfDay.now();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -518,6 +524,7 @@ class ProductsActivitiesToolboxState
                                             Navigator.of(context,
                                                     rootNavigator: true)
                                                 .pop();
+                                            initStateActivity();
                                           },
                                         )
                                       ]),
@@ -538,19 +545,27 @@ class ProductsActivitiesToolboxState
                                                     null) {
                                               showDialog(
                                                   context: context,
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          const PopUp(
-                                                              text: "test"));
+                                                  builder: (BuildContext
+                                                          context) =>
+                                                      const PopUp(
+                                                          text:
+                                                              "Veuillez renseigner les créneaux horaires ou le produit"));
                                             } else {
-                                              //TODO function to set the time
-                                              print(selectedProductIdHouse);
-                                              print(duree);
-                                              int test =
-                                                  await setPointsFromQuestions(
+                                              int score =
+                                                  await setPointsForActivity(
                                                       selectedProductIdHouse!,
                                                       duree);
-                                              print(test);
+                                              if (mounted) {
+                                                Navigator.of(context, rootNavigator: true).pop();
+                                              }
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext
+                                                          context) =>
+                                                      PopUp(
+                                                          text:
+                                                              "Vous avez obtenu $score points"));
+                                              initStateActivity();
                                             }
                                           },
                                         )
@@ -634,14 +649,13 @@ class ProductsActivitiesToolboxState
     }
   }
 
-  Future<int> setPointsFromQuestions(String productId, int duree) async {
+  Future<int> setPointsForActivity(String productId, int duree) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map<String, dynamic> userMap =
         jsonDecode(prefs.getString('user')!) as Map<String, dynamic>;
     final response = await http.get(Uri.parse(
-        'http://localhost:8080/houses/setPointsFromQuestions?userId=${userMap["id"]}&productId=$productId&duree=$duree'));
+        'http://localhost:8080/houses/setPointsForActivity?userId=${userMap["id"]}&productId=$productId&duree=$duree'));
     if (response.statusCode == 200) {
-      print(response.body);
       return int.parse(response.body);
     } else {
       return throw Exception('Failed to set point to the user');

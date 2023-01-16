@@ -108,12 +108,12 @@ public class HouseController {
         }
     }
 
-    @GetMapping("/setPointsFromQuestions")
-    public ResponseEntity<Integer> setPointsFromQuestions(@RequestParam String userId, @RequestParam String productId, @RequestParam Integer duree) {
+    @GetMapping("/setPointsForActivity")
+    public ResponseEntity<Integer> setPointsForActivity(@RequestParam String userId, @RequestParam String productId, @RequestParam Integer duree) {
         Optional<AbstractProductEntity> product = productRepository.findById(productId);
         Optional<UserEntity> userEntity = userRepository.findById(userId);
         if (product.isPresent() && userEntity.isPresent()) {
-            Integer score = EcoScoreUtility.calculatePointsFromQuestions(product.get(), duree);
+            Integer score = EcoScoreUtility.calculatePointsForActivity(product.get(), duree);
             userEntity.get().setPointsFromQuestions(userEntity.get().getPointsFromQuestions() + score);
             return ResponseEntity.ok(score);
         } else {
