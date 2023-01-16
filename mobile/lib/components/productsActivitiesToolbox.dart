@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:GreenBoost/components/popUp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_titled_container/flutter_titled_container.dart';
+import 'package:day_night_time_picker/day_night_time_picker.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,8 +20,25 @@ class ProductsActivitiesToolboxState
     extends State<ProductsActivitiesToolboxWidget> {
   late Future<Set<String>> categories;
   List<Map<String, dynamic>>? shownProducts;
+  List<Map<String, dynamic>>? houseProducts;
   String? categoriesDropdownValue;
   String? selectedProductId;
+  String? selectedProductIdHouse;
+  String? chosenCategory;
+  TimeOfDay _timeStart = TimeOfDay.now();
+  TimeOfDay _timeEnd = TimeOfDay.now();
+
+  void onTimeStartChanged(TimeOfDay newTime) {
+    setState(() {
+      _timeStart = newTime;
+    });
+  }
+
+  void onTimeEndChanged(TimeOfDay newTime) {
+    setState(() {
+      _timeEnd = newTime;
+    });
+  }
 
   final productNameController = TextEditingController();
   final productBrandController = TextEditingController();
@@ -29,6 +48,7 @@ class ProductsActivitiesToolboxState
   void initState() {
     productQuantityController.text = '1';
     categories = getCategories();
+    // houseProducts = getHouseProducts(chosenCategory);
     super.initState();
   }
 
@@ -48,9 +68,9 @@ class ProductsActivitiesToolboxState
         ),
         child: Row(children: [
           TextButton.icon(
-              icon: const Icon(Icons.add_task_rounded),
+              icon: const Icon(Icons.add_home_rounded),
               label: const Text(
-                "Ajouter une activité",
+                "Ajouter un appareil",
                 style: TextStyle(fontSize: 12),
               ),
               onPressed: () => {
@@ -288,10 +308,245 @@ class ProductsActivitiesToolboxState
                   }),
           const Spacer(),
           TextButton.icon(
-              icon: const Icon(Icons.add_home_rounded),
-              label: const Text("Ajouter un appareil",
+              icon: const Icon(Icons.add_task_rounded),
+              label: const Text("Ajouter une activité",
                   style: TextStyle(fontSize: 12)),
-              onPressed: () => {}),
+              onPressed: () => {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                              content: Stack(children: <Widget>[
+                            Positioned(
+                              right: -40.0,
+                              top: -40.0,
+                              child: InkResponse(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const CircleAvatar(
+                                  backgroundColor: Colors.red,
+                                  child: Icon(Icons.close),
+                                ),
+                              ),
+                            ),
+                            Form(
+                                child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: FutureBuilder<Set<String>>(
+                                        future: categories,
+                                        builder: (context, snapshot) {
+                                          return snapshot.hasData
+                                              ? DecoratedBox(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                  ),
+                                                  child: StatefulBuilder(
+                                                      builder: (BuildContext
+                                                              context,
+                                                          StateSetter
+                                                              dropDownState) {
+                                                    return Column(children: [
+                                                      DropdownButton(
+                                                          menuMaxHeight: 350,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                          value: chosenCategory,
+                                                          items: snapshot.data?.map<
+                                                              DropdownMenuItem<
+                                                                  String>>((String
+                                                              category) {
+                                                            return DropdownMenuItem<
+                                                                    String>(
+                                                                value: category,
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(10),
+                                                                  child: Text(
+                                                                    category,
+                                                                    style: const TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ));
+                                                          }).toList()
+                                                            ?..add(
+                                                                const DropdownMenuItem<
+                                                                    String>(
+                                                              value: 'ALL',
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            10),
+                                                                child: Text(
+                                                                  'ALL',
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold),
+                                                                ),
+                                                              ),
+                                                            )),
+                                                          hint: const Text(
+                                                            "Catégorie",
+                                                          ),
+                                                          onChanged: (String?
+                                                              value) async {
+                                                            houseProducts =
+                                                                await getHouseProducts(
+                                                                    value!);
+                                                            dropDownState(() {
+                                                              chosenCategory =
+                                                                  value;
+                                                            });
+                                                          }),
+                                                      Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: SizedBox(
+                                                              width: 300,
+                                                              height: 200,
+                                                              child: houseProducts ==
+                                                                      null
+                                                                  ? const Text(
+                                                                      "Veuillez sélectionner une catégorie")
+                                                                  : ListView
+                                                                      .builder(
+                                                                      key: ValueKey(
+                                                                          houseProducts),
+                                                                      shrinkWrap:
+                                                                          true,
+                                                                      itemCount:
+                                                                          houseProducts
+                                                                              ?.length,
+                                                                      itemBuilder:
+                                                                          (context,
+                                                                              index) {
+                                                                        return StatefulBuilder(
+                                                                          builder:
+                                                                              (BuildContext context, StateSetter listTileState) {
+                                                                            return ListTile(
+                                                                              visualDensity: const VisualDensity(vertical: -2),
+                                                                              tileColor: houseProducts![index]["id"] == selectedProductId ? Colors.blue : null,
+                                                                              leading: CircleAvatar(
+                                                                                child: Text(houseProducts![index]["energyClass"].toString()),
+                                                                              ),
+                                                                              title: Text(houseProducts![index]["id"].toString()),
+                                                                              //trailing: Text(DateTime.fromMillisecondsSinceEpoch(shownProducts![index]["onMarketStartDateTS"] * 1000).toString()),
+                                                                              subtitle: Text(houseProducts![index]["supplierOrTrademark"].toString()),
+                                                                              onTap: () {
+                                                                                listTileState(() {
+                                                                                  selectedProductIdHouse = houseProducts![index]["id"];
+                                                                                });
+                                                                              },
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                    )))
+                                                    ]);
+                                                  }))
+                                              : const Center(
+                                                  child:
+                                                      CircularProgressIndicator());
+                                        }),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Column(children: [
+                                        TextButton(
+                                          style: TextButton.styleFrom(
+                                              elevation: 2,
+                                              backgroundColor: Colors.amber),
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                              showPicker(
+                                                context: context,
+                                                value: _timeStart,
+                                                onChange: onTimeStartChanged,
+                                                iosStylePicker: true,
+                                                is24HrFormat: true,
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            "Heure de début",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ]),
+                                      const Spacer(),
+                                      TextButton(
+                                        style: TextButton.styleFrom(
+                                            elevation: 2,
+                                            backgroundColor: Colors.amber),
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            showPicker(
+                                              context: context,
+                                              value: _timeEnd,
+                                              onChange: onTimeEndChanged,
+                                              iosStylePicker: true,
+                                              is24HrFormat: true,
+                                            ),
+                                          );
+                                        },
+                                        child: const Text(
+                                          "Heure de fin",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                      Row(children: [
+                                        Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(children : [TextButton(
+                                                child: const Text("Annuler"),
+                                                onPressed: () {
+                                                  Navigator.of(context,
+                                                      rootNavigator: true)
+                                                      .pop();
+                                                },
+                                              )]),
+                                              ),
+                                        const Spacer(),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(children : [TextButton(
+                                            child: const Text("Valider"),
+                                            onPressed: () async {
+                                              int duree = (_timeEnd.hour * 60 + _timeEnd.minute) - (_timeStart.hour * 60 + _timeStart.minute);
+                                              if( duree <= 0 || selectedProductIdHouse == null){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (BuildContext context) => const popUp(text: "test"));
+                                              } else{
+                                                //TODO function to set the time
+                                                print(selectedProductIdHouse);
+                                                print(duree);
+                                                  int test =
+                                                      await setPointsFromQuestions(selectedProductIdHouse!, duree);
+                                                  print(test);
+                                                }
+                                              },
+                                          )]),
+                                        ),
+                                      ]),
+                                ]))
+                          ]));
+                        })
+                  }),
         ]),
       ),
     );
@@ -309,6 +564,28 @@ class ProductsActivitiesToolboxState
       return result;
     } else {
       throw Exception('Failed to load categories');
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> getHouseProducts(
+      String chosenCategory) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic> userMap =
+        jsonDecode(prefs.getString('user')!) as Map<String, dynamic>;
+    String parameters = chosenCategory == "ALL"
+        ? 'userId=${userMap["id"]}'
+        : 'userId=${userMap["id"]}&category=$chosenCategory';
+    final response = await http.get(
+        Uri.parse('http://localhost:8080/houses/listProducts?$parameters'));
+    List<Map<String, dynamic>> result = [];
+    if (response.statusCode == 200) {
+      jsonDecode(response.body).forEach((product) {
+        result.add(product);
+      });
+      return result;
+    } else {
+      throw Exception(
+          'Failed to load products with category: ${chosenCategory!}');
     }
   }
 
@@ -343,24 +620,20 @@ class ProductsActivitiesToolboxState
     }
   }
 
-  Function? checkButtonState() {
-    if (selectedProductId == null || productQuantityController.text.isEmpty) {
-      return null;
+  Future<int> setPointsFromQuestions(String productId, int duree) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic> userMap =
+    jsonDecode(prefs.getString('user')!) as Map<String, dynamic>;
+    final response = await http.get(Uri.parse(
+        'http://localhost:8080/houses/setPointsFromQuestions?userId=${userMap["id"]}&productId=$productId&duree=$duree'));
+    if (response.statusCode == 200) {
+      print(response.body);
+      return int.parse(response.body);
     } else {
-      return () {
-        () async => {
-              if (await addProduct(
-                selectedProductId!,
-                productQuantityController.text,
-              ))
-                {
-                  selectedProductId = null,
-                  Navigator.of(context, rootNavigator: true).pop()
-                }
-              else
-                {}
-            };
-      };
+      return throw Exception(
+          'Failed to set point to the user');
     }
   }
+
+
 }
