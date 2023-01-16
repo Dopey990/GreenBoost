@@ -28,6 +28,7 @@ class ContactPage extends StatelessWidget {
             SizedBox(height: 16.0),
             Text('Développeurs:',
                 style: TextStyle(fontWeight: FontWeight.bold)),
+            Text('thomas.ribault@gmail.com'),
             Text('julie.watier@gmail.com'),
             Text('bobin.dautel@gmail.com'),
             Text('Buisness contact :',
