@@ -14,7 +14,7 @@ class ForumPage extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(8.0),
-            child: TextField(
+            child: const TextField(
               decoration: InputDecoration(
                 hintText: "Rechercher dans le forum...",
               ),
@@ -25,24 +25,51 @@ class ForumPage extends StatelessWidget {
               children: [
                 ListTile(
                   leading: Icon(Icons.question_answer),
-                  title: Text("Titre du sujet 1"),
-                  subtitle: Text("Dernier message posté il y a 5 minutes"),
+                  title: Text("Nouvelle version de GreenBoost !"),
+                  subtitle: Text("Auteur : Greenboost"),
                   onTap: () {
                     // Navigate to the topic page
                   },
                 ),
                 ListTile(
                   leading: Icon(Icons.question_answer),
-                  title: Text("Titre du sujet 2"),
-                  subtitle: Text("Dernier message posté il y a 2 heures"),
+                  title: Text("Comment améliorer ma consomation d'eau ?"),
+                  subtitle: Text("Auteur : NaimG"),
                   onTap: () {
                     // Navigate to the topic page
                   },
                 ),
                 ListTile(
                   leading: Icon(Icons.question_answer),
-                  title: Text("Titre du sujet 3"),
-                  subtitle: Text("Dernier message posté hier"),
+                  title: Text("Comment améliorer ma consomation de Gaz ?"),
+                  subtitle: Text("Auteur : JosuV"),
+                  onTap: () {
+                    // Navigate to the topic page
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.question_answer),
+                  title:
+                      Text("Comment améliorer ma consomation d'éléctricité ?"),
+                  subtitle: Text("Auteur : ThomasR"),
+                  onTap: () {
+                    // Navigate to the topic page
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.question_answer),
+                  title: Text(
+                      "Laver mes vétements à la main pour économiser de l'eau ?"),
+                  subtitle: Text("Auteur : MaximeC"),
+                  onTap: () {
+                    // Navigate to the topic page
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.question_answer),
+                  title: Text(
+                      "Comment me chauffer au bois à changer ma consomation énergétique ?"),
+                  subtitle: Text("Auteur : JulieW"),
                   onTap: () {
                     // Navigate to the topic page
                   },
