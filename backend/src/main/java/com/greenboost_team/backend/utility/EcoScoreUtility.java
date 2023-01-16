@@ -10,17 +10,14 @@ public class EcoScoreUtility {
         double productsScore = 0;
 
         for (Map.Entry<AbstractProductEntity, Integer> keyValue : products.entrySet()) {
-            productsScore += (houseArea * houseNbLivingPerson) / ((Integer.parseInt(String.valueOf(keyValue.getKey().getEnergyClass().charAt(0))) - Integer.parseInt(String.valueOf('A'))) / 10.0) * keyValue.getValue();
+            productsScore += (houseArea * houseNbLivingPerson) / ((Character.getNumericValue(keyValue.getKey().getEnergyClass().charAt(0)) - Character.getNumericValue(String.valueOf('A').charAt(0))) / 10.0) * keyValue.getValue();
         }
 
         return (int) (1 - (productsScore * 100));
     }
 
-    public static Integer calculatePointsFromQuestions(AbstractProductEntity product, Integer duree){
-        System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-        System.out.println(String.valueOf(product.getEnergyClass().charAt(0)));
-        System.out.println(Character.valueOf(product.getEnergyClass().charAt(0)));
-        System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-        return Integer.parseInt(String.valueOf(product.getEnergyClass().charAt(0))) * (duree / 60);
+    public static Integer calculatePointsForActivity(AbstractProductEntity product, Integer duree){
+        int signe = ((float)duree / 60) > 1.5 ? -1 : 1;
+        return Math.round(Character.getNumericValue(product.getEnergyClass().charAt(0)) * (float)(duree / 60) / 10 * signe);
     }
 }
