@@ -110,6 +110,14 @@ class MenuState extends State<Menu> {
             Navigator.pushNamed(context, '/contact');
           },
         ),
+        ListTile(
+          leading: const Icon(Icons.forum),
+          title: const Text('Forum'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, '/forum');
+          },
+        ),
       ],
     ));
   }
