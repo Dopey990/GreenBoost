@@ -1,3 +1,4 @@
+import 'package:GreenBoost/eauInfoPage.dart';
 import 'package:GreenBoost/subscriptionPage.dart';
 import 'package:GreenBoost/advicesPage.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         "/challenges": (context) => ChallengePage(),
         "/forum": (context) => ForumPage(),
         "/info/electricity": (context) => ElectricityInfoPage(),
+        "/info/water": (context) => EauInfoPage(),
       },
     ));
   }
