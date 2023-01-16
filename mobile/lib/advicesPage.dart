@@ -1,102 +1,120 @@
-import 'package:GreenBoost/advicesPageElectricity.dart';
+import 'dart:convert';
+
+import 'package:GreenBoost/classementPage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '/components/menu.dart';
+import 'package:GreenBoost/settingsProfilePage.dart';
 
-import 'components/menu.dart';
+import 'package:http/http.dart' as http;
 
-class AdvicesPage extends StatelessWidget {
+class AdvicesPage extends StatefulWidget {
+  String category;
+  String title;
+
+  AdvicesPage({super.key, required this.category, required this.title});
+
+  @override
+  State<StatefulWidget> createState() => AdvicesState();
+}
+
+class AdvicesState extends State<AdvicesPage> {
+  late Future<List<String>> advices;
+
+  @override
+  void initState() {
+    advices = getAdvices(widget.category);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Conseils'),
+        title: Text('Conseils sur ${widget.title}'),
       ),
-      drawer: const Menu(),
-      body: Container(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                TextButton(
-                  onPressed: () => {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AdvicesPage()),
-                    )
-                  },
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue,
-                    minimumSize: const Size(150, 80),
-                  ),
-                  child: const Text('GAZ', style: TextStyle(fontSize: 20)),
-                ),
-              ],
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              TextButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AdvicesPage()),
-                  )
-                },
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                  minimumSize: const Size(110, 80),
-                ),
-                child: const Text('EAU', style: TextStyle(fontSize: 20)),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Padding(
+              padding: EdgeInsets.only(top: 30, bottom: 30),
+              child: Text(
+                "Liste des conseils",
+                style: TextStyle(
+                    color: Color.fromRGBO(31, 120, 180, 1),
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),
               ),
-              Image.asset('assets/img/conseils_earth.png',
-                  width: 100, height: 100),
-              TextButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AdvicesPage()),
-                  )
-                },
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                  minimumSize: const Size(110, 80),
-                ),
-                child: const Text('CO2', style: TextStyle(fontSize: 20)),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () => {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => advicesPageElectricity()),
-                    )
-                  },
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue,
-                    minimumSize: const Size(150, 80),
-                  ),
-                  child:
-                      const Text('ELECTRICITE', style: TextStyle(fontSize: 20)),
-                ),
-              ],
             ),
-          ),
-        ]),
+            FutureBuilder<List<String>>(
+                future: advices,
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<String>> snapshot) {
+                  if (snapshot.hasData) {
+                    var data = snapshot.data!;
+
+                    return ListView(
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.all(10),
+                        children: data
+                            .map(
+                              (e) => Card(
+                                borderOnForeground: true,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(16),
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        e.toString(),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                            .toList());
+                  } else {
+                    return const Center(
+                        child: Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: CircularProgressIndicator()));
+                  }
+                }),
+          ],
+        ),
       ),
     );
+  }
+
+  Future<Map<String, dynamic>> getUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic> userMap =
+        jsonDecode(prefs.getString('user')!) as Map<String, dynamic>;
+
+    return userMap;
+  }
+
+  Future<List<String>> getAdvices(String category) async {
+    Map<String, dynamic> user = await getUser();
+    final response = await http.get(Uri.parse(
+        "http://localhost:8080/advices/getByCategory?category=$category&language=${user["language"]}"));
+
+    List<String> result = [];
+
+    if (response.statusCode == 200) {
+      jsonDecode(response.body).forEach((line) {
+        result.add(line);
+      });
+
+      return result;
+    } else {
+      throw Exception("Failed to load advices");
+    }
   }
 }

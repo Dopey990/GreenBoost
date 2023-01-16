@@ -5,6 +5,8 @@ import 'package:GreenBoost/profilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../advicesPage.dart';
+
 class Menu extends StatefulWidget {
   const Menu({super.key});
 
@@ -100,6 +102,21 @@ class MenuState extends State<Menu> {
           onTap: () {
             Navigator.pop(context);
             Navigator.pushNamed(context, '/challenges');
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.lightbulb),
+          title: const Text('Conseils généraux'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AdvicesPage(
+                        category: "global",
+                        title: "globaux",
+                      )),
+            );
           },
         ),
         ListTile(

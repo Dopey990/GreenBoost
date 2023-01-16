@@ -1,7 +1,7 @@
 import 'package:GreenBoost/contactPage.dart';
 import 'package:GreenBoost/eauInfoPage.dart';
 import 'package:GreenBoost/subscriptionPage.dart';
-import 'package:GreenBoost/advicesPage.dart';
+import 'package:GreenBoost/advicesMenuPage.dart';
 import 'package:flutter/material.dart';
 import 'authmanager.dart';
 import 'challengePage.dart';
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       home: SubscriptionPage(),
       routes: {
         "/home": (context) => HomePage(),
-        "/advices": (context) => AdvicesPage(),
+        "/advices": (context) => AdvicesMenuPage(),
         "/login": (context) => LoginPage(),
         "/subscription": (context) => SubscriptionPage(),
         "/challenges": (context) => ChallengePage(),
