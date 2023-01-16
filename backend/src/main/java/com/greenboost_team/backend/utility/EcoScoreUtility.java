@@ -15,4 +15,12 @@ public class EcoScoreUtility {
 
         return (int) (1 - (productsScore * 100));
     }
+
+    public static Integer calculatePointsFromQuestions(AbstractProductEntity product, Integer duree){
+        System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        System.out.println(String.valueOf(product.getEnergyClass().charAt(0)));
+        System.out.println(Character.valueOf(product.getEnergyClass().charAt(0)));
+        System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        return Integer.parseInt(String.valueOf(product.getEnergyClass().charAt(0))) * (duree / 60);
+    }
 }

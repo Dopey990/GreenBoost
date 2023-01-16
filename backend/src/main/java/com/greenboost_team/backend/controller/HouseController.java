@@ -2,14 +2,17 @@ package com.greenboost_team.backend.controller;
 
 import com.greenboost_team.backend.dto.HouseDto;
 import com.greenboost_team.backend.dto.PriceDto;
+import com.greenboost_team.backend.dto.ProductDto;
 import com.greenboost_team.backend.entity.HouseEntity;
 import com.greenboost_team.backend.entity.UserEntity;
 import com.greenboost_team.backend.entity.product.AbstractProductEntity;
 import com.greenboost_team.backend.mapper.HouseMapper;
+import com.greenboost_team.backend.mapper.ProductMapper;
 import com.greenboost_team.backend.repository.HouseRepository;
 import com.greenboost_team.backend.repository.ProductRepository;
 import com.greenboost_team.backend.repository.UserRepository;
 import com.greenboost_team.backend.utility.EcoScoreUtility;
+import com.greenboost_team.backend.utility.ProductEnum;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +22,7 @@ import javax.annotation.Resource;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.regex.Pattern;
 
 @RestController
@@ -31,6 +31,9 @@ public class HouseController {
 
     @Resource
     private HouseMapper houseMapper;
+
+    @Resource
+    private ProductMapper productMapper;
 
     @Resource
     private HouseRepository houseRepository;
@@ -47,8 +50,7 @@ public class HouseController {
 
         if (entity.isPresent()) {
             return ResponseEntity.ok(houseMapper.entityToDto(entity.get()));
-        }
-        else {
+        } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
@@ -84,8 +86,37 @@ public class HouseController {
             userRepository.save(userEntity);
 
             return ResponseEntity.ok(result);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        else {
+    }
+
+    @GetMapping("/listProducts")
+    public ResponseEntity<List<ProductDto>> listProducts(@RequestParam String userId, @RequestParam(required = false) String category) {
+        Optional<HouseEntity> house = houseRepository.findById(userId);
+        if (house.isPresent()) {
+            List<ProductDto> products = new ArrayList<>();
+            for (Map.Entry<String, Integer> keyValue : house.get().getProducts().entrySet()) {
+                AbstractProductEntity productEntity = productRepository.findById(keyValue.getKey()).get();
+                if (category == null || productEntity.getProductGroup().equals(ProductEnum.valueOf(category.toUpperCase()).label)) {
+                    products.add(productMapper.entityToDto(productEntity));
+                }
+            }
+            return ResponseEntity.ok(products);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @GetMapping("/setPointsFromQuestions")
+    public ResponseEntity<Integer> setPointsFromQuestions(@RequestParam String userId, @RequestParam String productId, @RequestParam Integer duree) {
+        Optional<AbstractProductEntity> product = productRepository.findById(productId);
+        Optional<UserEntity> userEntity = userRepository.findById(userId);
+        if (product.isPresent() && userEntity.isPresent()) {
+            Integer score = EcoScoreUtility.calculatePointsFromQuestions(product.get(), duree);
+            userEntity.get().setPointsFromQuestions(userEntity.get().getPointsFromQuestions() + score);
+            return ResponseEntity.ok(score);
+        } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
