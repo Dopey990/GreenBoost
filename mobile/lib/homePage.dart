@@ -96,11 +96,12 @@ class HomeState extends State<HomePage> {
                           AsyncSnapshot<Map<String, dynamic>> snapshot) {
                         if (snapshot.hasData) {
                           var data = snapshot.data!;
+                          int waterScore = data["waterScore"] ?? 0;
 
                           return Image.asset(
-                              data["waterScore"] ?? 0 > 80
+                              waterScore > 80
                                   ? 'assets/home/eau-vert.png'
-                                  : data["waterScore"] ?? 0 > 40
+                                  : waterScore > 40
                                       ? "assets/home/eau-orange.png"
                                       : "assets/home/eau-rouge.png",
                               height: MediaQuery.of(context).size.width / 4.5,
@@ -125,11 +126,12 @@ class HomeState extends State<HomePage> {
                           AsyncSnapshot<Map<String, dynamic>> snapshot) {
                         if (snapshot.hasData) {
                           var data = snapshot.data!;
+                          int electricityScore = data["electricityScore"] ?? 0;
 
                           return Image.asset(
-                              data["electricityScore"] ?? 0 > 80
+                              electricityScore > 80
                                   ? 'assets/home/electricite-vert.png'
-                                  : data["electricityScore"] ?? 0 > 40
+                                  : electricityScore > 40
                                       ? "assets/home/electricite-orange.png"
                                       : "assets/home/electricite-rouge.png",
                               height: MediaQuery.of(context).size.width / 4.5,
@@ -154,11 +156,12 @@ class HomeState extends State<HomePage> {
                           AsyncSnapshot<Map<String, dynamic>> snapshot) {
                         if (snapshot.hasData) {
                           var data = snapshot.data!;
+                          int gazScore = data["gazScore"] ?? 0;
 
                           return Image.asset(
-                              data["gazScore"] ?? 0 > 80
+                              gazScore > 80
                                   ? 'assets/home/gaz-vert.png'
-                                  : data["gazScore"] ?? 0 > 40
+                                  : gazScore > 40
                                       ? "assets/home/gaz-orange.png"
                                       : "assets/home/gaz-rouge.png",
                               height: MediaQuery.of(context).size.width / 4.5,
@@ -183,11 +186,12 @@ class HomeState extends State<HomePage> {
                           AsyncSnapshot<Map<String, dynamic>> snapshot) {
                         if (snapshot.hasData) {
                           var data = snapshot.data!;
+                          int pollutionScore = data["pollutionScore"] ?? 0;
 
                           return Image.asset(
-                              data["pollutionScore"] ?? 0 > 80
+                              pollutionScore > 80
                                   ? 'assets/home/pollution-vert.png'
-                                  : data["pollutionScore"] ?? 0 > 40
+                                  : pollutionScore > 40
                                       ? "assets/home/pollution-orange.png"
                                       : "assets/home/pollution-rouge.png",
                               height: MediaQuery.of(context).size.width / 4.5,

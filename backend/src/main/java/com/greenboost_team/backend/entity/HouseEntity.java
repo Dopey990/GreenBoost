@@ -16,7 +16,7 @@ import java.util.Map;
 public class HouseEntity {
     @Id
     private String id;
-    private Integer nbLivingPerson;
-    private Integer area;
+    private Integer nbLivingPerson = 0;
+    private Integer area = 0;
     private Map<String, Integer> products = new HashMap<>();
 }

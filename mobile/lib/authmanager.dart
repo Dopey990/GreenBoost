@@ -23,9 +23,10 @@ class AuthManager extends InheritedWidget {
   }
 
   Future<http.Response> _loginHttp(String email, String password) async {
-
-    http.Response response = await http.get(Uri.parse(
-        'http://localhost:8080/user/getUserToken?email=$email&password=$password'), headers: headers);
+    http.Response response = await http.get(
+        Uri.parse(
+            'http://localhost:8080/user/getUserToken?email=$email&password=$password'),
+        headers: headers);
     return response;
   }
 
@@ -54,8 +55,8 @@ class AuthManager extends InheritedWidget {
     final Map<String, dynamic> data = {
       'email': email,
       'password': password,
-      'firstname': firstname,
-      'lastname': lastname,
+      'firstName': firstname,
+      'lastName': lastname,
     };
     final String body = json.encode(data);
 
