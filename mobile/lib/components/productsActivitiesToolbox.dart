@@ -650,7 +650,12 @@ class ProductsActivitiesToolboxState
     final response = await http.post(Uri.parse(
         'http://localhost:8080/houses/addProduct?userId=${userMap["id"]}&productId=$productId&quantity=${quantity == '' ? 0 : quantity}'));
 
+
+
     if (response.statusCode == 200) {
+      final response = await http.post(Uri.parse(
+          'http://localhost:8080/user/getUserByToken?token=${userMap['token']}'));
+      prefs.setString('user', response.body);
       return true;
     } else {
       return false;
