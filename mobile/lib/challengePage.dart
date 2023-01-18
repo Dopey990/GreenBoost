@@ -32,8 +32,9 @@ class ChallengeState extends State<ChallengePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 178, 205, 185),
+         backgroundColor: Color.fromARGB(255, 177, 201, 183),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 78, 129, 91),
         centerTitle: true,
         title: const Text('Challenges'),
       ),
@@ -56,7 +57,7 @@ class ChallengeState extends State<ChallengePage> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 height: MediaQuery.of(context).size.height * 0.7,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 20, 151, 171),
+                  color: Color.fromARGB(255, 27, 127, 89),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: FutureBuilder<List<Map<String, dynamic>>>(
@@ -83,7 +84,7 @@ class ChallengeState extends State<ChallengePage> {
                                 children: Iterable<int>.generate(data.length)
                                     .toList()
                                     .map((index) => Card(
-                                        color: Color.fromARGB(255, 166, 182, 185),
+                                        color: Color.fromARGB(255, 166, 185, 173),
                                         child: Row(children: [
                                           SizedBox(
                                               width: MediaQuery.of(context)
@@ -120,8 +121,7 @@ class ChallengeState extends State<ChallengePage> {
                                                   IconButton(
                                                     icon:
                                                         const Icon(Icons.check),
-                                                    color: const Color.fromARGB(
-                                                        255, 12, 227, 19),
+                                                    color: Color.fromARGB(255, 12, 227, 19),
                                                     onPressed: (() async {
                                                       int points =
                                                           await answerChallenge(
@@ -193,8 +193,7 @@ class ChallengeState extends State<ChallengePage> {
                                                       icon: const Icon(
                                                           Icons.close),
                                                       color:
-                                                          const Color.fromARGB(
-                                                              255, 12, 227, 19),
+                                                          Color.fromARGB(255, 227, 12, 12),
                                                       onPressed: (() async {
                                                         int points =
                                                             await answerChallenge(

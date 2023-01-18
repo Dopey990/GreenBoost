@@ -20,8 +20,9 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 178, 205, 185),
+        backgroundColor: Color.fromARGB(255, 177, 201, 183),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 78, 129, 91),
         centerTitle: true,
         title: const Text('Inscription'),
       ),
@@ -132,7 +133,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: const Color.fromRGBO(48, 69, 178, 1),
+                  color: Color.fromARGB(255, 31, 108, 71),
                   borderRadius: BorderRadius.circular(30)),
               child: TextButton(
                 onPressed: () async {

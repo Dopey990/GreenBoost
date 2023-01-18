@@ -18,10 +18,10 @@ Map<int, Color> color = const {
   300: Color.fromARGB(102, 61, 217, 105),
   400: Color.fromARGB(126, 61, 217, 118),
   500: Color.fromARGB(153, 61, 217, 134),
-  600: Color.fromARGB(177, 61, 217, 79),
-  700: Color.fromARGB(204, 61, 217, 116),
-  800: Color.fromARGB(228, 70, 165, 94),
-  900: Color.fromARGB(255, 15, 197, 127),
+  600: Color.fromARGB(199, 106, 161, 98),
+  700: Color.fromARGB(204, 48, 174, 92),
+  800: Color.fromARGB(227, 55, 134, 75),
+  900: Color.fromARGB(255, 23, 124, 58),
 };
 
 //create main function to run the app

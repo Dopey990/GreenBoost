@@ -30,8 +30,9 @@ class AdvicesState extends State<AdvicesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 178, 205, 185),
+         backgroundColor: Color.fromARGB(255, 177, 201, 183),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 78, 129, 91),
         centerTitle: true,
         title: Text('Conseils sur ${widget.title}'),
       ),
@@ -44,7 +45,7 @@ class AdvicesState extends State<AdvicesPage> {
               child: Text(
                 "Liste des conseils",
                 style: TextStyle(
-                    color: Color.fromRGBO(31, 120, 180, 1),
+                    color: Color.fromARGB(255, 18, 101, 48),
                     fontSize: 25,
                     fontWeight: FontWeight.bold),
               ),

@@ -38,8 +38,9 @@ class _SettingsProfilePageState extends State<SettingsProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 178, 205, 185),
+         backgroundColor: Color.fromARGB(255, 177, 201, 183),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 78, 129, 91),
         centerTitle: true,
         title: const Text('Settings Profile'),
       ),

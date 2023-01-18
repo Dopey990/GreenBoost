@@ -26,10 +26,12 @@ class HomeState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 178, 205, 185),
+      backgroundColor: Color.fromARGB(255, 177, 201, 183),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 78, 129, 91),
         centerTitle: true,
         title: const Text('GreenBoost App'),
+        
       ),
       drawer: const Menu(),
       body: Column(
@@ -53,17 +55,17 @@ class HomeState extends State<HomePage> {
                   var data = snapshot.data!;
 
                   return TitledContainer(
-                    titleColor: const Color.fromRGBO(31, 120, 180, 1),
+                    titleColor: Color.fromARGB(255, 38, 121, 64),
                     title: "Eco-Score",
                     textAlign: TextAlignTitledContainer.Left,
                     fontSize: 16.0,
-                    //backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
+                    backgroundColor: Color.fromARGB(255, 177, 201, 183),      
                     child: Container(
                       width: 120,
                       height: 70,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: const Color.fromRGBO(48, 69, 178, 1),
+                          color: Color.fromARGB(255, 85, 178, 48),
                         ),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(10.0),
