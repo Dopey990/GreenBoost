@@ -1,5 +1,6 @@
 import 'package:GreenBoost/authmanager.dart';
 import 'package:GreenBoost/loginPage.dart';
+import 'package:GreenBoost/rgpd.dart';
 import 'package:flutter/material.dart';
 
 import 'homePage.dart';
@@ -20,7 +21,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 177, 201, 183),
+      backgroundColor: Color.fromARGB(255, 177, 201, 183),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 78, 129, 91),
         centerTitle: true,
@@ -172,6 +173,18 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                 style: TextStyle(color: Colors.black, fontSize: 15),
               ),
             ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Rgpd()),
+                );
+              },
+              child: const Text(
+                'Notre politique de confidentialité des données',
+                style: TextStyle(color: Colors.black, fontSize: 15),
+              ),
+            )
           ],
         ),
       ),
