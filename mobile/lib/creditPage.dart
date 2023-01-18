@@ -31,11 +31,14 @@ class CreditPage extends StatelessWidget {
             SizedBox(height: 16.0),
             Text('Equipe technique :',
                 style: TextStyle(fontWeight: FontWeight.bold)),
+            
             Text('thomas.ribault@gmail.com'),
             Text('julie.watier@gmail.com'),
             Text('bobin.dautel@gmail.com'),
             Text('Equipe spécialiste :',
+                
                 style: TextStyle(fontWeight: FontWeight.bold)),
+            
             Text('naim.gallouj@gmail.com'),
             Text('josue.vidrequin@gmail.com'),
             Text('maxime.consigne@gmail.com'),
@@ -47,7 +50,7 @@ class CreditPage extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 6),
             Center(
               child: Text(
-                "Lorem Ipsum is simply dummy text ",
+                "INSA s'engage à donner 100 000 € pour l'écologie",
               ),
             ),
             Image.asset('assets/img/renault.png',
@@ -55,7 +58,7 @@ class CreditPage extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 6),
             Center(
               child: Text(
-                "Lorem Ipsum is simply dummy text",
+                "Nous accompagne au quotidien pour les déplacements",
               ),
             ),
             Image.asset('assets/img/edf.png',
@@ -63,7 +66,7 @@ class CreditPage extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 6),
             Center(
               child: Text(
-                "Lorem Ipsum is simply dummy text",
+                "Partenaire de longue date dans l'énergie",
               ),
             ),
              Image.asset('assets/img/decathlon.png',
@@ -71,7 +74,7 @@ class CreditPage extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 6),
             Center(
               child: Text(
-                "Lorem Ipsum is simply dummy text",
+                "Nous accompagnes dans les défis et leurs réalisations",
               ),
             ),
             Text(
