@@ -46,11 +46,11 @@ class EauInfoState extends State<EauInfoPage> {
                 width: MediaQuery.of(context).size.width / 6),
             SizedBox(height: 20.0),
             CarouselSlider(
-              options: CarouselOptions(height: 400.0),
+              options: CarouselOptions(height: 200.0),
               items: [
                 'https://www.un.org/africarenewal/sites/www.un.org.africarenewal/files/12-15-2015WashUNICEF.jpg',
-                'https://www.un.org/africarenewal/sites/www.un.org.africarenewal/files/12-15-2015WashUNICEF.jpg',
-                'https://www.un.org/africarenewal/sites/www.un.org.africarenewal/files/12-15-2015WashUNICEF.jpg',
+                'https://www.sciencesetavenir.fr/assets/img/2015/03/18/cover-r4x3w1000-57df535d7b6e8-une-refugiee-malienne-tire-un-bidon-d-eau-dans-le-camp-de.jpg',
+                'https://static.dw.com/image/61912185_101.jpg',
               ].map((i) {
                 return Builder(
                   builder: (BuildContext context) {
@@ -65,12 +65,22 @@ class EauInfoState extends State<EauInfoPage> {
                 );
               }).toList(),
             ),
+            SizedBox(height: 16.0),
+            Text(
+                "Saviez vous que 2.1 Milliard de la population n'avez pas accées à l'eau potable ?",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold)),
             const Padding(padding: EdgeInsets.only(top: 20)),
             AdvicesViewerWidget(
               apiUrl:
                   "http://localhost:8080/advices/getByCategory?category=water&language=FR",
             ),
             const Padding(padding: EdgeInsets.only(top: 20)),
+            const PricesForecastWidget(
+              chartTitle: "Prix électricité",
+              apiUrl:
+                  "https://api.meersens.com/environment/public/water/current",
+            ),
           ],
         ))));
   }
