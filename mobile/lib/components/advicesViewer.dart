@@ -68,7 +68,7 @@ class AdvicesViewerState extends State<AdvicesViewerWidget> {
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
                               data[currentAdviceIndex],
-                              textAlign: TextAlign.center,
+                              textAlign: TextAlign.justify,
                             )),
                       ),
                     ),
