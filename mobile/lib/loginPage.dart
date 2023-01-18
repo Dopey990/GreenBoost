@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
               },
               child: const Text(
                 'Pas encore de compte? inscrivez-vous ici',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
+                style: TextStyle(color:Color.fromARGB(255, 43, 127, 65), fontSize: 15),
               ),
             ),
 
@@ -103,14 +103,14 @@ class _LoginPageState extends State<LoginPage> {
               },
               child: const Text(
                 'Mot de passe oublié? cliquez ici',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
+                style: TextStyle(color: Color.fromARGB(255, 43, 127, 65), fontSize: 15),
               ),
             ),
             Container(
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+                  color: Color.fromARGB(255, 31, 108, 71), borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () async {
                   bool? canConnect =
