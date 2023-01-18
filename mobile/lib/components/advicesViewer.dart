@@ -49,16 +49,16 @@ class AdvicesViewerState extends State<AdvicesViewerWidget> {
                       },
                     ),
                     TitledContainer(
-                      titleColor: Colors.blue,
+                      titleColor: Color.fromARGB(255, 30, 115, 47),
                       title: "Conseils",
                       textAlign: TextAlignTitledContainer.Left,
                       fontSize: 20,
-                      backgroundColor: Colors.white,
+                      backgroundColor: Color.fromARGB(255, 177, 201, 183), 
                       child: Container(
                         width: MediaQuery.of(context).size.width / 1.5,
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.blue,
+                            color: Color.fromARGB(255, 24, 84, 37),
                           ),
                           borderRadius: const BorderRadius.all(
                             Radius.circular(10.0),
