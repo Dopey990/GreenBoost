@@ -28,6 +28,7 @@ class ClassementState extends State<ClassementPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 178, 205, 185),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Classement'),

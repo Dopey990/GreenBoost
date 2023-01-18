@@ -10,6 +10,7 @@ class CreditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 178, 205, 185),
       appBar: AppBar(
         title: Text('Page de crédit'),
       ),

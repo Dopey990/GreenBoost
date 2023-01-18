@@ -10,6 +10,7 @@ class ForumPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 178, 205, 185),
         title: Text("Forum"),
       ),
       body: Column(
