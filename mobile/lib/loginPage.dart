@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
     AuthManager? auth = AuthManager.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 178, 205, 185),
       appBar: AppBar(
         title: const Text("Login Page"),
       ),

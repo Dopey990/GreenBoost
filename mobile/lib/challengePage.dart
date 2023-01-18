@@ -32,7 +32,7 @@ class ChallengeState extends State<ChallengePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
+      backgroundColor: Color.fromARGB(255, 178, 205, 185),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Challenges'),

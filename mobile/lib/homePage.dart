@@ -26,7 +26,7 @@ class HomeState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
+      backgroundColor: Color.fromARGB(255, 178, 205, 185),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('GreenBoost App'),
@@ -57,10 +57,10 @@ class HomeState extends State<HomePage> {
                     title: "Eco-Score",
                     textAlign: TextAlignTitledContainer.Left,
                     fontSize: 16.0,
-                    backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
+                    //backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
                     child: Container(
-                      width: 150,
-                      height: 100,
+                      width: 120,
+                      height: 70,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: const Color.fromRGBO(48, 69, 178, 1),
@@ -208,51 +208,8 @@ class HomeState extends State<HomePage> {
           AdvicesViewerWidget(
             apiUrl:
                 "http://localhost:8080/advices/getByCategory?category=global&language=FR",
-          )
-          /*Center(
-              child: TitledContainer(
-            titleColor: const Color.fromRGBO(48, 69, 178, 1),
-            title: "Conseils",
-            textAlign: TextAlignTitledContainer.Center,
-            fontSize: 16.0,
-            backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
-            child: Container(
-              width: MediaQuery.of(context).size.width / 1.25,
-              height: 100,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color.fromRGBO(48, 69, 178, 1),
-                ),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(10.0),
-                ),
-              ),
-              child: const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Text(
-                    "Débrancher trois appareils inutilisés chez vous",
-                    style: TextStyle(fontSize: 20.0),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          )),
-          Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        print("ok");
-                      },
-                      icon: const Icon(Icons.check)),
-                  IconButton(
-                      onPressed: () {
-                        print("ok");
-                      },
-                      icon: const Icon(Icons.close))
-                ],
-              ))*/
+          ),
+          const Spacer()
         ],
       ),
     );

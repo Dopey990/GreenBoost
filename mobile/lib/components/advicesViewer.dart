@@ -32,57 +32,59 @@ class AdvicesViewerState extends State<AdvicesViewerWidget> {
           if (snapshot.hasData) {
             var data = snapshot.data!;
 
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  iconSize: 30,
-                  icon: const Icon(Icons.keyboard_arrow_left),
-                  onPressed: () {
-                    setState(() {
-                      currentAdviceIndex = currentAdviceIndex == 0
-                          ? data.length - 1
-                          : currentAdviceIndex - 1;
-                    });
-                  },
-                ),
-                TitledContainer(
-                  titleColor: Colors.blue,
-                  title: "Conseils",
-                  textAlign: TextAlignTitledContainer.Left,
-                  fontSize: 16,
-                  backgroundColor: Colors.white,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 1.5,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.blue,
-                      ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(10.0),
+            return Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      iconSize: 30,
+                      icon: const Icon(Icons.keyboard_arrow_left),
+                      onPressed: () {
+                        setState(() {
+                          currentAdviceIndex = currentAdviceIndex == 0
+                              ? data.length - 1
+                              : currentAdviceIndex - 1;
+                        });
+                      },
+                    ),
+                    TitledContainer(
+                      titleColor: Colors.blue,
+                      title: "Conseils",
+                      textAlign: TextAlignTitledContainer.Left,
+                      fontSize: 20,
+                      backgroundColor: Colors.white,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width / 1.5,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.blue,
+                          ),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                        ),
+                        child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Text(
+                              data[currentAdviceIndex],
+                              textAlign: TextAlign.justify,
+                            )),
                       ),
                     ),
-                    child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Text(
-                          data[currentAdviceIndex],
-                          textAlign: TextAlign.center,
-                        )),
-                  ),
-                ),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        currentAdviceIndex =
-                            currentAdviceIndex == data.length - 1
-                                ? 0
-                                : currentAdviceIndex + 1;
-                      });
-                    },
-                    iconSize: 30,
-                    icon: const Icon(Icons.keyboard_arrow_right))
-              ],
-            );
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            currentAdviceIndex =
+                                currentAdviceIndex == data.length - 1
+                                    ? 0
+                                    : currentAdviceIndex + 1;
+                          });
+                        },
+                        iconSize: 30,
+                        icon: const Icon(Icons.keyboard_arrow_right))
+                  ],
+                ));
           } else {
             return const Padding(
                 padding: EdgeInsets.all(20.0),

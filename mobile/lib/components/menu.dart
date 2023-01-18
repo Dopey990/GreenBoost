@@ -37,7 +37,7 @@ class MenuState extends State<Menu> {
             height: 115,
             child: DrawerHeader(
                 decoration: const BoxDecoration(
-                  color: Color(0xFF3D69D9),
+                  color: Color.fromARGB(255, 38, 103, 53),
                 ),
                 child: FutureBuilder<Map<String, dynamic>>(
                     future: user,
