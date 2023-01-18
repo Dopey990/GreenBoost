@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:GreenBoost/classementPage.dart';
 import 'package:GreenBoost/components/popUp.dart';
+import 'package:GreenBoost/droitOubli.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '/components/menu.dart';
@@ -33,6 +34,10 @@ class Rgpd extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30)),
                 child: TextButton(
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => droitOubli()),
+                    );
                     //Ajoutez ici les actions à effectuer lorsque le bouton est pressé
                   },
                   child: const Text(
