@@ -7,11 +7,11 @@ import 'dart:js';
 import 'package:http/http.dart' as http;
 import 'package:charts_flutter/flutter.dart' as charts;
 
-class WaterTemperatureChart extends StatefulWidget {
-  @override
-  _WaterTemperatureChartState createState() => _WaterTemperatureChartState();
-}
-
+//class WaterTemperatureChart extends StatefulWidget {
+  //@override
+  //_WaterTemperatureChartState createState() => _WaterTemperatureChartState();
+//}
+/** 
 class _WaterTemperatureChartState extends State<WaterTemperatureChart> {
   late List<charts.Series<WaterTemperatureData, String>> _data;
 
@@ -19,10 +19,10 @@ class _WaterTemperatureChartState extends State<WaterTemperatureChart> {
   void initState() {
     super.initState();
     _fetchData();
-  }
+  }*/
 
-  void _fetchData() async {
-    final response = await http.get(
+  //void _fetchData() async {
+   /**  final response = await http.get(
         "https://hubeau.eaufrance.fr/page/api-temperature-en-continu-cours-deau/v1/temperature/chronique/");
     if (response.statusCode == 200) {
       final List<WaterTemperatureData> data = [];
@@ -42,8 +42,8 @@ class _WaterTemperatureChartState extends State<WaterTemperatureChart> {
         ];
       });
     }
-  }
-
+  }*/
+/** 
   @override
   Widget build(BuildContext context) {
     return _data == null
@@ -64,3 +64,4 @@ class WaterTemperatureData {
 
   WaterTemperatureData(this.time, this.temperature);
 }
+**/
