@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:GreenBoost/classementPage.dart';
 import 'package:flutter/material.dart';
 import '/components/menu.dart';
@@ -8,6 +10,7 @@ class ForumPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 178, 205, 185),
         title: Text("Forum"),
       ),
       body: Column(
@@ -28,7 +31,24 @@ class ForumPage extends StatelessWidget {
                   title: Text("Nouvelle version de GreenBoost !"),
                   subtitle: Text("Auteur : Greenboost"),
                   onTap: () {
-                    // Navigate to the topic page
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("GreenBoost V1 est enfin la"),
+                          content: Text(
+                              "Page pollution\n Page gaz\n Renforcement structure\n Finalisation du visuel\nAmélioration robustesse \n Association partenaire \n page de challenge"),
+                          actions: <Widget>[
+                            FloatingActionButton(
+                              child: Text("OK"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                 ),
                 ListTile(
@@ -36,7 +56,24 @@ class ForumPage extends StatelessWidget {
                   title: Text("Comment améliorer ma consomation d'eau ?"),
                   subtitle: Text("Auteur : NaimG"),
                   onTap: () {
-                    // Navigate to the topic page
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Améliorer ma consomation d'eau"),
+                          content: Text(
+                              "installez des mousseurs sur les robinets et dans le pommeau de douche ; Ils réduisent le débit de 30 % à 50 %, sans perte de confort ni de pression ; privilégiez les douches plutôt que les bains (une douche rapide consomme de 35 à 60 L d'eau quand un bain consommera a minima 150 L)."),
+                          actions: <Widget>[
+                            FloatingActionButton(
+                              child: Text("OK"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                 ),
                 ListTile(
@@ -82,7 +119,24 @@ class ForumPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          // Navigate to the create topic page
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Ajouter un sujet"),
+                content: Text(
+                    "Seul l'équipe Greenboost peut actuellement créer des sujets"),
+                actions: <Widget>[
+                  FloatingActionButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
         },
       ),
     );

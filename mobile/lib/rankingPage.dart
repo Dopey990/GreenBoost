@@ -72,6 +72,7 @@ class _UserRankingsPageState extends State<UserRankingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 178, 205, 185),
         title: Text('Classement des utilisateurs'),
       ),
       body: Column(

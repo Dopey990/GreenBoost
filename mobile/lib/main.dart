@@ -12,16 +12,16 @@ import 'loginPage.dart';
 import 'forumPage.dart';
 
 Map<int, Color> color = const {
-  50: Color.fromRGBO(61, 105, 217, .1),
-  100: Color.fromRGBO(61, 105, 217, .2),
-  200: Color.fromRGBO(61, 105, 217, .3),
-  300: Color.fromRGBO(61, 105, 217, .4),
-  400: Color.fromRGBO(61, 105, 217, .5),
-  500: Color.fromRGBO(61, 105, 217, .6),
-  600: Color.fromRGBO(61, 105, 217, .7),
-  700: Color.fromRGBO(61, 105, 217, .8),
-  800: Color.fromRGBO(61, 105, 217, .9),
-  900: Color.fromRGBO(61, 105, 217, 1),
+  50: Color.fromARGB(24, 61, 217, 103),
+  100: Color.fromARGB(51, 61, 217, 87),
+  200: Color.fromARGB(75, 61, 217, 136),
+  300: Color.fromARGB(102, 61, 217, 105),
+  400: Color.fromARGB(126, 61, 217, 118),
+  500: Color.fromARGB(153, 61, 217, 134),
+  600: Color.fromARGB(177, 61, 217, 79),
+  700: Color.fromARGB(204, 61, 217, 116),
+  800: Color.fromARGB(228, 70, 165, 94),
+  900: Color.fromARGB(255, 15, 197, 127),
 };
 
 //create main function to run the app

@@ -8,6 +8,7 @@ class ForgotPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 178, 205, 185),
         centerTitle: true,
         title: const Text('Mot de passe oublié'),
       ),

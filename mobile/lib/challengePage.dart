@@ -32,7 +32,7 @@ class ChallengeState extends State<ChallengePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
+      backgroundColor: Color.fromARGB(255, 178, 205, 185),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Challenges'),
@@ -83,8 +83,7 @@ class ChallengeState extends State<ChallengePage> {
                                 children: Iterable<int>.generate(data.length)
                                     .toList()
                                     .map((index) => Card(
-                                        color: const Color.fromARGB(
-                                            255, 93, 147, 155),
+                                        color: Color.fromARGB(255, 166, 182, 185),
                                         child: Row(children: [
                                           SizedBox(
                                               width: MediaQuery.of(context)
