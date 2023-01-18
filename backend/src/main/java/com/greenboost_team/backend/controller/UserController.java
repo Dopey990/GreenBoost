@@ -104,7 +104,7 @@ public class UserController {
 
     @GetMapping(value="/getTop10", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
     public ResponseEntity<List<UserDto>> getTop10() {
-        return ResponseEntity.ok(userRepository.findTop10ByOrderByRankDesc().stream().map(userEntity -> userMapper.entityToDto(userEntity)).collect(Collectors.toList()));
+        return ResponseEntity.ok(userRepository.findTop10ByRankNot(-1).stream().map(userEntity -> userMapper.entityToDto(userEntity)).collect(Collectors.toList()));
     }
 
     @GetMapping("/getUserToken")

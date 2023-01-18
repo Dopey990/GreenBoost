@@ -254,7 +254,7 @@ class ClassementState extends State<ClassementPage> {
                                           ),
                                         ),
                                         Text(
-                                          '${e["rank"]} arbres',
+                                          '${e['ecoScore'] - e["rank"] < 0 ? 1 : e['ecoScore'] - e["rank"]} arbres',
                                           style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
@@ -314,7 +314,7 @@ class ClassementState extends State<ClassementPage> {
                                           ),
                                         ),
                                         Text(
-                                          '${data["rank"]} arbres',
+                                          '${data['ecoScore'] - data["rank"] < 0 ? 1 : data['ecoScore'] - data["rank"]} arbres',
                                           style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,

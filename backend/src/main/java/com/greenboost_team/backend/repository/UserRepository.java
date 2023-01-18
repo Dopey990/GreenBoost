@@ -14,7 +14,7 @@ public interface UserRepository extends MongoRepository<UserEntity, String> {
 
     UserEntity findByToken(String token);
 
-    List<UserEntity> findTop10ByOrderByRankDesc();
+    List<UserEntity> findTop10ByRankNot(Integer rank);
 
     boolean existsByEmail(String email);
 }
