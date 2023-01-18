@@ -23,6 +23,7 @@ public class HouseMapper {
     public HouseDto entityToDto(HouseEntity entity) {
         HouseDto result = new HouseDto();
 
+        result.setId(entity.getId());
         result.setNbLivingPerson(entity.getNbLivingPerson());
         result.setArea(entity.getArea());
 
@@ -38,6 +39,7 @@ public class HouseMapper {
     public HouseEntity dtoToEntity(HouseDto dto) {
         HouseEntity result = new HouseEntity();
 
+        result.setId(dto.getId());
         result.setNbLivingPerson(dto.getNbLivingPerson());
         result.setArea(dto.getArea());
 

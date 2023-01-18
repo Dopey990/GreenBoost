@@ -6,50 +6,130 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '/components/menu.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:flutter/material.dart';
+
 class ContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Contact'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
+        backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
+        appBar: AppBar(
+          title: Text("Contactez nous"),
+        ),
+        body: SingleChildScrollView(
+            child: Column(
           children: <Widget>[
-            Text('Site web:'),
-            InkWell(
-              child: Text('www.greenbost.fr',
-                  style: TextStyle(color: Colors.blue)),
-              onTap: () {
-                //launch('');
-              },
+            Padding(
+              padding: const EdgeInsets.only(top: 1.0),
+              child: Center(
+                child: Image.asset(
+                  'assets/img/greenboost-full-logo.png',
+                  height: 200,
+                  width: 300,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
             ),
-            SizedBox(height: 16.0),
-            Text('Développeurs:',
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Text('thomas.ribault@gmail.com'),
-            Text('julie.watier@gmail.com'),
-            Text('bobin.dautel@gmail.com'),
-            Text('Buisness contact :',
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Text('naim.gallouj@gmail.com'),
-            Text('josue.vidrequin@gmail.com'),
-            Text('maxime.consigne@gmail.com'),
-            SizedBox(height: 16.0),
-            Text('Associations partenaires:',
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Image.asset('assets/home/eau-vert.png',
-                height: MediaQuery.of(context).size.width / 6,
-                width: MediaQuery.of(context).size.width / 6),
-            Center(
-              child: Text(
-                "La goute de gingembre est une associattion aidant les personnes manquant d'eau",
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "Email",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "Objet",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    height: 70.0,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: "Message",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        ),
+                      ),
+                      maxLines: null,
+                      keyboardType: TextInputType.multiline,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40.0,
+                  ),
+                  Container(
+                    height: 50,
+                    width: 250,
+                    decoration: BoxDecoration(
+                        color: const Color.fromRGBO(48, 69, 178, 1),
+                        borderRadius: BorderRadius.circular(30)),
+                    child: TextButton(
+                      onPressed: () {
+                        //Ajoutez ici les actions à effectuer lorsque le bouton est pressé
+                      },
+                      child: const Text(
+                        'Envoyer',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      //J'ai eu des couilles avec mes assets, toute les images sont dans le dossier assets/social/
+                      Image.network(
+                        "https://www.unipile.com/wp-content/uploads/2022/06/logo-facebook.png",
+                        height: 40,
+                        width: 40,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Image.network(
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/640px-Instagram_icon.png",
+                        height: 40,
+                        width: 40,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Image.network(
+                        "https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-whatsapp-mobile-software-icon-png-image_6315991.png",
+                        height: 40,
+                        width: 40,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Image.network(
+                        "https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png",
+                        height: 40,
+                        width: 40,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
-        ),
-      ),
-    );
+        )));
   }
 }

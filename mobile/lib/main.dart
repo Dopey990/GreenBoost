@@ -5,6 +5,7 @@ import 'package:GreenBoost/advicesMenuPage.dart';
 import 'package:flutter/material.dart';
 import 'authmanager.dart';
 import 'challengePage.dart';
+import 'creditPage.dart';
 import 'electricityInfoPage.dart';
 import 'homePage.dart';
 import 'loginPage.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         "/contact": (context) => ContactPage(),
         "/info/electricity": (context) => ElectricityInfoPage(),
         "/info/water": (context) => EauInfoPage(),
+        "/credit/": (context) => CreditPage(),
       },
     ));
   }

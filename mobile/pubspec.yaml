@@ -43,6 +43,8 @@ dependencies:
   lite_rolling_switch: ^1.0.0
   shared_preferences: ^2.0.15
   day_night_time_picker: ^1.1.5
+  url_launcher: ^6.1.7
+  carousel_slider: ^4.2.1
   ## flutter_titled_container: ^1.0.7
 
 dev_dependencies:
@@ -87,6 +89,8 @@ flutter:
     - assets/img/podium.png
     - assets/img/conseils_earth.png
     - assets/img/challenge.png
+    - assets/img/maison.png
+    - assets/img/person.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

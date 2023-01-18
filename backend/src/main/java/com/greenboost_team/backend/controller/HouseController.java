@@ -1,5 +1,6 @@
 package com.greenboost_team.backend.controller;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.greenboost_team.backend.dto.HouseDto;
 import com.greenboost_team.backend.dto.PriceDto;
 import com.greenboost_team.backend.dto.ProductDto;
@@ -14,6 +15,7 @@ import com.greenboost_team.backend.repository.UserRepository;
 import com.greenboost_team.backend.utility.EcoScoreUtility;
 import com.greenboost_team.backend.utility.ProductEnum;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -59,9 +61,21 @@ public class HouseController {
     public ResponseEntity<HouseDto> update(@RequestParam String id, @RequestBody HouseDto dto) {
         HouseEntity entity = houseMapper.dtoToEntity(dto);
         entity.setId(id);
-
         houseRepository.save(entity);
         return ResponseEntity.ok(dto);
+    }
+
+    @PostMapping("/updateHouse")
+    public ResponseEntity<HouseDto> updateHouse(@RequestParam String id, @RequestParam(required = false) Integer area, @RequestParam(required = false) Integer nbLivingPerson) {
+        Optional<HouseEntity> entity = houseRepository.findById(id);
+        if (entity.isPresent()){
+            entity.get().setArea(area == null ? entity.get().getArea() : area);
+            entity.get().setNbLivingPerson(nbLivingPerson == null ? entity.get().getNbLivingPerson() : nbLivingPerson);
+            houseRepository.save(entity.get());
+            return ResponseEntity.ok(houseMapper.entityToDto(entity.get()));
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/addProduct")

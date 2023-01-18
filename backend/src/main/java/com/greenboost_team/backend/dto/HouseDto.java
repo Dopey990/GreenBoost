@@ -14,6 +14,7 @@ import java.util.Map;
 @NoArgsConstructor
 @Document
 public class HouseDto {
+    private String id;
     private Integer nbLivingPerson;
     private Integer area;
     private Map<ProductDto, Integer> products;
