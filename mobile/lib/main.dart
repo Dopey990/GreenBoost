@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
         "/contact": (context) => ContactPage(),
         "/info/electricity": (context) => ElectricityInfoPage(),
         "/info/water": (context) => EauInfoPage(),
-        "/credit/": (context) => CreditPage(),
+        "/partenaires": (context) => CreditPage(),
       },
     ));
   }
