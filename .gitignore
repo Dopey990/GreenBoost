@@ -28,3 +28,4 @@ mobile/pubspec.yaml
 mobile/.flutter-plugins
 mobile/.flutter-plugins-dependencies
 mobile/local.properties
+mobile/lib/contacts.dart
