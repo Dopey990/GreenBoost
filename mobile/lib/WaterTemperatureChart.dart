@@ -22,8 +22,8 @@ class _WaterTemperatureChartState extends State<WaterTemperatureChart> {
   }
 
   void _fetchData() async {
-    final response = await http
-        .get('https://api.meersens.com/environment/public/water/current');
+    final response = await http.get(
+        "https://hubeau.eaufrance.fr/page/api-temperature-en-continu-cours-deau/v1/temperature/chronique/");
     if (response.statusCode == 200) {
       final List<WaterTemperatureData> data = [];
       final Map<String, dynamic> jsonData = json.decode(response.body);

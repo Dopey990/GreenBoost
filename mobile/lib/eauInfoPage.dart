@@ -29,7 +29,6 @@ class EauInfoState extends State<EauInfoPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 178, 205, 185),
         appBar: AppBar(
           centerTitle: true,
           title: const Text("Eau"),
@@ -48,7 +47,7 @@ class EauInfoState extends State<EauInfoPage> {
               options: CarouselOptions(height: 200.0),
               items: [
                 'https://www.un.org/africarenewal/sites/www.un.org.africarenewal/files/12-15-2015WashUNICEF.jpg',
-                'https://www.sciencesetavenir.fr/assets/img/2015/03/18/cover-r4x3w1000-57df535d7b6e8-une-refugiee-malienne-tire-un-bidon-d-eau-dans-le-camp-de.jpg',
+                'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/e/3/b/e3b72826bf_114784_rechauffement-climatique-illustration.jpg',
                 'https://static.dw.com/image/61912185_101.jpg',
               ].map((i) {
                 return Builder(
@@ -75,11 +74,7 @@ class EauInfoState extends State<EauInfoPage> {
                   "http://localhost:8080/advices/getByCategory?category=water&language=FR",
             ),
             const Padding(padding: EdgeInsets.only(top: 20)),
-            const PricesForecastWidget(
-              chartTitle: "Prix électricité",
-              apiUrl:
-                  "https://api.meersens.com/environment/public/water/current",
-            ),
+            Image.network('https://i.ibb.co/Vvsx89n/te-le-chargement.png'),
           ],
         ))));
   }
