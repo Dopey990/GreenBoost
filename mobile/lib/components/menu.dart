@@ -114,7 +114,7 @@ class MenuState extends State<Menu> {
               MaterialPageRoute(
                   builder: (context) => AdvicesPage(
                         category: "global",
-                        title: "globaux",
+                        title: "tout",
                       )),
             );
           },
