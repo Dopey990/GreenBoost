@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_titled_container/flutter_titled_container.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'components/advicesViewer.dart';
 import 'components/menu.dart';
 
 class HomePage extends StatefulWidget {
@@ -204,10 +205,14 @@ class HomeState extends State<HomePage> {
                         }
                       }))),
           const Spacer(),
-          Center(
+          AdvicesViewerWidget(
+            apiUrl:
+                "http://localhost:8080/advices/getByCategory?category=global&language=FR",
+          )
+          /*Center(
               child: TitledContainer(
             titleColor: const Color.fromRGBO(48, 69, 178, 1),
-            title: "Défis",
+            title: "Conseils",
             textAlign: TextAlignTitledContainer.Center,
             fontSize: 16.0,
             backgroundColor: const Color.fromRGBO(168, 203, 208, 1),
@@ -247,7 +252,7 @@ class HomeState extends State<HomePage> {
                       },
                       icon: const Icon(Icons.close))
                 ],
-              ))
+              ))*/
         ],
       ),
     );
