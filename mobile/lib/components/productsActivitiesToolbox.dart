@@ -66,7 +66,7 @@ class ProductsActivitiesToolboxState
         width: MediaQuery.of(context).size.width * 0.85,
         height: 60.0,
         decoration: const BoxDecoration(
-          color: Colors.blue,
+          color: Color.fromARGB(255, 78, 129, 91),
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.all(
             Radius.circular(8.0),
@@ -75,6 +75,9 @@ class ProductsActivitiesToolboxState
         child: Row(children: [
           TextButton.icon(
               icon: const Icon(Icons.add_home_rounded),
+              style: TextButton.styleFrom(
+                foregroundColor: const Color.fromARGB(255, 255, 153, 0),
+              ),
               label: const Text(
                 "Ajouter un appareil",
                 style: TextStyle(fontSize: 12),
@@ -315,6 +318,9 @@ class ProductsActivitiesToolboxState
           const Spacer(),
           TextButton.icon(
               icon: const Icon(Icons.add_task_rounded),
+              style: TextButton.styleFrom(
+                foregroundColor: const Color.fromARGB(255, 255, 153, 0),
+              ),
               label: const Text("Ajouter une activité",
                   style: TextStyle(fontSize: 12)),
               onPressed: () => {
@@ -556,7 +562,9 @@ class ProductsActivitiesToolboxState
                                                       selectedProductIdHouse!,
                                                       duree);
                                               if (mounted) {
-                                                Navigator.of(context, rootNavigator: true).pop();
+                                                Navigator.of(context,
+                                                        rootNavigator: true)
+                                                    .pop();
                                               }
                                               showDialog(
                                                   context: context,
