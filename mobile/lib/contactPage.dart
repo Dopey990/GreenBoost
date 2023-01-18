@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:GreenBoost/profilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '/components/menu.dart';
 import 'package:http/http.dart' as http;
 
@@ -95,34 +96,55 @@ class ContactPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       //J'ai eu des couilles avec mes assets, toute les images sont dans le dossier assets/social/
-                      Image.network(
-                        "https://www.unipile.com/wp-content/uploads/2022/06/logo-facebook.png",
-                        height: 40,
-                        width: 40,
+                      InkWell(
+                        onTap: () {
+                          launch("https://www.facebook.com");
+                        },
+                        child: Image.network(
+                          "https://www.unipile.com/wp-content/uploads/2022/06/logo-facebook.png",
+                          height: 40,
+                          width: 40,
+                        ),
                       ),
                       SizedBox(
                         width: 10,
                       ),
-                      Image.network(
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/640px-Instagram_icon.png",
-                        height: 40,
-                        width: 40,
+                      InkWell(
+                        onTap: () {
+                          launch("https://www.instagram.com");
+                        },
+                        child: Image.network(
+                          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/640px-Instagram_icon.png",
+                          height: 40,
+                          width: 40,
+                        ),
                       ),
                       SizedBox(
                         width: 10,
                       ),
-                      Image.network(
-                        "https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-whatsapp-mobile-software-icon-png-image_6315991.png",
-                        height: 40,
-                        width: 40,
+                      InkWell(
+                        onTap: () {
+                          launch("https://www.whatsapp.com");
+                        },
+                        child: Image.network(
+                          "https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-whatsapp-mobile-software-icon-png-image_6315991.png",
+                          height: 40,
+                          width: 40,
+                        ),
                       ),
+                      InkWell(
+                        onTap: () {
+                          launch("https://www.gmail.com");
+                        },
+                        child: Image.network(
+                          "https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png",
+                          height: 40,
+                          width: 40,
+                        ),
+                      ),
+
                       SizedBox(
                         width: 10,
-                      ),
-                      Image.network(
-                        "https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png",
-                        height: 40,
-                        width: 40,
                       ),
                     ],
                   ),
