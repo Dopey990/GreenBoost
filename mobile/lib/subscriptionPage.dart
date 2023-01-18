@@ -133,7 +133,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: const Color.fromRGBO(48, 69, 178, 1),
+                  color: Color.fromARGB(255, 31, 108, 71),
                   borderRadius: BorderRadius.circular(30)),
               child: TextButton(
                 onPressed: () async {
