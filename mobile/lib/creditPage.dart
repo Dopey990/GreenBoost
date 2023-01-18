@@ -58,7 +58,7 @@ class CreditPage extends StatelessWidget {
                     context, MaterialPageRoute(builder: (_) => ContactPage()));
               },
               child: const Text(
-                'Mot de passe oublié? cliquez ici',
+                'Cliquez ici pour nous contacter',
                 style: TextStyle(
                     color: Color.fromARGB(255, 43, 127, 65), fontSize: 15),
               ),
