@@ -31,23 +31,50 @@ class CreditPage extends StatelessWidget {
             SizedBox(height: 16.0),
             Text('Equipe technique :',
                 style: TextStyle(fontWeight: FontWeight.bold)),
+            
             Text('thomas.ribault@gmail.com'),
             Text('julie.watier@gmail.com'),
             Text('bobin.dautel@gmail.com'),
             Text('Equipe spécialiste :',
+                
                 style: TextStyle(fontWeight: FontWeight.bold)),
+            
             Text('naim.gallouj@gmail.com'),
             Text('josue.vidrequin@gmail.com'),
             Text('maxime.consigne@gmail.com'),
             SizedBox(height: 16.0),
             Text('Nos associations partenaires:',
                 style: TextStyle(fontWeight: FontWeight.bold)),
-            Image.asset('assets/home/eau-vert.png',
+            Image.asset('assets/img/insa.jpg',
                 height: MediaQuery.of(context).size.width / 6,
                 width: MediaQuery.of(context).size.width / 6),
             Center(
               child: Text(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                "INSA s'engage à donner 100 000 € pour l'écologie",
+              ),
+            ),
+            Image.asset('assets/img/renault.png',
+                height: MediaQuery.of(context).size.width / 6,
+                width: MediaQuery.of(context).size.width / 6),
+            Center(
+              child: Text(
+                "Nous accompagne au quotidien pour les déplacements",
+              ),
+            ),
+            Image.asset('assets/img/edf.png',
+                height: MediaQuery.of(context).size.width / 6,
+                width: MediaQuery.of(context).size.width / 6),
+            Center(
+              child: Text(
+                "Partenaire de longue date dans l'énergie",
+              ),
+            ),
+             Image.asset('assets/img/decathlon.png',
+                height: MediaQuery.of(context).size.width / 6,
+                width: MediaQuery.of(context).size.width / 6),
+            Center(
+              child: Text(
+                "Nous accompagnes dans les défis et leurs réalisations",
               ),
             ),
             Text(
