@@ -28,9 +28,9 @@ class ClassementState extends State<ClassementPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-         backgroundColor: Color.fromARGB(255, 177, 201, 183),
+      backgroundColor: const Color.fromARGB(255, 177, 201, 183),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 78, 129, 91),
+        backgroundColor: const Color.fromARGB(255, 78, 129, 91),
         centerTitle: true,
         title: const Text('Classement'),
       ),
@@ -109,8 +109,13 @@ class ClassementState extends State<ClassementPage> {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     )),
-                                Text(
-                                    '${data[1]["firstName"]}, ${data[1]["lastName"]}',
+                                Text('${data[1]["firstName"]},',
+                                    style: const TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                Text('${data[1]["lastName"]}',
                                     style: const TextStyle(
                                       color: Colors.blue,
                                       fontSize: 20,
@@ -124,25 +129,7 @@ class ClassementState extends State<ClassementPage> {
                               padding: EdgeInsets.all(20.0),
                               child: CircularProgressIndicator());
                         }
-                      })
-
-                  /*Column(
-                  children: const <Widget>[
-                    Image(
-                      image: AssetImage('assets/img/trophy.png'),
-                      width: 10,
-                    ),
-                    Text(
-                      '2nd',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),*/
-                  ),
+                      })),
               FutureBuilder<List<Map<String, dynamic>>>(
                   future: top10,
                   builder: (BuildContext context,
@@ -163,8 +150,13 @@ class ClassementState extends State<ClassementPage> {
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 )),
-                            Text(
-                                '${data[0]["firstName"]}, ${data[0]["lastName"]}',
+                            Text('${data[0]["firstName"]},',
+                                style: const TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text('${data[0]["lastName"]}',
                                 style: const TextStyle(
                                   color: Colors.blue,
                                   fontSize: 20,
@@ -179,22 +171,6 @@ class ClassementState extends State<ClassementPage> {
                           child: CircularProgressIndicator());
                     }
                   }),
-              /*Column(
-                children: const <Widget>[
-                  Image(
-                    image: AssetImage('assets/img/trophy.png'),
-                    width: 10,
-                  ),
-                  Text(
-                    '1st',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),*/
               Padding(
                   padding: const EdgeInsets.only(top: 40, bottom: 20),
                   child: FutureBuilder<List<Map<String, dynamic>>>(
@@ -217,8 +193,13 @@ class ClassementState extends State<ClassementPage> {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     )),
-                                Text(
-                                    '${data[2]["firstName"]}, ${data[2]["lastName"]}',
+                                Text('${data[2]["firstName"]},',
+                                    style: const TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                Text('${data[2]["lastName"]}',
                                     style: const TextStyle(
                                       color: Colors.blue,
                                       fontSize: 20,
@@ -232,24 +213,7 @@ class ClassementState extends State<ClassementPage> {
                               padding: EdgeInsets.all(20.0),
                               child: CircularProgressIndicator());
                         }
-                      })
-                  /*Column(
-                  children: const <Widget>[
-                    Image(
-                      image: AssetImage('assets/img/trophy.png'),
-                      width: 10,
-                    ),
-                    Text(
-                      '3rd',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),*/
-                  ),
+                      })),
             ],
           ),
 
@@ -318,7 +282,8 @@ class ClassementState extends State<ClassementPage> {
             ),
             child: Padding(
                 padding: const EdgeInsets.all(10),
-                child: Row(
+                child: Center(
+                    child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     FutureBuilder<Map<String, dynamic>>(
@@ -365,7 +330,7 @@ class ClassementState extends State<ClassementPage> {
                           }
                         })
                   ],
-                )),
+                ))),
           ),
         ]),
       ),

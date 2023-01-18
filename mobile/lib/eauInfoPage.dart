@@ -29,13 +29,8 @@ class EauInfoState extends State<EauInfoPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
         appBar: AppBar(
-=======
-         backgroundColor: Color.fromARGB(255, 177, 201, 183),
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 78, 129, 91),
->>>>>>> c63d332d864a0b17e0528512e7f069a71096cf22
+          backgroundColor: Color.fromARGB(255, 78, 129, 91),
           centerTitle: true,
           title: const Text("Eau"),
         ),
