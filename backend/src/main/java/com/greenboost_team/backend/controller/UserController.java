@@ -11,6 +11,7 @@ import com.greenboost_team.backend.repository.ProductRepository;
 import com.greenboost_team.backend.repository.UserRepository;
 import com.greenboost_team.backend.utility.EcoScoreUtility;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -101,7 +102,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/getTop10")
+    @GetMapping(value="/getTop10", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
     public ResponseEntity<List<UserDto>> getTop10() {
         return ResponseEntity.ok(userRepository.findTop10ByOrderByRankDesc().stream().map(userEntity -> userMapper.entityToDto(userEntity)).collect(Collectors.toList()));
     }

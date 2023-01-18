@@ -60,12 +60,12 @@ class MenuState extends State<Menu> {
                                 Text("${data["firstName"]} ${data["lastName"]}",
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                      color: Color.fromARGB(255, 177, 201, 183),
                                       fontSize: 25,
                                     )),
                                 Text("Score : ${data["ecoScore"] ?? 0}",
                                     style: const TextStyle(
-                                      color: Colors.white,
+                                      color: Color.fromARGB(255, 177, 201, 183),
                                       fontSize: 15,
                                     )),
                               ],
@@ -133,6 +133,14 @@ class MenuState extends State<Menu> {
           onTap: () {
             Navigator.pop(context);
             Navigator.pushNamed(context, '/forum');
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.people),
+          title: const Text('Partenaires'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, '/partenaires');
           },
         ),
       ],
