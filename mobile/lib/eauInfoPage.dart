@@ -48,7 +48,6 @@ class EauInfoState extends State<EauInfoPage> {
             CarouselSlider(
               options: CarouselOptions(height: 200.0),
               items: [
-                'https://www.un.org/africarenewal/sites/www.un.org.africarenewal/files/12-15-2015WashUNICEF.jpg',
                 'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/e/3/b/e3b72826bf_114784_rechauffement-climatique-illustration.jpg',
                 'https://static.dw.com/image/61912185_101.jpg',
               ].map((i) {
